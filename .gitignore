@@ -1,1 +1,2 @@
-/datasets/images/
+/datasets/images/*
+!/datasets/images/.gitkeep
