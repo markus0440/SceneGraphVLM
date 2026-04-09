@@ -1,0 +1,31 @@
+{
+  "preprocess": {
+    "resize": {"width": 640, "height": 360},
+    "keep_aspect": false,
+    "interpolation": "linear"
+  },
+  "patching": {"nw": 3, "nh": 3, "centroidal": true},
+  "shi_tomasi": {
+    "CORNERS_LIMIT_PER_IMAGE": 60,
+    "dedup_radius": 10,
+    "qualityLevel": 0.3,
+    "minDistance": 15,
+    "max_corners_patch": 10,
+    "useHarrisDetector": false,
+    "blockSize": 3,
+    "gradientSize": 3,
+    "k": 0.04
+  },
+  "lucas_kanade": {
+    "winSize": [21, 21],
+    "maxLevel": 3,
+    "criteria": [3, 30, 0.01],
+    "max_error": 15
+  },
+  "selection": {
+    "retention_tau": 0.3,
+    "min_patches_k": 5,
+    "copy_keyframes": false
+  },
+  "visualization": {"enabled": false}
+}

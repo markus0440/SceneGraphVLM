@@ -1,2 +1,97 @@
-/datasets/images/*
-!/datasets/images/.gitkeep
+# --- Secrets & local env (Comet, OpenRouter, etc.) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+# file or dir with keys / exports
+metrics/open-router/env
+**/open-router/env/
+**/Open-Router/env/
+.comet.config
+comet.config
+**/.comet_env
+**/.git.bak/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Training / checkpoints / GRPO outputs ---
+**/work_dirs/
+sft/Qwen3.5/logs/
+**/checkpoint-*/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+wandb/
+
+# --- Datasets & media (do not publish) ---
+datasets/data_playground/*
+!datasets/data_playground/.gitkeep
+datasets/frames/*
+!datasets/frames/.gitkeep
+datasets/images/*
+!datasets/images/.gitkeep
+
+# Annotation corpora and dumps; keep only */tools/*.py (see un-ignore below)
+datasets/annotations/AG_annot/*
+!datasets/annotations/AG_annot/tools/
+!datasets/annotations/AG_annot/tools/**
+
+datasets/annotations/PSG_annot/*
+!datasets/annotations/PSG_annot/tools/
+!datasets/annotations/PSG_annot/tools/**
+
+datasets/annotations/PVSG_annot/*
+!datasets/annotations/PVSG_annot/tools/
+!datasets/annotations/PVSG_annot/tools/**
+
+# Negated tools/** would re-include __pycache__; keep bytecode ignored
+datasets/annotations/*/tools/**/__pycache__/
+
+# --- Visualization outputs (scripts under video_demo_results/scripts stay tracked) ---
+visualization/video_demo_results/videos_output/*
+!visualization/video_demo_results/videos_output/.gitkeep
+visualization/video_demo_results/predicts_and_metrics/*
+!visualization/video_demo_results/predicts_and_metrics/.gitkeep
+visualization/notebooks/*
+!visualization/notebooks/.gitkeep
+
+# --- Metrics artifacts (keep qwen-bench infer/eval *.py tracked) ---
+metrics/results/*
+!metrics/results/.gitkeep
+metrics/qwen-bench/results/*
+!metrics/qwen-bench/results/.gitkeep
+
+# --- Local conda/env trees (keep shell installers) ---
+envs/*
+!envs/.gitkeep
+!envs/sh_scripts/
+!envs/sh_scripts/**
+
+# --- OS ---
+.DS_Store
+Thumbs.db
