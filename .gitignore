@@ -33,8 +33,9 @@ venv/
 *~
 
 # --- Jupyter ---
+# Track *.ipynb and *.txt; only ignore checkpoint dirs
 .ipynb_checkpoints/
-*.ipynb
+**/.ipynb_checkpoints/
 
 # --- Training / checkpoints / GRPO outputs ---
 **/work_dirs/
@@ -49,12 +50,19 @@ sft/Qwen3.5/logs/
 wandb/
 
 # --- Datasets & media (do not publish) ---
-datasets/data_playground/*
+# Allow *.txt and *.ipynb under these trees; everything else ignored
+datasets/data_playground/**
 !datasets/data_playground/.gitkeep
-datasets/frames/*
+!datasets/data_playground/**/*.txt
+!datasets/data_playground/**/*.ipynb
+datasets/frames/**
 !datasets/frames/.gitkeep
-datasets/images/*
+!datasets/frames/**/*.txt
+!datasets/frames/**/*.ipynb
+datasets/images/**
 !datasets/images/.gitkeep
+!datasets/images/**/*.txt
+!datasets/images/**/*.ipynb
 
 # Annotation corpora and dumps; keep only */tools/*.py (see un-ignore below)
 datasets/annotations/AG_annot/*
@@ -73,18 +81,25 @@ datasets/annotations/PVSG_annot/*
 datasets/annotations/*/tools/**/__pycache__/
 
 # --- Visualization outputs (scripts under video_demo_results/scripts stay tracked) ---
-visualization/video_demo_results/videos_output/*
+visualization/video_demo_results/videos_output/**
 !visualization/video_demo_results/videos_output/.gitkeep
-visualization/video_demo_results/predicts_and_metrics/*
+!visualization/video_demo_results/videos_output/**/*.txt
+!visualization/video_demo_results/videos_output/**/*.ipynb
+visualization/video_demo_results/predicts_and_metrics/**
 !visualization/video_demo_results/predicts_and_metrics/.gitkeep
-visualization/notebooks/*
-!visualization/notebooks/.gitkeep
+!visualization/video_demo_results/predicts_and_metrics/**/*.txt
+!visualization/video_demo_results/predicts_and_metrics/**/*.ipynb
+# visualization/notebooks: *.ipynb / *.txt tracked (no blanket ignore)
 
 # --- Metrics artifacts (keep qwen-bench infer/eval *.py tracked) ---
-metrics/results/*
+metrics/results/**
 !metrics/results/.gitkeep
-metrics/qwen-bench/results/*
+!metrics/results/**/*.txt
+!metrics/results/**/*.ipynb
+metrics/qwen-bench/results/**
 !metrics/qwen-bench/results/.gitkeep
+!metrics/qwen-bench/results/**/*.txt
+!metrics/qwen-bench/results/**/*.ipynb
 
 # --- Local conda/env trees (keep shell installers) ---
 envs/*
