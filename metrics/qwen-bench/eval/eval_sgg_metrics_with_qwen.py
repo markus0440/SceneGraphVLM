@@ -1233,7 +1233,8 @@ def main():
         "Rel_Recall_Qwen": _mean("qwen_recall_relations"),
         "Rel_F1_strict": _mean("strict_f1_relations"),
         "Rel_F1_qwen": _mean("qwen_f1_relations"),
-        "Qwen_SGG_Score": _mean("qwen_sgg_score"),
+        "SGG_Score_strict": _mean("strict_sgg_score"),
+        "SGG_Score_qwen": _mean("qwen_sgg_score"),
     }
 
     with open(out_json, "w", encoding="utf-8") as f:
@@ -1244,8 +1245,9 @@ def main():
     print("-" * 36)
     for k in [
         "Obj_AP@50_strict", "Obj_AP@50_Qwen", "Obj_Recall_strict", "Obj_Recall_Qwen", "Obj_F1_strict", "Obj_F1_qwen",
-        "Rel_AP@50_strict", "Rel_AP@50_Qwen", "Rel_Recall_strict", "Rel_Recall_Qwen", "Rel_F1_strict", "Rel_F1_qwen",
-        "Qwen_SGG_Score",
+        "Rel_AP@50_strict", "Rel_AP@50_Qwen", "Rel_Recall_strict", "Rel_Recall_Qwen",         "Rel_F1_strict", "Rel_F1_qwen",
+        "SGG_Score_strict",
+        "SGG_Score_qwen",
     ]:
         print(f"{k:<24} {summary[k]:>10.4f}")
     print(f"{'Failure_Rate_%':<24} {summary['invalid_rate_pct']:>10.2f}")
