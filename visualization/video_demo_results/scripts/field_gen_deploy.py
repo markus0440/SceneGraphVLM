@@ -13,7 +13,12 @@ Writes:
   <results-root>/predicts_and_metrics/field_deploy/<stem>/<run_name>.jsonl
   <results-root>/videos_output/field_deploy/<stem>/<run_name>.mp4
 
-Dependencies: ms-swift (+ vllm optional), torch, tqdm, ffmpeg for real video files, and
+Input is normally an **ordered directory of frames** (``--frames-dir``). Optional ``--video``
+lets ffmpeg extract frames first. Any frame whose size is not **640×480** is resized
+(PIL LANCZOS) to match PVSG training resolution before inference; prompts always state
+(640 x 480).
+
+Dependencies: ms-swift (+ vllm optional), torch, tqdm, Pillow, ffmpeg for ``--video`` only, and
 build_gt_video for MP4 overlay unless --no-video.
 """
 from __future__ import annotations
@@ -240,6 +245,45 @@ def image_size(path: Path) -> Tuple[int, int]:
 
     with Image.open(path) as im:
         return im.size
+
+
+# PVSG training / prompt resolution (must match embedded "(640 x 480)" in PVSG_* strings)
+FIELD_TARGET_W = 640
+FIELD_TARGET_H = 480
+
+
+def ensure_pvsg_field_resolution(
+    frame_paths: List[Path],
+    work_dir: Path,
+) -> Tuple[List[Path], int, int]:
+    """
+    If every frame is already FIELD_TARGET_W×FIELD_TARGET_H, return original paths.
+    Otherwise resize each frame to that size, write PNGs under work_dir, and return new paths.
+    """
+    from PIL import Image
+
+    sizes = [image_size(p) for p in frame_paths]
+    all_native = all(sw == FIELD_TARGET_W and sh == FIELD_TARGET_H for sw, sh in sizes)
+    if all_native:
+        return [p.resolve() for p in frame_paths], FIELD_TARGET_W, FIELD_TARGET_H
+
+    work_dir = work_dir.resolve()
+    if work_dir.exists():
+        shutil.rmtree(work_dir)
+    work_dir.mkdir(parents=True, exist_ok=True)
+
+    out_paths: List[Path] = []
+    for i, p in enumerate(frame_paths):
+        with Image.open(p) as im:
+            rgb = im.convert("RGB").resize((FIELD_TARGET_W, FIELD_TARGET_H), Image.LANCZOS)
+        out_p = work_dir / f"resized_{i:06d}.png"
+        rgb.save(out_p, "PNG")
+        out_paths.append(out_p.resolve())
+    print(
+        f"[resize] normalized {len(frame_paths)} frames to {FIELD_TARGET_W}x{FIELD_TARGET_H} -> {work_dir}",
+        flush=True,
+    )
+    return out_paths, FIELD_TARGET_W, FIELD_TARGET_H
 
 
 def synthesize_samples(frame_paths: List[Path], w: int, h: int) -> List[Dict[str, Any]]:
@@ -472,16 +516,24 @@ def main() -> int:
     subdir = "field_deploy"
 
     p = argparse.ArgumentParser(
-        description="Standalone field GEN (PVSG obj/rel): video or frames dir → temporal chaining → jsonl + MP4.",
+        description=(
+            "Standalone field GEN (PVSG obj/rel): ordered frames (or video→frames) → "
+            "resize to 640x480 if needed → temporal chaining → jsonl + MP4."
+        ),
     )
     src = p.add_mutually_exclusive_group(required=True)
     src.add_argument(
         "--video",
         type=str,
         default="",
-        help="Video file (MP4/MOV, ffmpeg at --fps) OR a directory of frames (e.g. …/0A8CF.mp4/).",
+        help="Video file (MP4/MOV); frames extracted with ffmpeg at --fps. Prefer --frames-dir for image folders.",
     )
-    src.add_argument("--frames-dir", type=str, default="", help="Directory of ordered frame images.")
+    src.add_argument(
+        "--frames-dir",
+        type=str,
+        default="",
+        help="Directory of ordered frame images (jpg/png/webp); primary field input.",
+    )
     p.add_argument("--model", type=str, required=True, help="HF id or local checkpoint (ms-swift).")
     p.add_argument("--fps", type=float, default=10.0, help="Extraction rate for --video and output MP4 fps.")
     p.add_argument(
@@ -574,7 +626,8 @@ def main() -> int:
         print(f"[frames] using directory {frames_dir_direct}")
         frame_paths = list_frames_directory(frames_dir_direct)
 
-    w, h = image_size(frame_paths[0])
+    resized_dir = artifact_dir / "_resized_640"
+    frame_paths, w, h = ensure_pvsg_field_resolution(frame_paths, resized_dir)
     samples = synthesize_samples(frame_paths, w, h)
 
     template_type = args.template_type.strip() or None

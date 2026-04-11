@@ -1,14 +1,16 @@
 # Visualization
 
-This directory contains **notebooks** and **offline tooling** to render scene graphs on images and to assemble **demo videos** for qualitative inspection (ground truth, model predictions, and side‑by‑side comparisons).
-
----
-
 ## Demo (PVSG)
 
-The clip below is a **GIF** preview of the full demo MP4 (GitHub-friendly inline preview). Layout: **top** — ground-truth scene graph per frame; **bottom** — **GT-prompt** prediction (left) vs **GEN-prompt** prediction (right).
+Layout: **top** — ground-truth scene graph per frame; **bottom** — **GT-prompt** prediction (left) vs **GEN-prompt** prediction (right). Video id `0004_11566980553`.
+
+The README uses a **GIF** so GitHub shows an inline preview reliably; HTML `<video>` is often stripped or inconsistent in Markdown viewers.
+
+<div align="center">
 
 ![PVSG demo: GT on top; GT-prompt vs GEN-prompt below](assets/pvsg_demo_common.gif)
+
+</div>
 
 ---
 
@@ -17,7 +19,7 @@ The clip below is a **GIF** preview of the full demo MP4 (GitHub-friendly inline
 ```text
 visualization/
 ├── vis.md                          # this file
-├── assets/                         # static media for documentation (e.g. demo GIF)
+├── assets/                         # README demo GIF (`pvsg_demo_common.gif`)
 ├── notebooks/
 │   └── scene_graph_unified.ipynb   # exploratory / unified scene-graph visualization
 └── video_demo_results/
@@ -70,7 +72,7 @@ python visualization/video_demo_results/scripts/build_pred_video.py \
   --cuda-visible-devices 0 \
   --batch-size 8 \
   --gpu-memory-utilization 0.45 \
-  --fps 10
+  --fps 5
 ```
 
 **Artifacts (defaults):** under `visualization/video_demo_results/predicts_and_metrics/<GT_prompt|GEN_prompt>/<video_name>/`:
@@ -110,14 +112,27 @@ Expects:
 
 ### `field_gen_deploy.py`
 
-**Role:** **Field / deployment-style** demo: accepts a **raw input video** or an **ordered directory of frames**, builds PVSG **GEN-style** prompts (embedded template matching PVSG training), runs **temporal chaining** with ms-swift (**does not** import `infer_swift_gen_prompt.py`), writes JSONL and optionally an MP4 overlay.
+**Role:** **Field / deployment-style** PVSG demo. Typical input is an **ordered folder of frames** (`--frames-dir`). Optionally pass **`--video`** so **ffmpeg** extracts frames at **`--fps`** first. The script builds embedded **GEN-style** PVSG prompts (same wording as training), runs **temporal chaining** with the model’s own previous TOON (**does not** call `infer_swift_gen_prompt.py`), then writes JSONL and optionally an MP4 overlay.
+
+**Resolution:** prompts always advertise **640×480**. If any input frame differs, **all** frames are resized to **640×480** (PIL LANCZOS) and written under `predicts_and_metrics/field_deploy/<stem>/_resized_640/` (paths in the JSONL point there, so this directory is kept). If every frame is already exactly 640×480, originals are used unchanged.
 
 **Outputs (defaults):**
 
 - `visualization/video_demo_results/predicts_and_metrics/field_deploy/<stem>/<run_name>.jsonl`  
 - `visualization/video_demo_results/videos_output/field_deploy/<stem>/<run_name>.mp4`  
 
-**Example:**
+**Example (frames directory — usual case):**
+
+```bash
+python visualization/video_demo_results/scripts/field_gen_deploy.py \
+  --frames-dir /path/to/ordered_frames \
+  --model /path/to/checkpoint \
+  --infer-backend vllm \
+  --fps 10 \
+  --cuda-visible-devices 0
+```
+
+**Example (video → extract frames, then same pipeline):**
 
 ```bash
 python visualization/video_demo_results/scripts/field_gen_deploy.py \
@@ -128,7 +143,7 @@ python visualization/video_demo_results/scripts/field_gen_deploy.py \
   --cuda-visible-devices 0
 ```
 
-Use **`--frames-dir`** instead of **`--video`** for an image sequence. **`--no-video`** writes JSONL only. **`--results-root`** overrides the default demo root (`video_demo_results`).
+**Flags:** **`--no-video`** — JSONL only. **`--results-root`** — parent of `predicts_and_metrics/` and `videos_output/` (default: `visualization/video_demo_results`). **`--keep-extracted-frames`** — keep ffmpeg scratch frames when using **`--video`**. **`--stem`** — override the folder name under `field_deploy/` (default: directory or video stem).
 
 ---
 
@@ -142,8 +157,8 @@ Jupyter notebook for **interactive** exploration of scene-graph visualizations (
 
 | Component | Purpose |
 |-----------|---------|
-| **ffmpeg** | MP4 encoding in `build_gt_video.py` and filter graph in `build_common_video.py` |
-| **Python:** `numpy`, `Pillow`, `matplotlib` | Drawing boxes, arrows, labels; frame compositing |
+| **ffmpeg** | MP4 encoding in `build_gt_video.py` and `build_common_video.py`; optional frame extraction for `field_gen_deploy.py --video` |
+| **Python:** `numpy`, `Pillow`, `matplotlib` | Drawing; `Pillow` also resizes field input frames to 640×480 in `field_gen_deploy.py` |
 | **ms-swift + torch + (vLLM or transformers)** | `build_pred_video.py`, `field_gen_deploy.py` inference |
 | **scipy, vLLM (Qwen judge)** | `build_pred_video.py` evaluation step |
 
