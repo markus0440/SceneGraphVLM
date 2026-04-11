@@ -70,10 +70,16 @@ datasets/images/**
 
 datasets/annotations/AG_annot/*
 !datasets/annotations/AG_annot/README.md
+!datasets/annotations/AG_annot/AG_README.md
 !datasets/annotations/AG_annot/tools/
 !datasets/annotations/AG_annot/tools/**
 !datasets/annotations/AG_annot/annotations/
 !datasets/annotations/AG_annot/annotations/*.txt
+!datasets/annotations/AG_annot/figures/
+!datasets/annotations/AG_annot/figures/*.png
+!datasets/annotations/AG_annot/figures/*.jpg
+!datasets/annotations/AG_annot/figures/*.jpeg
+!datasets/annotations/AG_annot/figures/.gitkeep
 
 datasets/annotations/PSG_annot/*
 !datasets/annotations/PSG_annot/README.md
