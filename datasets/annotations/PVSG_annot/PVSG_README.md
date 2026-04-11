@@ -7,6 +7,8 @@
   </video>
 </p>
 
+---
+
 <p align="center">
   <img src="figures/teaser.png" alt="PVSG teaser (local copy for this README)" width="720" />
 </p>
@@ -100,7 +102,7 @@ python datasets/annotations/PVSG_annot/tools/prepare_original_pvsg_sft.py
 | `--export_root` | Output dir for `*_annotations_toon_sft.json`. |
 | `--images_out` | Root for PNGs (default `datasets/frames/PVSG_frames`). |
 | `--sources` | Comma-separated sources (default `vidor,epic_kitchen,ego4d`). |
-| `--splits` | Comma-separated splits (default `train,val`; `val` → `test_*.json`). |
+| `--splits` | Comma-separated splits (default `train,val`; `val` ==> `test_*.json`). |
 | `--limit_videos` | Cap number of videos (`0` = all). |
 | `--limit_frames` | Cap frames per video (`0` = all). |
 | `--only_video` | Process a single video id. |
@@ -115,12 +117,8 @@ PVSG is built from short clips sampled at fixed frame rate, but clips differ a l
 **Defaults:** input `datasets/annotations/PVSG_annot/data_sft_original`, output `datasets/annotations/PVSG_annot/data_sft_base_annot`.
 
 ```bash
-cd /path/to/SceneGraphVLM
-
 python utils/BaseAnnot/prepare_filtered_pvsg_sft.py
 ```
-
-**Output:** `train_annotations_toon_sft.json` and `test_annotations_toon_sft.json` under `--output_dir` (filtered rows).
 
 ### 3.2 `utils/MaxInfo/pvsg_maxinfo_filter.py`
 
@@ -130,16 +128,6 @@ python utils/BaseAnnot/prepare_filtered_pvsg_sft.py
 python utils/MaxInfo/pvsg_maxinfo_filter.py --fp16
 ```
 
-**Stacked example** (MaxInfo on BaseAnnot output instead of the full dataset):
-
-```bash
-python utils/MaxInfo/pvsg_maxinfo_filter.py --fp16 \
-  --input_dir datasets/annotations/PVSG_annot/data_sft_base_annot \
-  --output_dir datasets/annotations/PVSG_annot/data_sft_maxinfo
-```
-
-**Output:** filtered `train_annotations_toon_sft.json` / `test_annotations_toon_sft.json` under `--output_dir`. Tune e.g. `--tol`, `--r`, `--batch-size` (see the script docstring).
-
 ### 3.3 `utils/PSFR/pvsg_psfr_filter.py`
 
 **Defaults:** input `datasets/annotations/PVSG_annot/data_sft_original`, output `datasets/annotations/PVSG_annot/data_sft_psfr`, config `utils/PSFR/config_pvsg.json`.
@@ -148,13 +136,11 @@ python utils/MaxInfo/pvsg_maxinfo_filter.py --fp16 \
 python utils/PSFR/pvsg_psfr_filter.py
 ```
 
-**Output:** filtered `train_annotations_toon_sft.json` / `test_annotations_toon_sft.json` under `--output_dir`.
-
 ## 4. Export Swift JSONL (`sft_to_jsonl_pvsg.py`)
 
 Run from the **repository root**. Point `--input_dir` at the TOON directory you produced after **Section 2** and optional **Section 3** (e.g. `data_sft_maxinfo` after MaxInfo on the full export, or `data_sft_base_annot` / `data_sft_psfr` if you use only one of those filters).
 
-The **first** frame of each video uses **`PROMPT_NO_PREV`**; **every later frame** uses **`PROMPT_WITH_PREV`**, with the previous frame’s `answer_toon` string substituted for `<<PREV_TOON>>` (full text in **Section 5**).
+The **first** frame of each video uses **`PROMPT_NO_PREV`**. **Every later frame** uses **`PROMPT_WITH_PREV`**, with the previous frame’s `answer_toon` string substituted for `<<PREV_TOON>>` (full text in **Section 5**).
 
 Default output directory:
 
@@ -174,25 +160,7 @@ python datasets/annotations/PVSG_annot/tools/sft_to_jsonl_pvsg.py \
 python datasets/annotations/PVSG_annot/tools/sft_to_jsonl_pvsg.py \
   --repo_root /path/to/SceneGraphVLM \
   --input_dir datasets/annotations/PVSG_annot/data_sft_maxinfo \
-  --output_dir datasets/data_playground/PVSG_json/pvsg_all_data_gt_prompt
-```
-
-**Merge multiple TOON roots** (same filenames in each folder):
-
-```bash
-python datasets/annotations/PVSG_annot/tools/sft_to_jsonl_pvsg.py \
-  --input_dir datasets/annotations/PVSG_annot/data_sft_base_annot \
-  --input_dir datasets/annotations/PVSG_annot/data_sft_maxinfo \
-  --output_dir datasets/data_playground/PVSG_json/my_merged_run
-```
-
-**Replace prompts only** in an existing JSONL:
-
-```bash
-python datasets/annotations/PVSG_annot/tools/sft_to_jsonl_pvsg.py \
-  --replace-prompt-only \
-  --input path/to/in.jsonl \
-  --output path/to/out.jsonl
+  --output_dir datasets/data_playground/PVSG_json/pvsg_maxinfo_gt_prompt
 ```
 
 ## 5. User prompts (full templates + expanded subsequent-frame example)
@@ -385,7 +353,7 @@ python utils/PSFR/pvsg_psfr_filter.py
 # 3) JSONL from the TOON root you train on (example: MaxInfo output)
 python datasets/annotations/PVSG_annot/tools/sft_to_jsonl_pvsg.py \
   --input_dir datasets/annotations/PVSG_annot/data_sft_maxinfo \
-  --output_dir datasets/data_playground/PVSG_json/pvsg_all_data_gt_prompt
+  --output_dir datasets/data_playground/PVSG_json/pvsg_maxinfo_gt_prompt
 
 # 4) Clean JSONL — always last (requires train.jsonl / test.jsonl from step 3)
 python utils/annotations_clean/clean_zero_rel_frames.py datasets/data_playground/PVSG_json/pvsg_all_data_gt_prompt
@@ -406,7 +374,7 @@ SceneGraphVLM/
 │   │       │   ├── train_annotations_toon_sft.json
 │   │       │   └── test_annotations_toon_sft.json
 │   │       ├── data_sft_base_annot/     # optional: BaseAnnot (Section 3)
-│   │       ├── data_sft_maxinfo/        # optional: MaxInfo (Section 3); default input = data_sft_original
+│   │       ├── data_sft_maxinfo/        # optional: MaxInfo (Section 3)
 │   │       ├── data_sft_psfr/           # optional: PSFR (Section 3)
 │   │       └── tools/
 │   │           ├── prepare_original_pvsg_sft.py
