@@ -1,3 +1,6 @@
+# IN PROCESS
+---
+
 # SceneGraphVLM: Dynamic Scene Graph Generation from Video with Vision-Language Models
 
 Most existing methods for creating video scene graphs are based on **modular** solutions, where **inter-modular consistency** remains vulnerable. **SceneGraphVLM** is a compact **end-to-end** approach to scene graph generation from images and video based on a **vision–language model**. Instead of multi-stage detection pipelines and heavy post-processing, the model directly emits objects with bounding boxes, attributes, and relations in a **memory-efficient TOON** textual schema, improving structural validity and reducing parsing failures.
