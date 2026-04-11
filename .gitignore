@@ -140,8 +140,11 @@ metrics/qwen-bench/results/**
 # --- Local conda/env trees (keep shell installers) ---
 envs/*
 !envs/.gitkeep
+!envs/SWIFT_README.md
 !envs/sh_scripts/
 !envs/sh_scripts/**
+!envs/requirements_files/
+!envs/requirements_files/**
 
 # --- OS ---
 .DS_Store
