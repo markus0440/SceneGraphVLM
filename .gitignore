@@ -95,6 +95,15 @@ datasets/annotations/PSG_annot/*
 
 datasets/annotations/PVSG_annot/*
 !datasets/annotations/PVSG_annot/README.md
+!datasets/annotations/PVSG_annot/PVSG_README.md
+!datasets/annotations/PVSG_annot/figures/
+!datasets/annotations/PVSG_annot/figures/*.gif
+!datasets/annotations/PVSG_annot/figures/*.png
+!datasets/annotations/PVSG_annot/figures/*.jpg
+!datasets/annotations/PVSG_annot/figures/*.jpeg
+!datasets/annotations/PVSG_annot/figures/*.mp4
+!datasets/annotations/PVSG_annot/figures/*.webm
+!datasets/annotations/PVSG_annot/figures/*.mov
 !datasets/annotations/PVSG_annot/tools/
 !datasets/annotations/PVSG_annot/tools/**
 !datasets/annotations/PVSG_annot/annotations/

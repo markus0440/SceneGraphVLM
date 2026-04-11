@@ -4,7 +4,8 @@
 MaxInfo key-frame selection for PVSG TOON JSON (CLIP -> SVD(r) -> rect_maxvol).
 
 Reads ``train_annotations_toon_sft.json`` and ``test_annotations_toon_sft.json`` from ``--input_dir``
-(same schema as ``prepare_original_pvsg_sft.py`` / ``prepare_filtered_pvsg_sft.py``). For each video,
+(same schema as ``prepare_original_pvsg_sft.py``; you may also point ``--input_dir`` at another TOON
+export, e.g. BaseAnnot output, if you want stacked filtering). For each video,
 embeds frames with CLIP, reduces with SVD, selects diverse frames via ``rect_maxvol``, and writes
 the filtered arrays to ``--output_dir`` under the **same filenames**. ``image_path`` in the output
 stays **relative to the repository root** (POSIX ``/``).
@@ -25,9 +26,8 @@ If output JSON files already exist, the script skips CLIP and only prints statis
 **maxvol**: SVD of features then ``rect_maxvol(M, tol)`` (maxvolpy). Here **larger ``tol`` keeps
 fewer frames** (looser coefficient bound → smaller pivot set); **smaller ``tol`` keeps more**.
 Empirically on full PVSG train JSON (same CLIP path): ``tol≈0.10`` ~76% retained,
-``tol≈0.42`` ~11.6% retained, ``tol≈1.0`` ~3% retained. Default ``--tol 0.23`` is calibrated to sit
-close to ``datasets/data_playground/PVSG_json/pvsg_maxinfo_gt_prompt`` (~48.4k train / ~9.1k test
-lines, ~38–40% of pre-filter rows on ``data_sft_base_annot``). If you retain too **few** frames,
+``tol≈0.42`` ~11.6% retained, ``tol≈1.0`` ~3% retained. Default ``--tol 0.23`` was tuned empirically for
+PVSG-scale train JSON (order of tens of thousands of rows retained vs. full dense export). If you retain too **few** frames,
 **decrease** ``tol``; too **many** → **increase** ``tol``. maxvolpy’s default ``tol=1.0`` is far too
 aggressive here. CLIP:
 ``openai/clip-vit-large-patch14-336``; pooler output for image features. If the number of selected
@@ -63,7 +63,7 @@ except ImportError:
 _SCRIPT_DIR = Path(__file__).resolve().parent
 _REPO_ROOT_DEFAULT = _SCRIPT_DIR.parents[1]
 
-DEFAULT_INPUT_DIR = "datasets/annotations/PVSG_annot/data_sft_base_annot"
+DEFAULT_INPUT_DIR = "datasets/annotations/PVSG_annot/data_sft_original"
 DEFAULT_OUTPUT_DIR = "datasets/annotations/PVSG_annot/data_sft_maxinfo"
 DEFAULT_TRAIN_JSON = "train_annotations_toon_sft.json"
 DEFAULT_TEST_JSON = "test_annotations_toon_sft.json"
@@ -404,7 +404,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--input_dir",
         default=DEFAULT_INPUT_DIR,
-        help="Folder with train/test TOON JSON",
+        help="Folder with train/test TOON JSON (default: dense export data_sft_original; override e.g. for BaseAnnot output)",
     )
     p.add_argument(
         "--output_dir",

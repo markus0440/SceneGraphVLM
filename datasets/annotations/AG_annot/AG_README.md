@@ -174,7 +174,7 @@ python datasets/annotations/AG_annot/tools/prepare_original_ag_sft.py \
 
 ### 4.2 `sft_to_jsonl_ag.py`
 
-Reads the intermediate JSON from §4.1 and writes **Swift-style chat JSONL** (PVSG-like prompts with temporal context):
+Reads the intermediate JSON from 4.1 and writes **Swift-style chat JSONL** (PVSG-like prompts with temporal context):
 
 - `datasets/data_playground/AG_json/train.jsonl`
 - `datasets/data_playground/AG_json/test.jsonl`
@@ -253,7 +253,7 @@ Now, generate the complete scene graph for the provided image. Wrap your scene g
 ### End-to-end pipeline (summary)
 
 ```bash
-# 0) Download videos + pickles into AG_annot (see §1)
+# 0) Download videos + pickles into AG_annot
 
 # 1) Dump frames (cwd = AG_annot)
 cd datasets/annotations/AG_annot
@@ -266,7 +266,7 @@ python datasets/annotations/AG_annot/tools/prepare_original_ag_sft.py --num_work
 # 3) JSONL for SFT / inference
 python datasets/annotations/AG_annot/tools/sft_to_jsonl_ag.py
 
-# 4) Optional: remove zero-relation rows → *_clean.jsonl (see §6)
+# 4) Optional: remove zero-relation rows → *_clean.jsonl
 python utils/annotations_clean/clean_zero_rel_frames.py datasets/data_playground/AG_json
 ```
 
