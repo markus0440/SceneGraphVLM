@@ -55,7 +55,7 @@ The official release does not ship pre-extracted frames. After all 480p videos a
 cd /path/to/SceneGraphVLM/datasets/annotations/AG_annot
 ```
 
-**Annotated frames only** (same sampling as in the AG paper; much smaller than full-video dumps — on the order of ~74 GB in the original release notes):
+**Annotated frames only** (same sampling as in the AG paper. Much smaller than full-video dumps — on the order of ~74 GB in the original release notes):
 
 ```bash
 python tools/dump_frames.py

@@ -71,7 +71,7 @@ cd /path/to/SceneGraphVLM
 python datasets/annotations/PSG_annot/tools/prepare_original_psg_sft.py --from-hf
 ```
 
-**If JSON already exists** (rebuild frames + TOON; pulls pixels from HF again unless `--no-hf-images`):
+**If JSON already exists** (rebuild frames + TOON. Pulls pixels from HF again unless `--no-hf-images`):
 
 ```bash
 python datasets/annotations/PSG_annot/tools/prepare_original_psg_sft.py
@@ -86,7 +86,7 @@ python datasets/annotations/PSG_annot/tools/prepare_original_psg_sft.py
 | `--export_root` | Output dir for `*_annotations_toon_sft.json`. |
 | `--images_out` | Root for PNGs (default `datasets/frames/PSG_frames`). |
 | `--from-hf` | If JSON is missing, download annotation lists from HF and save under `annotations/`. |
-| `--no-hf-images` | Do not decode images from HF; every row must resolve to a local file. |
+| `--no-hf-images` | Do not decode images from HF. Every row must resolve to a local file. |
 | `--skip-sft` | Skip a split if its `*_annotations_toon_sft.json` already exists. |
 
 ### 2.2 `sft_to_jsonl_psg.py`
