@@ -83,10 +83,15 @@ datasets/annotations/AG_annot/*
 
 datasets/annotations/PSG_annot/*
 !datasets/annotations/PSG_annot/README.md
+!datasets/annotations/PSG_annot/PSG_README.md
 !datasets/annotations/PSG_annot/tools/
 !datasets/annotations/PSG_annot/tools/**
+!datasets/annotations/PSG_annot/figure/
+!datasets/annotations/PSG_annot/figure/*.gif
+!datasets/annotations/PSG_annot/figure/*.png
 !datasets/annotations/PSG_annot/annotations/
 !datasets/annotations/PSG_annot/annotations/*.txt
+!datasets/annotations/PSG_annot/annotations/*.json
 
 datasets/annotations/PVSG_annot/*
 !datasets/annotations/PVSG_annot/README.md

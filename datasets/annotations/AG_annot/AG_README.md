@@ -197,6 +197,59 @@ python datasets/annotations/AG_annot/tools/sft_to_jsonl_ag.py \
   --out_dir datasets/data_playground/AG_json
 ```
 
+### 4.3 User prompt
+
+```text
+<image>
+Generate a structured scene graph for an image of size (640 x 480) using the following format:
+
+<answer>
+obj[N]{id,name,x1,y1,x2,y2}:
+  id,name,x1,y1,x2,y2
+  ...
+rel_pairs[M]{subj,attention,spatial,contacting,obj}:
+  subj,[attention_labels],[spatial_labels],[contacting_labels],obj
+  ...
+</answer>
+
+Guidelines (closed vocabulary):
+- Objects:
+  - Use integer IDs starting from 1 in the id field (e.g., 1, 2, 3).
+  - The name must belong to the predefined object set (person + interacted objects).
+  - Provide the bounding box [x1, y1, x2, y2] in integer pixel format.
+  - Include all visible objects that appear in the graph, even if some have no relationship row.
+- Relationship pairs:
+  - Each line is one (person, object) pair: subj is the person id, obj is the object id.
+  - attention, spatial, contacting are comma-separated lists inside square brackets, using exact labels from ATTENTION_CLS, SPATIAL_CLS, CONTACTING_CLS respectively.
+  - Use underscores as in the label names (e.g. in_front_of, not_looking_at).
+  - If a type has no label, use an empty list: [].
+  - At most 1 attention label, 5 spatial labels, and 4 contacting labels per pair (limits match the training annotations).
+
+You are in the closed vocabulary setting. The object name in the name field must be chosen from OBJ_CLS below. Each bracket list must only contain values from its corresponding class list. If something does not match exactly, choose the closest category from the list.
+
+OBJ_CLS (valid object categories): ["person", "bag", "bed", "blanket", "book", "box", "broom", "chair", "closet/cabinet", "clothes", "cup/glass/bottle", "dish", "door", "doorknob", "doorway", "floor", "food", "groceries", "laptop", "light", "medicine", "mirror", "paper/notebook", "phone/camera", "picture", "pillow", "refrigerator", "sandwich", "shelf", "shoe", "sofa/couch", "table", "television", "towel", "vacuum", "window"]
+
+ATTENTION_CLS: ["looking_at", "not_looking_at", "unsure"]
+
+SPATIAL_CLS: ["above", "behind", "beneath", "in", "in_front_of", "on_the_side_of"]
+
+CONTACTING_CLS: ["carrying", "covered_by", "drinking_from", "eating", "have_it_on_the_back", "holding", "leaning_on", "lying_on", "not_contacting", "other_relationship", "sitting_on", "standing_on", "touching", "twisting", "wearing", "wiping", "writing_on"]
+
+Example output:
+
+<answer>
+obj[3]{id,name,x1,y1,x2,y2}:
+  1,person,24,71,259,268
+  2,table,222,143,479,244
+  3,chair,56,179,249,269
+rel_pairs[2]{subj,attention,spatial,contacting,obj}:
+  1,[unsure],[in_front_of],[not_contacting],2
+  1,[not_looking_at],[beneath,behind],[sitting_on,leaning_on],3
+</answer>
+
+Now, generate the complete scene graph for the provided image. Wrap your scene graph in <answer>...</answer> tags.
+```
+
 ### End-to-end pipeline (summary)
 
 ```bash
@@ -217,23 +270,7 @@ python datasets/annotations/AG_annot/tools/sft_to_jsonl_ag.py
 python utils/annotations_clean/clean_zero_rel_frames.py datasets/data_playground/AG_json
 ```
 
-## 5. Example scene graph (TOON)
-
-After the pipeline above, labels follow a TOON-style layout. Example:
-
-```text
-      obj[4]{id,name,x1,y1,x2,y2}:
-        1,person,20,3,329,353
-        2,closet/cabinet,0,59,329,480
-        3,broom,96,261,379,319
-        4,doorway,311,0,640,480
-      rel_pairs[3]{subj,attention,spatial,contacting,obj}:
-        1,[not_looking_at],[behind],[not_contacting],2
-        1,[not_looking_at],[in_front_of],[holding],3
-        1,[not_looking_at],[in_front_of],[not_contacting],4
-```
-
-## 6. Optional: drop samples with zero relations
+## 5. Optional: drop samples with zero relations
 
 Some frames may have **no relations** in the assistant TOON block. To train on a subset where every kept row has at least one relation line under the detected relation header, use `utils/annotations_clean/clean_zero_rel_frames.py`.
 
@@ -265,9 +302,7 @@ The report includes per-file counts: total lines, removed as zero-relation, kept
 
 > **Note:** The detector matches a **`rel[…]{subj,pred,obj}`**-style header. AG JSONL from `sft_to_jsonl_ag.py` uses **`rel_pairs[…]`** instead. Rows without a matching header are **passed through unchanged** (counted under `missing_rel_block` in the report). To filter zero-`rel_pairs` rows, extend `clean_zero_rel_frames.py` (or add a small adapter) to parse `rel_pairs[…]` the same way.
 
-## 7. Directory tree (expected layout)
-
-Repository root = `SceneGraphVLM`.
+## 6. Directory tree (expected layout)
 
 ```text
 SceneGraphVLM/
