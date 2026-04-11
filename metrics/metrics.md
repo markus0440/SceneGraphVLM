@@ -71,9 +71,11 @@ Additional flags include `--limit`, `--max-retries`, `--retry-delay`, `--dataset
 
 ### Output filename
 
-$$
-\texttt{\{output\_dir\}/\{model\_short\}-\{output\_prefix\}.jsonl}
-$$
+Pattern (no LaTeX here — avoids underscore parsing issues in math previewers):
+
+```text
+{output_dir}/{model_short}-{output_prefix}.jsonl
+```
 
 Here `model_short` denotes the portion of the model id after `/` (e.g. `gpt-5.4-mini`).
 
@@ -216,8 +218,10 @@ If the union area is zero, $\text{IoU}(A,B) = 0$.
 An IoU matrix $\text{IoU}_{ij}$ is formed over all ground-truth and predicted objects. **Hungarian assignment** (`scipy.optimize.linear_sum_assignment`) minimizes total cost $-\text{IoU}$ (equivalently, maximizes the sum of paired IoUs). A pair is retained only if
 
 $$
-\text{IoU}_{ij} \ge \theta,\quad \theta = \texttt{--iou-thr}\quad (\text{default: } 0.5).
+\text{IoU}_{ij} \ge \theta,\quad \theta = 0.5 \text{ by default.}
 $$
+
+The threshold is set by CLI **`--iou-thr`** (see `eval_sgg_metrics_with_qwen.py`).
 
 The mean IoU over accepted pairs is stored per sample as **`bbox_mean_iou_matched`**.
 
@@ -250,13 +254,13 @@ A binary cost matrix of size $N^{\text{rel}}_{\text{gt}} \times N^{\text{rel}}_{
 
 #### Aggregate scene-graph score
 
-Per sample:
+Per sample, the combined score (reported as **`SGG_Score_*`** in JSON) is the mean of object and relation F1:
 
 $$
-\text{SGG\_score} = \frac{F1_{\text{obj}} + F1_{\text{rel}}}{2}.
+s = \frac{F1_{\text{obj}} + F1_{\text{rel}}}{2}.
 $$
 
-In the summary JSON, **`SGG_Score_strict`** and **`SGG_Score_qwen`** report the dataset-level mean.
+In the summary JSON, **`SGG_Score_strict`** and **`SGG_Score_qwen`** report the dataset-level mean of $s$.
 
 ### Qwen judge: invocation and outputs
 
