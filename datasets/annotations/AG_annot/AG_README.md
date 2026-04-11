@@ -1,8 +1,6 @@
-# Action Genome (AG) — SceneGraphVLM layout
+# Action Genome (AG)
 
 This document describes the **Action Genome v1.0** workflow following the [official AG repository](https://github.com/JingweiJ/ActionGenome), with paths aligned to **SceneGraphVLM** under `datasets/annotations/AG_annot/`.
-
----
 
 ## Prerequisites
 
@@ -18,8 +16,6 @@ bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
 ```
 
 Activate the created environment as described in that script’s output (e.g. `conda activate ...`).
-
----
 
 ## 1. Download videos and annotations
 
@@ -48,8 +44,6 @@ Activate the created environment as described in that script’s output (e.g. `c
    - `relationship_classes.txt`
 
 This repository may track small **`.txt`** files under `annotations/`. **`.pkl` files are not committed** — add them locally after download.
-
----
 
 ## 2. Dump frames from videos
 
@@ -90,7 +84,9 @@ Charades/frames/<VIDEO_ID>/<FRAME>.png
 
 ### How AG was labeled (from the paper)
 
-![Action Genome annotation pipeline overview](figures/AG.png)
+<p align="center">
+  <img src="figures/AG.png" alt="Action Genome annotation pipeline overview" width="462" />
+</p>
 
 > For every action, we uniformly sample **5 frames** across the action and annotate the person performing the action along with the objects they interact with. We also annotate the pairwise relationships between the person and those objects. Here, we show a video with **4 actions** labelled, resulting in **20 (= 4 × 5)** frames annotated with scene graphs. The objects are grounded back in the video as bounding boxes.
 
@@ -130,8 +126,6 @@ Other files under `annotations/`:
 | `frame_list.txt` | All labeled frames |
 | `object_classes.txt` | Object class names |
 | `relationship_classes.txt` | Human–object relationship classes |
-
----
 
 ## 4. SceneGraphVLM tools (TOON + training JSONL)
 
@@ -317,8 +311,6 @@ SceneGraphVLM/
     └── annotations_clean/
         └── clean_zero_rel_frames.py
 ```
-
----
 
 ## References
 
