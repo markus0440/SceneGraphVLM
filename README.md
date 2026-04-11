@@ -4,13 +4,13 @@ Most existing methods for creating video scene graphs are based on **modular** s
 
 Training follows a **two-stage** recipe: **supervised fine-tuning** and subsequent **GRPO-driven reinforcement learning** with **graph-centric rewards** that measure semantic and spatial alignment at both **object** and **triplet** levels, complemented by a **format-consistency** reward to enforce schema compliance. **Extensive experiments** on **PSG** and **PVSG** demonstrate the **state-of-the-art** quality of the proposed model. For **practical deployment**, inference is optimized with **vLLM** and targets **sub-second** generation of complete scene graphs while preserving accuracy.
 
-**Fig. 1.** A simplified diagram of the proposed vision-language model-driven SceneGraphVLM method for scene graph generation from video sequences with an **optional previous scene graph** as input. Scene graphs are represented in the **TOON** textual format.
-
 ![Fig. 1 — SceneGraphVLM inference over video with optional previous-frame TOON](docs/figures/fig1_pipeline.png)
 
-**Fig. 2.** The learning scheme of the developed SceneGraphVLM method which employs a modern **two-stage** fine-tuning pipeline combining **SFT** and a **modified GRPO** objective with a **novel graph-centric reward** which takes into account the **predicate number** in the scene graph.
+**Fig. 1.** A simplified diagram of the proposed vision-language model-driven SceneGraphVLM method for scene graph generation from video sequences with an **optional previous scene graph** as input. Scene graphs are represented in the **TOON** textual format.
 
 ![Fig. 2 — SFT + GRPO learning scheme with graph-centric rewards](docs/figures/fig2_learning_scheme.png)
+
+**Fig. 2.** The learning scheme of the developed SceneGraphVLM method which employs a modern **two-stage** fine-tuning pipeline combining **SFT** and a **modified GRPO** objective with a **novel graph-centric reward** which takes into account the **predicate number** in the scene graph.
 
 
 | Topic | Document |
