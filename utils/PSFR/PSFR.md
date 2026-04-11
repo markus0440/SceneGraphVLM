@@ -14,33 +14,33 @@ The method marks **keyframes** when **many spatial patches** simultaneously lose
 
 ### 1. Shi–Tomasi corners (per patch)
 
-Corners are scored from the eigenvalues \((\lambda_1, \lambda_2)\) of the **structure tensor** (gradient covariance); a common response is the **minimum eigenvalue**:
+Corners are scored from the eigenvalues $(\lambda_1, \lambda_2)$ of the **structure tensor** (gradient covariance); a common response is the **minimum eigenvalue**:
 
-\[
+$$
 R = \min(\lambda_1, \lambda_2)
-\]
+$$
 
-Strong corners have large \(R\). Frames are split into an \(n_w \times n_h\) grid of **overlapping** patches (optional **centroidal** patches reduce boundary artifacts).
+Strong corners have large $R$. Frames are split into an $n_w \times n_h$ grid of **overlapping** patches (optional **centroidal** patches reduce boundary artifacts).
 
 ### 2. Lucas–Kanade tracking
 
 Between consecutive frames, sparse flow minimizes the brightness constancy assumption in a window:
 
-\[
+$$
 I(x+u,\,y+v,\,t+1) \approx I(x,\,y,\,t)
-\]
+$$
 
-yielding displacement \((u,v)\) per tracked point (least-squares solve in small patches — standard OpenCV LK).
+yielding displacement $(u,v)$ per tracked point (least-squares solve in small patches — standard OpenCV LK).
 
 ### 3. Patch drop and keyframe rule
 
-For each patch, compare **how many** initial corners remain successfully tracked vs. the count after the step. A patch **drops** when the **retained fraction** falls below a threshold \(\tau\):
+For each patch, compare **how many** initial corners remain successfully tracked vs. the count after the step. A patch **drops** when the **retained fraction** falls below a threshold $\tau$:
 
-\[
+$$
 \frac{N_{\text{tracked}}}{N_{\text{initial}}} < \tau
-\]
+$$
 
-A frame becomes a **keyframe** when **at least \(k\)** patches drop **simultaneously** (config **`min_patches_k`**).
+A frame becomes a **keyframe** when **at least $k$** patches drop **simultaneously** (config **`min_patches_k`**).
 
 ---
 
@@ -52,10 +52,10 @@ A frame becomes a **keyframe** when **at least \(k\)** patches drop **simultaneo
 | **`patching`** | **`nw` / `nh`**: grid size; **`centroidal`**: extra center patches. |
 | **`shi_tomasi`** | Corner budget, quality, min distance, block size, etc. |
 | **`lucas_kanade`** | LK window, pyramid levels, termination criteria, **`max_error`**. |
-| **`selection`** | **`retention_tau`** = \(\tau\), **`min_patches_k`** = \(k\), **`copy_keyframes`** (off for PVSG driver). |
+| **`selection`** | **`retention_tau`** = $\tau$, **`min_patches_k`** = $k$, **`copy_keyframes`** (off for PVSG driver). |
 | **`visualization`** | Off by default for batch PVSG. |
 
-Edit **`utils/PSFR/config_pvsg.json`** to tune \(\tau\), \(k\), patch grid, or preprocessing.
+Edit **`utils/PSFR/config_pvsg.json`** to tune $\tau$, $k$, patch grid, or preprocessing.
 
 ---
 

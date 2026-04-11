@@ -43,14 +43,14 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 bash sft/Qwen3.5/train_scripts/run_psg.sh
 
 Or `cd sft/Qwen3.5/train_scripts` and call a script with a **relative path to JSONL** (see comments at the top of `run_sft.sh`).
 
-| Script | Train JSONL | Validation JSONL | Default `COMET_PROJECT_NAME` |
-|--------|-------------|------------------|------------------------------|
+| Script | Train JSONL | Validation JSONL |
+|--------|-------------|------------------|
 | `run_psg.sh` | `datasets/data_playground/PSG_json/train.jsonl` | `.../PSG_json/test.jsonl` | `qwen_3_5_psg` |
-| `run_ag.sh` | `.../AG_json/train.jsonl` | `.../AG_json/test.jsonl` | `qwen_3_5_ag` |
-| `run_pvsg_base_annot.sh` | `.../PVSG_json/pvsg_base_annot_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` | `qwen_3_5_pvsg` |
-| `run_pvsg_maxinfo.sh` | `.../pvsg_maxinfo_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` | `qwen_3_5_pvsg` |
-| `run_pvsg_psfr.sh` | `.../pvsg_psfr_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` | `qwen_3_5_pvsg` |
-| `run_pvsg_all.sh` | `.../pvsg_all_data_gt_prompt/train.jsonl` | `.../pvsg_psfr_gt_prompt/test.jsonl` | `qwen_3_5_pvsg` |
+| `run_ag.sh` | `.../AG_json/train.jsonl` | `.../AG_json/test.jsonl` |
+| `run_pvsg_base_annot.sh` | `.../PVSG_json/pvsg_base_annot_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` |
+| `run_pvsg_maxinfo.sh` | `.../pvsg_maxinfo_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` |
+| `run_pvsg_psfr.sh` | `.../pvsg_psfr_gt_prompt/train_clean.jsonl` | `.../pvsg_psfr_gt_prompt/test_clean.jsonl` |
+| `run_pvsg_all.sh` | `.../pvsg_all_data_gt_prompt/train.jsonl` | `.../pvsg_psfr_gt_prompt/test.jsonl` |
 
 Override data root: **`DATA_BASE=/path/to/data_playground`** (wrappers default to `../../../datasets/data_playground` relative to `train_scripts/`).
 
