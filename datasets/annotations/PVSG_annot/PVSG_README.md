@@ -1,63 +1,14 @@
-# Panoptic Video Scene Graph Generation
+# Panoptic Video Scene Graph (PVSG)
 
 <p align="center">
-  <video controls width="720">
-    <source src="https://github.com/Jingkang50/OpenPVSG/assets/17070708/54a0f4c4-daca-4168-8460-95eb4cf8b85a" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  <img src="figures/teaser.png" alt="PVSG teaser (local copy for this README)" width="720" />
 </p>
 
-<p align="center">
-  <a href="https://arxiv.org/abs/2311.17058" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Paper-CVPR%202023-b31b1b?style=flat-square" alt="Paper" />
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://jingkang50.github.io/PVSG/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Page-jingkang50%2FPVSG-228c22?style=flat-square" alt="Project page" />
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://entuedu-my.sharepoint.com/:f:/g/personal/jingkang001_e_ntu_edu_sg/EpHpnXP-ta9Nu1wD6FwkDWAB0LxY8oE9VNqsgv6ln-i8QQ?e=fURefF" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Data-PVSGDataset-334b7f?style=flat-square" alt="PVSG dataset" />
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://entuedu-my.sharepoint.com/:f:/g/personal/jingkang001_e_ntu_edu_sg/EgvpTfCTMudLpxw-h0_BVdcBAHacUaAQD-u9OvkUlpaDBg?e=LXnqaX" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Data-QuickView-7de5f6?style=flat-square" alt="Quick view" />
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/LilyDaytoy/OpenPVSG" target="_blank" rel="noopener noreferrer">
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLilyDaytoy%2FOpenPVSG&count_bg=%23FFA500&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true" alt="Visitors" />
-  </a>
-</p>
-
-<p align="center">
-  <strong>Panoptic Video Scene Graph Generation</strong><br />
-  <a href="https://jingkang50.github.io/">Jingkang Yang</a>,
-  <a href="https://lilydaytoy.github.io/">Wenxuan Peng</a>,
-  <a href="https://lxtgh.github.io/">Xiangtai Li</a>,<br />
-  <a href="https://scholar.google.com/citations?user=G8DPsoUAAAAJ&amp;hl=zh-CN">Zujin Guo</a>,
-  <a href="https://cliangyu.com/">Liangyu Chen</a>,
-  <a href="https://brianboli.com/">Bo Li</a>,
-  <a href="https://www.linkedin.com/in/zheng-ma-4201223a/?originalSubdomain=hk">Zheng Ma</a>,<br />
-  <a href="https://kaiyangzhou.github.io/">Kaiyang Zhou</a>,
-  <a href="https://bmild.github.io/">Wayne Zhang</a>,
-  <a href="https://www.mmlab-ntu.com/person/ccloy/">Chen Change Loy</a>,
-  <a href="https://liuziwei7.github.io/">Ziwei Liu</a><br />
-  <em>S-Lab, Nanyang Technological University &amp; SenseTime Research</em>
-</p>
-
-<p align="center">
-  <img src="figures/teaser.png" alt="PVSG teaser (from the official OpenPVSG assets)" width="720" />
-</p>
-
----
-
-## SceneGraphVLM: dataset prep in this repo
-
-This section documents how we use **PVSG** inside **SceneGraphVLM** under `datasets/annotations/PVSG_annot/`: **TOON** labels, optional thinning, **Swift-style JSONL**, and cleanup.
+This folder documents **PVSG** ([Panoptic Video Scene Graph Generation](https://arxiv.org/pdf/2311.17058)) and how we prepare **TOON** labels and **Swift-style JSONL** inside **SceneGraphVLM** under `datasets/annotations/PVSG_annot/`.
 
 | Resource | Link |
 |----------|------|
-| **Paper (PDF)** | [arXiv:2311.17058](https://arxiv.org/pdf/2311.17058) |
+| **Paper (PVSG, CVPR 2023)** | [arXiv:2311.17058](https://arxiv.org/pdf/2311.17058) |
 | **Project page** | [jingkang50.github.io/PVSG](https://jingkang50.github.io/PVSG/) |
 | **Official code (OpenPVSG)** | [github.com/LilyDaytoy/OpenPVSG](https://github.com/LilyDaytoy/OpenPVSG.git) |
 | **Dataset download** | [SharePoint — PVSGDataset](https://entuedu-my.sharepoint.com/:f:/g/personal/jingkang001_e_ntu_edu_sg/EpHpnXP-ta9Nu1wD6FwkDWAB0LxY8oE9VNqsgv6ln-i8QQ?e=fURefF) |
@@ -407,7 +358,7 @@ SceneGraphVLM/
 │   ├── annotations/
 │   │   └── PVSG_annot/
 │   │       ├── PVSG_README.md
-│   │       ├── figures/                 # teaser.png, sharepoint_download_layout.png
+│   │       ├── figures/                 # demo.mp4, teaser.png, sharepoint_download_layout.png (this README)
 │   │       ├── annotations/             # pvsg.json (often local only)
 │   │       ├── OpenPVSG/                # ego4d | epic_kitchen | vidor (frames, masks, videos)
 │   │       ├── data_sft_original/       # prepare_original_pvsg_sft.py
