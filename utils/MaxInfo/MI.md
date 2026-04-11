@@ -100,3 +100,9 @@ python utils/MaxInfo/pvsg_maxinfo_filter.py \
 Useful flags: `--train-json`, `--test-json`, `--train-only`. Dependencies: **PyTorch**, **transformers**, **Pillow**, **numpy**, **tqdm**, **maxvolpy**.
 
 See `datasets/annotations/PVSG_annot/PVSG_README.md` for dataset layout.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../README.md) · [Metrics](../../metrics/metrics.md) · [PVSG README](../../datasets/annotations/PVSG_annot/PVSG_README.md)

@@ -2,7 +2,7 @@
 
 ## Demo (PVSG)
 
-Layout: **top** — ground-truth scene graph per frame; **bottom** — **GT-prompt** prediction (left) vs **GEN-prompt** prediction (right). Video id `0004_11566980553`.
+Layout: **top** — ground-truth scene graph per frame; **bottom** — **GT-prompt** prediction (left) vs **GEN-prompt** prediction (right).
 
 The README uses a **GIF** so GitHub shows an inline preview reliably; HTML `<video>` is often stripped or inconsistent in Markdown viewers.
 
@@ -169,3 +169,12 @@ Jupyter notebook for **interactive** exploration of scene-graph visualizations (
 1. Produce **GT** video: `build_gt_video.py` with the PVSG test JSONL and `--video-name`.  
 2. Produce **GT_prompt** and **GEN_prompt** videos: `build_pred_video.py` twice (`--prompt-mode GT_prompt` and `GEN_prompt`) with the same `--video-name` and model.  
 3. Merge: `build_common_video.py <video_name>`.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../README.md)  
+- [Metrics & evaluation](../metrics/metrics.md)  
+- [SFT training](../sft/SFT_README.md)  
+- [PVSG dataset & exports](../datasets/annotations/PVSG_annot/PVSG_README.md)

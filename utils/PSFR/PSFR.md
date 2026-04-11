@@ -101,3 +101,9 @@ python utils/PSFR/pvsg_psfr_filter.py \
 - **Standalone pipeline README** (logo, `config.json` field reference, video↔frames CLI): [key-frame-selection](https://github.com/strangecreator/key-frame-selection.git).
 
 See `datasets/annotations/PVSG_annot/PVSG_README.md` for where PSFR sits in the PVSG export pipeline.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../README.md) · [Metrics](../../metrics/metrics.md) · [PVSG README](../../datasets/annotations/PVSG_annot/PVSG_README.md)

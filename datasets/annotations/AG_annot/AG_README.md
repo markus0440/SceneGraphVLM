@@ -350,3 +350,10 @@ SceneGraphVLM/
 ## References
 
 - Action Genome (CVPR 2020): [paper PDF](http://openaccess.thecvf.com/content_CVPR_2020/papers/Ji_Action_Genome_Actions_As_Compositions_of_Spatio-Temporal_Scene_Graphs_CVPR_2020_paper.pdf)
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../../README.md) · [Metrics](../../../metrics/metrics.md) · [SFT](../../../sft/SFT_README.md)  
+- [PVSG README](../PVSG_annot/PVSG_README.md) · [PSG README](../PSG_annot/PSG_README.md)

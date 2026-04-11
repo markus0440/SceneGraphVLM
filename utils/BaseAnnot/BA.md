@@ -99,3 +99,9 @@ python utils/BaseAnnot/prepare_filtered_pvsg_sft.py \
 ```
 
 See `datasets/annotations/PVSG_annot/PVSG_README.md` for how this fits the PVSG pipeline.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../README.md) · [Metrics](../../metrics/metrics.md) · [PVSG README](../../datasets/annotations/PVSG_annot/PVSG_README.md)

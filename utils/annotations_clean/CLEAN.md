@@ -31,4 +31,10 @@ python utils/annotations_clean/clean_zero_rel_frames.py \
   --report-name pvsg_zero_rel_cleanup_report.json
 ```
 
-See also: dataset READMEs under `datasets/annotations/*/`.
+See also: dataset READMEs under `datasets/annotations/*`.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../README.md) · [Metrics](../../metrics/metrics.md) · [Visualization](../../visualization/vis.md)

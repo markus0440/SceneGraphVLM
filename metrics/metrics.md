@@ -343,3 +343,12 @@ The **`metrics/sgbench/`** directory is reserved for **classical** scene graph g
 1. Obtain Swift-format test JSONL under `datasets/data_playground/...`.
 2. Run inference with either an OpenRouter script or `infer_swift_*.py` → `metrics/results/checkpoints-inference/.../*.jsonl`.
 3. Run **`eval_sgg_metrics_with_qwen.py`** with **`--pred-jsonl`** pointing to that file → `metrics/results/checkpoints-metrics/.../*-metrics.json`.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../README.md)  
+- [Visualization & demo videos](../visualization/vis.md)  
+- [SFT training](../sft/SFT_README.md)  
+- [PVSG dataset & exports](../datasets/annotations/PVSG_annot/PVSG_README.md)

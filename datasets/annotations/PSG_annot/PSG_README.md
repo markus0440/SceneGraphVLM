@@ -243,3 +243,10 @@ SceneGraphVLM/
 
 - **PSG / OpenPSG:** [arXiv:2207.11247](https://arxiv.org/pdf/2207.11247) · [OpenPSG (GitHub)](https://github.com/Jingkang50/OpenPSG.git)
 - **PSG SGG prompts (related HF data):** [arXiv:2504.13617](https://arxiv.org/pdf/2504.13617) · [`JosephZ/psg_train_sg`](https://huggingface.co/datasets/JosephZ/psg_train_sg_prompt) · [`JosephZ/psg_test_sg`](https://huggingface.co/datasets/JosephZ/psg_test_sg_prompt)
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../../README.md) · [Metrics](../../../metrics/metrics.md) · [SFT](../../../sft/SFT_README.md)  
+- [PVSG README](../PVSG_annot/PVSG_README.md) · [AG README](../AG_annot/AG_README.md)

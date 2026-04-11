@@ -401,3 +401,14 @@ SceneGraphVLM/
 
 - **PVSG (CVPR 2023):** [arXiv:2311.17058](https://arxiv.org/pdf/2311.17058) · [Project page](https://jingkang50.github.io/PVSG/) · [OpenPVSG (GitHub)](https://github.com/LilyDaytoy/OpenPVSG.git)
 - **Dataset (SharePoint):** [PVSGDataset](https://entuedu-my.sharepoint.com/:f:/g/personal/jingkang001_e_ntu_edu_sg/EpHpnXP-ta9Nu1wD6FwkDWAB0LxY8oE9VNqsgv6ln-i8QQ?e=fURefF) · [QuickView](https://entuedu-my.sharepoint.com/:f:/g/personal/jingkang001_e_ntu_edu_sg/EgvpTfCTMudLpxw-h0_BVdcBAHacUaAQD-u9OvkUlpaDBg?e=LXnqaX)
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../../../README.md)  
+- [Metrics & evaluation](../../../metrics/metrics.md)  
+- [Visualization & demos](../../../visualization/vis.md)  
+- [SFT training](../../../sft/SFT_README.md)  
+- [PSG README](../PSG_annot/PSG_README.md) · [AG README](../AG_annot/AG_README.md)  
+- [BaseAnnot filter](../../../utils/BaseAnnot/BA.md) · [PSFR](../../../utils/PSFR/PSFR.md) · [MaxInfo](../../../utils/MaxInfo/MI.md)

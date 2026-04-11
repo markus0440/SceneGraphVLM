@@ -53,3 +53,11 @@ envs/
 ```
 
 For training options, argument patterns, and Qwen3.5-specific tips, follow the **Best Practice** page linked above alongside the main Swift docs.
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../README.md)  
+- [SFT training](../sft/SFT_README.md)  
+- [Metrics & evaluation](../metrics/metrics.md)

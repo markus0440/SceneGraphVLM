@@ -125,3 +125,12 @@ To **disable** cloud logging:
 - [MSwift documentation](https://swift.readthedocs.io/en/latest/)
 - [Qwen3.5 SFT best practices](https://swift.readthedocs.io/en/latest/BestPractices/Qwen3_5-Best-Practice.html)
 - Local env installer: [`envs/SWIFT_README.md`](../envs/SWIFT_README.md)
+
+---
+
+## Related documentation
+
+- [SceneGraphVLM project README](../README.md)  
+- [Metrics & evaluation](../metrics/metrics.md)  
+- [Visualization & demos](../visualization/vis.md)  
+- [PVSG dataset & exports](../datasets/annotations/PVSG_annot/PVSG_README.md)
