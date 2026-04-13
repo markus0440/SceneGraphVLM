@@ -1,0 +1,1 @@
+"""PSFR frame-selection package."""

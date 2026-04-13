@@ -1,2 +1,151 @@
-/datasets/images/*
-!/datasets/images/.gitkeep
+# --- Secrets & local env (Comet, OpenRouter, etc.) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+# file or dir with keys / exports
+metrics/open-router/env
+**/open-router/env/
+**/Open-Router/env/
+.comet.config
+comet.config
+**/.comet_env
+**/.git.bak/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Jupyter ---
+# Track *.ipynb and *.txt; only ignore checkpoint dirs
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# --- Training / checkpoints / GRPO outputs ---
+**/work_dirs/
+sft/Qwen3.5/logs/
+**/checkpoint-*/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+wandb/
+
+# --- Datasets & media (do not publish) ---
+# Allow *.txt and *.ipynb under these trees; everything else ignored
+datasets/data_playground/**
+!datasets/data_playground/.gitkeep
+!datasets/data_playground/**/*.txt
+!datasets/data_playground/**/*.ipynb
+datasets/frames/**
+!datasets/frames/.gitkeep
+!datasets/frames/**/*.txt
+!datasets/frames/**/*.ipynb
+datasets/images/**
+!datasets/images/.gitkeep
+!datasets/images/**/*.txt
+!datasets/images/**/*.ipynb
+
+# --- Annotation bundles (AG / PSG / PVSG) ---
+# Ignore each dataset root except: README.md, tools/**, and small *.txt lists under annotations/.
+# Pickles, videos, dumped frames, and SFT intermediates stay untracked.
+
+datasets/annotations/AG_annot/*
+!datasets/annotations/AG_annot/README.md
+!datasets/annotations/AG_annot/AG_README.md
+!datasets/annotations/AG_annot/tools/
+!datasets/annotations/AG_annot/tools/**
+!datasets/annotations/AG_annot/annotations/
+!datasets/annotations/AG_annot/annotations/*.txt
+!datasets/annotations/AG_annot/figures/
+!datasets/annotations/AG_annot/figures/*.png
+!datasets/annotations/AG_annot/figures/*.jpg
+!datasets/annotations/AG_annot/figures/*.jpeg
+!datasets/annotations/AG_annot/figures/.gitkeep
+
+datasets/annotations/PSG_annot/*
+!datasets/annotations/PSG_annot/README.md
+!datasets/annotations/PSG_annot/PSG_README.md
+!datasets/annotations/PSG_annot/tools/
+!datasets/annotations/PSG_annot/tools/**
+!datasets/annotations/PSG_annot/figure/
+!datasets/annotations/PSG_annot/figure/*.gif
+!datasets/annotations/PSG_annot/figure/*.png
+!datasets/annotations/PSG_annot/annotations/
+!datasets/annotations/PSG_annot/annotations/*.txt
+!datasets/annotations/PSG_annot/annotations/*.json
+
+datasets/annotations/PVSG_annot/*
+!datasets/annotations/PVSG_annot/README.md
+!datasets/annotations/PVSG_annot/PVSG_README.md
+!datasets/annotations/PVSG_annot/figures/
+!datasets/annotations/PVSG_annot/figures/*.gif
+!datasets/annotations/PVSG_annot/figures/*.png
+!datasets/annotations/PVSG_annot/figures/*.jpg
+!datasets/annotations/PVSG_annot/figures/*.jpeg
+!datasets/annotations/PVSG_annot/figures/*.mp4
+!datasets/annotations/PVSG_annot/figures/*.webm
+!datasets/annotations/PVSG_annot/figures/*.mov
+!datasets/annotations/PVSG_annot/tools/
+!datasets/annotations/PVSG_annot/tools/**
+!datasets/annotations/PVSG_annot/annotations/
+!datasets/annotations/PVSG_annot/annotations/*.txt
+
+# Heavy / generated under annotations/ (even if annotations/ dir is partly tracked)
+datasets/annotations/*/annotations/*.pkl
+datasets/annotations/*/annotations/**/*.pkl
+
+# tools/** is tracked; bytecode is not
+datasets/annotations/*/tools/**/__pycache__/
+
+# --- Visualization outputs (scripts under video_demo_results/scripts stay tracked) ---
+visualization/video_demo_results/videos_output/**
+!visualization/video_demo_results/videos_output/.gitkeep
+!visualization/video_demo_results/videos_output/**/*.txt
+!visualization/video_demo_results/videos_output/**/*.ipynb
+visualization/video_demo_results/predicts_and_metrics/**
+!visualization/video_demo_results/predicts_and_metrics/.gitkeep
+!visualization/video_demo_results/predicts_and_metrics/**/*.txt
+!visualization/video_demo_results/predicts_and_metrics/**/*.ipynb
+# visualization/notebooks: *.ipynb / *.txt tracked (no blanket ignore)
+
+# --- Metrics artifacts (keep qwen-bench infer/eval *.py tracked) ---
+metrics/results/**
+!metrics/results/.gitkeep
+!metrics/results/**/*.txt
+!metrics/results/**/*.ipynb
+metrics/qwen-bench/results/**
+!metrics/qwen-bench/results/.gitkeep
+!metrics/qwen-bench/results/**/*.txt
+!metrics/qwen-bench/results/**/*.ipynb
+
+# --- Local conda/env trees (keep shell installers) ---
+envs/*
+!envs/.gitkeep
+!envs/SWIFT_README.md
+!envs/sh_scripts/
+!envs/sh_scripts/**
+!envs/requirements_files/
+!envs/requirements_files/**
+
+# --- OS ---
+.DS_Store
+Thumbs.db
