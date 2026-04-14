@@ -1,0 +1,68 @@
+# ── swift_qwen_3_5_sft: environment-only image ────────────────────────
+#
+# Builds an image with CUDA toolkit + Python 3.11 + all pip packages
+# from requirements-swift-qwen-3-5-sft.txt.  No project code or data
+# is baked in — mount them at runtime.
+#
+# Build (from repo root via helper script):
+#   bash envs/sh_scripts/build_docker_swift_qwen_3_5_sft.sh
+#
+# Or manually:
+#   docker build \
+#     -f envs/sh_scripts/Dockerfile.swift_qwen_3_5_sft \
+#     -t sgvlm-sft-env envs/
+#
+# Run:
+#   docker run --gpus all --ipc=host --ulimit memlock=-1 \
+#     -v $(pwd):/workspace \
+#     --env-file sft/Qwen3.5/.comet_env \
+#     -it sgvlm-sft-env bash
+
+ARG CUDA_TAG=12.6.3-devel-ubuntu24.04
+FROM nvidia/cuda:${CUDA_TAG}
+
+# ── build-time knobs ──────────────────────────────────────────────────
+ARG PYTHON_VERSION=3.11
+ARG TORCH_INDEX=cu126
+ARG MAX_JOBS=4
+# Hopper (H200/H100) = 9.0a.
+# Add "8.0;8.6;8.9" for Ampere / Ada portability.
+ARG TORCH_CUDA_ARCH_LIST="9.0a"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    MAX_JOBS=${MAX_JOBS} \
+    TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST} \
+    PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# ── system packages + Python from deadsnakes ──────────────────────────
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository -y ppa:deadsnakes/ppa && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python${PYTHON_VERSION} python${PYTHON_VERSION}-dev \
+        python${PYTHON_VERSION}-venv \
+        git curl wget build-essential ninja-build && \
+    update-alternatives --install /usr/bin/python3 python3 \
+        /usr/bin/python${PYTHON_VERSION} 1 && \
+    update-alternatives --install /usr/bin/python  python  \
+        /usr/bin/python${PYTHON_VERSION} 1 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION}
+
+# ── PyTorch (must precede flash-attn / causal-conv1d builds) ──────────
+RUN pip install --no-cache-dir \
+    torch torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/${TORCH_INDEX}
+
+# ── pip requirements ──────────────────────────────────────────────────
+# Build context is envs/, so the path is relative to it.
+COPY requirements_files/requirements-swift-qwen-3-5-sft.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --no-build-isolation \
+        -r /tmp/requirements.txt && \
+    rm /tmp/requirements.txt
+
+WORKDIR /workspace
+CMD ["bash"]

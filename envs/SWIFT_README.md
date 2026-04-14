@@ -9,9 +9,14 @@ This folder holds a small **conda + pip** installer used across **SceneGraphVLM*
 
 ## Prerequisites
 
-- [**conda**](https://docs.conda.io/) (Miniconda or Anaconda) on your `PATH`, with `conda init` applied for your shell so `conda activate` works in scripts.
+Choose **one** of the two install methods below:
 
-## Install (recommended)
+| Method | Requires |
+|--------|----------|
+| **Conda** (option A) | [conda](https://docs.conda.io/) on `PATH` with `conda init` applied |
+| **Docker** (option B) | [Docker](https://docs.docker.com/get-docker/) + [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) |
+
+## Option A — Conda install
 
 From the **SceneGraphVLM repository root**:
 
@@ -37,17 +42,57 @@ CONDA_ENV=my_swift_sft bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
 conda activate my_swift_sft
 ```
 
+## Option B — Docker
+
+Builds an **environment-only** image (CUDA 12.6 devel + Python 3.11 + all pip packages). No project code or data is baked in — the repo is bind-mounted at runtime.
+
+### Build
+
+```bash
+bash envs/sh_scripts/build_docker_swift_qwen_3_5_sft.sh
+```
+
+Override CUDA / PyTorch version via env variables:
+
+```bash
+CUDA_TAG=12.8.1-devel-ubuntu24.04 TORCH_INDEX=cu128 \
+  bash envs/sh_scripts/build_docker_swift_qwen_3_5_sft.sh
+```
+
+All build-arg overrides: `CUDA_TAG`, `TORCH_INDEX`, `MAX_JOBS`, `TORCH_CUDA_ARCH_LIST`, `IMAGE_TAG`.
+
+### Run
+
+```bash
+docker run --gpus all --ipc=host --ulimit memlock=-1 \
+  -v "$(pwd)":/workspace \
+  -it sgvlm-sft-env bash
+```
+
+Inside the container the full repo tree is available at `/workspace`, so training scripts work as usual (e.g. `bash sft/Qwen3.5/train_scripts/run_psg.sh`).
+
+To pass Comet / other secrets, add `--env-file`:
+
+```bash
+docker run --gpus all --ipc=host --ulimit memlock=-1 \
+  -v "$(pwd)":/workspace \
+  --env-file sft/Qwen3.5/.comet_env \
+  -it sgvlm-sft-env bash
+```
+
 ## Other models
 
-The script above is tailored for **Qwen 3.x SFT** in this repo. If you want to fine-tune **other model families**, do **not** rely on that requirements pin alone: follow the **[MSwift documentation](https://swift.readthedocs.io/en/latest/)** and install **MSwift the way upstream describes** (from the [Swift repo](https://github.com/modelscope/swift) / full `pip` install, extra deps, and CUDA bits for your stack). Use the official docs and best-practice pages for your target model instead of this minimal env file.
+The scripts above are tailored for **Qwen 3.x SFT** in this repo. If you want to fine-tune **other model families**, do **not** rely on that requirements pin alone: follow the **[MSwift documentation](https://swift.readthedocs.io/en/latest/)** and install **MSwift the way upstream describes** (from the [Swift repo](https://github.com/modelscope/swift) / full `pip` install, extra deps, and CUDA bits for your stack). Use the official docs and best-practice pages for your target model instead of this minimal env file.
 
 ## Layout
 
 ```text
 envs/
-├── SWIFT_README.md                 # this file
+├── SWIFT_README.md                           # this file
 ├── sh_scripts/
-│   └── install_swift_qwen_3_5_sft.sh
+│   ├── install_swift_qwen_3_5_sft.sh         # conda installer
+│   ├── Dockerfile.swift_qwen_3_5_sft         # Docker image definition
+│   └── build_docker_swift_qwen_3_5_sft.sh    # Docker build helper
 └── requirements_files/
     └── requirements-swift-qwen-3-5-sft.txt
 ```

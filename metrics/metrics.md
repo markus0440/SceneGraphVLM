@@ -137,10 +137,10 @@ export CUDA_VISIBLE_DEVICES=0
 export IMAGE_MAX_TOKEN_NUM=1024
 
 python metrics/qwen-bench/infer/GT-prompt/infer_swift_gt_prompt.py \
-  --model sft/Qwen3.5/work_dirs/your_exp/checkpoint-8844 \
-  --test-jsonl datasets/data_playground/PVSG_json/pvsg_psfr_gt_prompt/test_clean.jsonl \
-  --output-dir metrics/results/checkpoints-inference/sft/PVSG-GT-prompt \
-  --run-name Qwen3.5-0.8B-SFT-maxinfo-checkpoint-8844-psfr-GT \
+  --model sft/Qwen3.5/work_dirs/psg_close_Qwen3.5-0.8B/v0-20260413-174919/checkpoint-11424 \
+  --test-jsonl datasets/data_playground/PSG_json/test_clean.jsonl \
+  --output-dir metrics/results/checkpoints-inference/sft/PSG \
+  --run-name Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT \
   --infer-backend vllm \
   --batch-size 64 \
   --max-new-tokens 2048 \
@@ -184,9 +184,9 @@ Invoke **after** a JSONL file exists with **`content`** (ground truth) and **`pr
 
 ```bash
 python metrics/qwen-bench/eval/eval_sgg_metrics_with_qwen.py \
-  --pred-jsonl metrics/results/checkpoints-inference/sft/PVSG-GT-prompt/Qwen3.5-0.8B-SFT-maxinfo-checkpoint-8844-psfr-GT.jsonl \
-  --output-dir metrics/results/checkpoints-metrics/sft/PVSG-GT-prompt \
-  --output-name Qwen3.5-0.8B-SFT-maxinfo-checkpoint-8844-psfr-GT-metrics.json \
+  --pred-jsonl metrics/results/checkpoints-inference/sft/PSG/Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/sft/PSG \
+  --output-name Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT-metrics.json \
   --iou-thr 0.5 \
   --batch-size-qwen 32 \
   --gpu-memory-utilization 0.40 \
@@ -336,9 +336,20 @@ Filenames are chosen via **`--run-name`** (Swift) or **`{model_short}-{output_pr
 
 ## 4. Classical metrics (`metrics/sgbench`)
 
-The **`metrics/sgbench/`** directory is reserved for **classical** scene graph generation metrics (e.g. mean recall at K, recall at K, predicate-set conventions from the literature) **without** an LLM-based judge.
+The **`metrics/sgbench/`** directory provides **classical** scene graph generation metrics (Recall@K, Mean Recall@K) **without** an LLM-based judge. Numbers are directly comparable with OED, STTran, and other Action Genome baselines.
 
-**Status:** not yet implemented. Once code is added, input formats (JSON/JSONL) and TOON alignment should be documented in this file.
+**Evaluator:** **`metrics/sgbench/eval_classical_metrics.py`** — parses TOON from the same inference JSONL used by Section 2, maps labels to the OED/AG 26-predicate vocabulary, and computes R@{10,20,50,100} and mR@{10,20,50,100} under **with constraint** and **no constraint** protocols.
+
+```bash
+python3 metrics/sgbench/eval_classical_metrics.py \
+  --pred-jsonl metrics/results/checkpoints-inference/sft/AG/<file>.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/sft/AG \
+  --output-name <file>-classical-metrics.json \
+  --mode sgdet \
+  --iou-thr 0.5
+```
+
+Modes: **sgdet** (full pipeline), **sgcls** (GT boxes), **predcls** (GT boxes + GT classes). See [`metrics/sgbench/README.md`](sgbench/README.md) for details.
 
 ---
 

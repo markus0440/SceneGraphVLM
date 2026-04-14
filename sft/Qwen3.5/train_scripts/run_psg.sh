@@ -23,14 +23,14 @@ DATA_BASE="${DATA_BASE:-$SCRIPT_DIR/../../../datasets/data_playground}"
 
 EPOCHS="${EPOCHS:-5}"
 export COMET_PROJECT_NAME="${COMET_PROJECT_NAME:-qwen_3_5_psg}"
-export COMET_EXPERIMENT_NAME="${COMET_EXPERIMENT_NAME:-Qwen3.5-0.8B PSG full SFT epochs=${EPOCHS}}"
+export COMET_EXPERIMENT_NAME="${COMET_EXPERIMENT_NAME:-Qwen3.5-0.8B | PSG | full SFT | epochs=${EPOCHS}}"
 
 NUM_EXTRA=()
 [[ -z "${CUDA_VISIBLE_DEVICES:-}" ]] && NUM_EXTRA+=(--num_gpus "${NUM_GPUS:-4}")
 
 exec "$SCRIPT_DIR/run_sft.sh" \
-  --train "$DATA_BASE/PSG_json/train.jsonl" \
-  --test "$DATA_BASE/PSG_json/test.jsonl" \
+  --train "$DATA_BASE/PSG_json/train_clean.jsonl" \
+  --test "$DATA_BASE/PSG_json/test_clean.jsonl" \
   --exp_name psg_close \
   --tuner_type full \
   --epochs "$EPOCHS" \
