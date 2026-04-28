@@ -109,6 +109,15 @@ datasets/annotations/PVSG_annot/*
 !datasets/annotations/PVSG_annot/annotations/
 !datasets/annotations/PVSG_annot/annotations/*.txt
 
+datasets/annotations/3RScan_annot/*
+!datasets/annotations/3RScan_annot/README.md
+!datasets/annotations/3RScan_annot/3RScan_README.md
+!datasets/annotations/3RScan_annot/tools/
+!datasets/annotations/3RScan_annot/tools/**
+!datasets/annotations/3RScan_annot/annotations/
+!datasets/annotations/3RScan_annot/annotations/*.txt
+datasets/annotations/3RScan_annot/annotations/*.json
+
 # Heavy / generated under annotations/ (even if annotations/ dir is partly tracked)
 datasets/annotations/*/annotations/*.pkl
 datasets/annotations/*/annotations/**/*.pkl

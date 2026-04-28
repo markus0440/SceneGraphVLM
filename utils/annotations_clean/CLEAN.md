@@ -20,7 +20,7 @@ Rows whose assistant text **does not** match the expected `rel[…]{subj,pred,ob
 From the **SceneGraphVLM** repository root:
 
 ```bash
-python utils/annotations_clean/clean_zero_rel_frames.py datasets/data_playground/PSG_json
+python utils/annotations_clean/clean_zero_rel_frames.py datasets/data_playground/3RScan_json/3RScan_json_psfr_with_prev_gt
 ```
 
 Another example (PVSG export tree):

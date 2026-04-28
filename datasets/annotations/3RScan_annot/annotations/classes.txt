@@ -1,0 +1,528 @@
+1	air conditioner	a system that keeps air cool and dry	cooling_system	mechanism	device	instrumentality	artifact	whole	object	physical_entity	entity
+2	apron	a garment of cloth or leather or plastic that is tied about the waist and worn to protect your clothing	protective_garment	clothing	covering	artifact	whole	object	physical_entity	entity
+3	aquarium	a tank or pool or bowl filled with water for keeping live fish and underwater animals	vivarium	enclosure	area	structure	artifact	whole	object	physical_entity	entity
+4	armchair	chair with a support on each side for arms	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+5	armoire	a large wardrobe or cabinet; originally used for storing weapons	wardrobe	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+6	armor	protective covering made of metal and used in combat	protective_covering	covering	artifact	whole	object	physical_entity	entity
+7	audio system	a system of electronic equipment for recording or reproducing sound	system	instrumentality	artifact	whole	object	physical_entity	entity
+8	baby bed	a small bed for babies; enclosed by sides to prevent the baby from falling	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+9	baby changing table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+10	baby changing unit	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+11	baby gym	athletic facility equipped for sports or physical training	gym	athletic_facility	facility	artifact	whole	object	physical_entity	entity
+12	baby seat	furniture that is designed for sitting on	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+13	baby toys	an artifact designed to be played with	toys	artifact	whole	object	physical_entity	entity
+14	backpack	a bag carried by a strap on your back or shoulder	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+15	bag	a flexible container with a single opening	container	instrumentality	artifact	whole	object	physical_entity	entity
+16	balcony	a platform projecting from the wall of a building and surrounded by a balustrade or railing or parapet	structure	artifact	whole	object	physical_entity	entity
+17	balcony door	the entrance (the space in a wall) through which you enter or leave a room or building; the space that a door can close	door	entrance	access	way	artifact	whole	object	physical_entity	entity
+18	ball	a spherical object used as a plaything	plaything	artifact	whole	object	physical_entity	entity
+19	bar	a counter where you can obtain food or drink	counter	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+20	bar stool	a simple seat without a back or arms	stool	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+21	barrel	a cylindrical container that holds liquids	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+22	barstool	a simple seat without a back or arms	stool	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+23	basin	a bathroom sink that is permanently installed and connected to a water supply and drainpipe; where you can wash your hands and face	sink	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+24	basket	a container that is usually woven and has handles	container	instrumentality	artifact	whole	object	physical_entity	entity
+25	bath cabinet	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	cabinet	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+26	bath counter	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	cabinet	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+27	bath rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+28	bath robe	any loose flowing garment	robe	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+29	bathrobe	a loose-fitting robe of towelling; worn after a bath or swim	robe	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+30	bathroom items	a whole individual unit; especially when included in a list or collection	items	whole	object	physical_entity	entity
+31	bathtub	a relatively large open container that you fill with water and use to wash the body	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+32	bbq	a rack to hold meat for cooking over hot charcoal usually out of doors	barbecue	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+33	beam	long thick piece of wood or metal or concrete, etc., used in construction	structural_member	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+34	bean bag	a small cloth bag filled with dried beans; thrown in games	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+35	beanbag	a small cloth bag filled with dried beans; thrown in games	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+36	beautician	a flexible container with a single opening	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+37	bed	a piece of furniture that provides a place to sleep	bedroom_furniture	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+38	bed table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+39	bedside table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+40	bench	a long seat for more than one person	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+41	beverage crate	a rugged box (usually made of wood); used for shipping	crate	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+42	bicycle	a wheeled vehicle that has two wheels and is moved by foot pedals	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+43	bidet	a basin for washing genitals and anal area	basin	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+44	bike	a wheeled vehicle that has two wheels and is moved by foot pedals	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+45	bin	a container; usually has a lid	container	instrumentality	artifact	whole	object	physical_entity	entity
+46	blackboard	sheet of slate; for writing with chalk	sheet	artifact	whole	object	physical_entity	entity
+47	blanket	bedding that keeps a person warm in bed	bedclothes	cloth_covering	covering	artifact	whole	object	physical_entity	entity
+48	blinds	a protective covering that keeps things out or hinders sight	protective_covering	covering	artifact	whole	object	physical_entity	entity
+49	board	a flat piece of material designed for a special purpose	sheet	artifact	whole	object	physical_entity	entity
+50	body loofah	a porous mass of interlacing fibers that forms the internal skeleton of various marine animals and usable to absorb water or any porous rubber or cellulose product similarly used	sponge	absorbent_material	sorbent	material	substance	part	relation	abstraction	entity
+51	boiler	a metal pot for stewing or boiling; usually has a lid	pot	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+52	book	physical objects consisting of a number of pages bound together	product	creation	artifact	whole	object	physical_entity	entity
+53	books	physical objects consisting of a number of pages bound together	product	creation	artifact	whole	object	physical_entity	entity
+54	bookshelf	a shelf on which to keep books	shelf	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+55	boots	footwear that covers the whole foot and lower leg	footwear	covering	artifact	whole	object	physical_entity	entity
+56	bottle	a glass or plastic vessel used for storing drinks or other liquids; typically cylindrical without handles and with a narrow neck that can be plugged or capped	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+57	bottles	a glass or plastic vessel used for storing drinks or other liquids; typically cylindrical without handles and with a narrow neck that can be plugged or capped	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+58	bowl	a dish that is round and open at the top for serving foods	dish	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+59	box	a (usually rectangular) container; may have a lid	container	instrumentality	artifact	whole	object	physical_entity	entity
+60	boxes	a (usually rectangular) container; may have a lid	container	instrumentality	artifact	whole	object	physical_entity	entity
+61	bread	food made from dough of flour or meal and usually raised with yeast or baking powder and then baked	starches	foodstuff	food	substance	matter	physical_entity	entity
+62	breadboard	a wooden or plastic board on which dough is kneaded or bread is sliced	board	sheet	artifact	whole	object	physical_entity	entity
+63	brochure	a small book usually having a paper cover	book	publication	work	product	creation	artifact	whole	object	physical_entity	entity
+64	brush	an implement that has hairs or bristles firmly set into a handle	implement	instrumentality	artifact	whole	object	physical_entity	entity
+65	bucket	a roughly cylindrical vessel that is open at the top	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+66	buggy	a small lightweight carriage; drawn by a single horse	carriage	horse-drawn_vehicle	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+67	bulletin board	a board that hangs on a wall; displays announcements	board	sheet	artifact	whole	object	physical_entity	entity
+68	cabinet	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+69	cable	a very strong thick rope made of twisted hemp or steel wire	rope	line	artifact	whole	object	physical_entity	entity
+70	cable rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+71	calendar	a list or register of events (appointments or social events or court cases etc)	calendar	list	database	information	message	communication	abstraction	entity
+72	can	airtight sealed metal container for food or drink or paint etc.	container	instrumentality	artifact	whole	object	physical_entity	entity
+73	candle	stick of wax with a wick in the middle	lamp	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+74	candles	stick of wax with a wick in the middle	lamp	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+75	candlestick	a holder with sockets for candles	holder	holding_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+76	canopy	a covering (usually of cloth) that serves as a roof to shelter an area from the weather	shelter	protective_covering	covering	artifact	whole	object	physical_entity	entity
+77	cap	a tight-fitting headdress	headdress	clothing	covering	artifact	whole	object	physical_entity	entity
+78	carpet	floor covering consisting of a piece of thick heavy fabric (usually with nap or pile)	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+79	carriage	a small vehicle with four wheels in which a baby or child is pushed around	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+80	cart	wheeled vehicle that can be pushed by a person; may have one or two or four wheels	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+81	case	a portable container for carrying several objects	container	instrumentality	artifact	whole	object	physical_entity	entity
+82	ceiling	the overhead upper surface of a covered space	upper_surface	side	surface	artifact	whole	object	physical_entity	entity
+83	ceiling /other room	the overhead upper surface of a covered space	ceiling	upper_surface	side	surface	artifact	whole	object	physical_entity	entity
+84	ceiling light	any device serving as a source of illumination	light	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+85	chair	a seat for one person, with a support for the back	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+86	chairs	a seat for one person, with a support for the back	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+87	chandelier	branched lighting fixture; often ornate; hangs from the ceiling	lighting_fixture	fixture	artifact	whole	object	physical_entity	entity
+88	changing table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+89	chest	box with a lid; used for storage; usually large and sturdy	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+90	child chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+91	child clothes	clothing in general	clothes	clothing	covering	artifact	whole	object	physical_entity	entity
+92	children's table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+93	cleaning agent	a preparation used in cleaning something	cleansing_agent	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+94	cleaning brush	an implement that has hairs or bristles firmly set into a handle	brush	implement	instrumentality	artifact	whole	object	physical_entity	entity
+95	cleanser	a preparation used in cleaning something	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+96	clock	a timepiece that shows the time of day	timepiece	measuring_instrument	instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+97	closet	a tall piece of furniture that provides storage space for clothes; has a door and rails or hooks for hanging clothes	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+98	closet door	a swinging or sliding barrier that will close the entrance to a room or building or vehicle	door	movable_barrier	barrier	obstruction	structure	artifact	whole	object	physical_entity	entity
+99	cloth	artifact made by weaving or felting or knitting or crocheting natural or synthetic fibers	artifact	whole	object	physical_entity	entity
+100	clothes	clothing in general	clothing	covering	artifact	whole	object	physical_entity	entity
+101	clothes dryer	a dryer that dries clothes wet from washing	white_goods	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+102	clothes rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+103	clutter	a confused multitude of things	jumble	disorderliness	condition	state	attribute	abstraction	entity
+104	coat	an outer garment that has sleeves and covers the body from shoulder down; worn outdoors	overgarment	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+105	coffee	any of several small trees and shrubs native to the tropical Old World yielding coffee beans	tree	woody_plant	vascular_plant	plant	organism	living_thing	whole	object	physical_entity	entity
+106	coffee machine	a kitchen appliance for brewing coffee automatically	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+107	coffee maker	a kitchen appliance for brewing coffee automatically	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+108	coffee table	low table where magazines can be placed and coffee or cocktails are served	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+109	column	(architecture) a tall vertical cylindrical structure standing upright and used to support a structure	upright	structural_member	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+110	commode	a tall elegant chest of drawers	chest_of_drawers	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+111	computer	a machine for performing calculations automatically	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+112	computer desk	a piece of furniture with a writing surface and usually drawers or other compartments	desk	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+113	console	a small table fixed to a wall or designed to stand against a wall	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+114	container	any object that can be used to hold things (especially a large metal boxlike object of standardized dimensions that can be loaded from one form of transport to another)	instrumentality	artifact	whole	object	physical_entity	entity
+115	cooking pot	metal or earthenware cooking vessel that is usually round and deep; often has a handle and lid	pot	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+116	corner bench	a long seat for more than one person	bench	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+117	cosmetics kit	a flexible container with a single opening	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+118	couch	an upholstered seat for more than one person	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+119	couch table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+120	counter	a piece of furniture that stands at the side of a dining room; has shelves and drawers	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+121	cover	bedding that keeps a person warm in bed	bedclothes	cloth_covering	covering	artifact	whole	object	physical_entity	entity
+122	cradle	a baby bed with sides and rockers	baby_bed	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+123	crate	a rugged box (usually made of wood); used for shipping	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+124	crib	baby bed with high sides made of slats	baby_bed	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+125	cube	a block in the (approximate) shape of a cube	block	artifact	whole	object	physical_entity	entity
+126	cup	a small open container usually used for drinking; usually has a handle	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+127	cupboard	a small room (or recess) or cabinet used for storage space	storage_space	area	structure	artifact	whole	object	physical_entity	entity
+128	cups	a small open container usually used for drinking; usually has a handle	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+129	curtain	hanging cloth used as a blind (especially for a window)	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+130	curtain rail	a long thin implement made of metal or wood	rod	implement	instrumentality	artifact	whole	object	physical_entity	entity
+131	cushion	a soft bag filled with air or a mass of padding such as feathers or foam rubber etc.	padding	artifact	whole	object	physical_entity	entity
+132	cushions stack	a soft bag filled with air or a mass of padding such as feathers or foam rubber etc.	cushions	padding	artifact	whole	object	physical_entity	entity
+133	cut board	a wooden board where meats or vegetables can be cut	cutting_board	board	sheet	artifact	whole	object	physical_entity	entity
+134	cutting board	a wooden board where meats or vegetables can be cut	board	sheet	artifact	whole	object	physical_entity	entity
+135	cycling trainer	simulator consisting of a machine on the ground that simulates the conditions of flying a plane	trainer	simulator	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+136	darts	a small narrow pointed missile that is thrown or shot	projectile	weapon	instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+137	decoration	something used to beautify	artifact	whole	object	physical_entity	entity
+138	desk	a piece of furniture with a writing surface and usually drawers or other compartments	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+139	desk chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+140	device	an instrumentality invented for a particular purpose	instrumentality	artifact	whole	object	physical_entity	entity
+141	diapers	garment consisting of a folded cloth drawn up between the legs and fastened at the waist; worn by infants to catch excrement	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+142	dining chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+143	dining set	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+144	dining table	a table at which meals are served	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+145	discs	(computer science) a memory device consisting of a flat disk covered with a magnetic coating on which information is stored	memory_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+146	dish	a piece of dishware normally used as a container for holding or serving food	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+147	dish dryer	an appliance that removes moisture	drier	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+148	dishdrainer	an appliance that removes moisture	drier	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+149	dishes	a piece of dishware normally used as a container for holding or serving food	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+150	dishwasher	a machine for washing dishes	white_goods	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+151	dispenser	a container so designed that the contents can be used in prescribed amounts	container	instrumentality	artifact	whole	object	physical_entity	entity
+152	documents	writing that provides information (especially information of an official nature)	writing	written_communication	communication	abstraction	entity
+153	dog	a member of the genus Canis (probably descended from the common wolf) that has been domesticated by man since prehistoric times; occurs in many breeds	domestic_animal	animal	organism	living_thing	whole	object	physical_entity	entity
+154	doll	a small replica of a person; used as a toy	plaything	artifact	whole	object	physical_entity	entity
+155	door	the entrance (the space in a wall) through which you enter or leave a room or building; the space that a door can close	entrance	access	way	artifact	whole	object	physical_entity	entity
+156	door /other room	the entrance (the space in a wall) through which you enter or leave a room or building; the space that a door can close	door	entrance	access	way	artifact	whole	object	physical_entity	entity
+157	door mat	a mat placed outside an exterior door for wiping the shoes before entering	doormat	mat	floor_cover	covering	artifact	whole	object	physical_entity	entity
+158	doorframe	the frame that supports a door	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+159	doorframe /other room	the frame that supports a door	doorframe	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+160	drain pipe	a long tube made of metal or plastic that is used to carry water or oil or gas etc.	pipe	tube	conduit	passage	way	artifact	whole	object	physical_entity	entity
+161	drawer	a boxlike container in a piece of furniture; made so as to slide in and out	storage_space	area	structure	artifact	whole	object	physical_entity	entity
+162	drawers	a boxlike container in a piece of furniture; made so as to slide in and out	storage_space	area	structure	artifact	whole	object	physical_entity	entity
+163	drawers rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+164	dress	a one-piece garment for a woman; has skirt and bodice	woman's_clothing	clothing	covering	artifact	whole	object	physical_entity	entity
+165	dresser	furniture with drawers for keeping clothes	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+166	dressing table	low table with mirror or mirrors where one sits while dressing or applying makeup	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+167	drinks	a single serving of a beverage	drinks	helping	small_indefinite_quantity	indefinite_quantity	measure	abstraction	entity
+168	drum	a musical percussion instrument; usually consists of a hollow cylinder with a membrane stretched across each end	percussion_instrument	musical_instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+169	drying machine	an appliance that removes moisture	dryer	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+170	drying rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+171	dumbbells	an exercising weight; two spheres connected by a short bar that serves as a handle	weight	sports_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+172	elevator	lifting device consisting of a platform or cage that is raised and lowered mechanically in a vertical shaft in order to move people from one floor to another in a building	lifting_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+173	elliptical trainer	simulator consisting of a machine on the ground that simulates the conditions of flying a plane	trainer	simulator	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+174	exhaust hood	metal covering leading to a vent that exhausts smoke or fumes	covering	artifact	whole	object	physical_entity	entity
+175	exit sign	a public display of a message	sign	communication	abstraction	entity
+176	extractor fan	an instrument for extracting tight-fitting components	extractor	instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+177	fabric	artifact made by weaving or felting or knitting or crocheting natural or synthetic fibers	artifact	whole	object	physical_entity	entity
+178	fan	a device for creating a current of air by movement of a surface or surfaces	device	instrumentality	artifact	whole	object	physical_entity	entity
+179	fence	a barrier that serves to enclose an area	barrier	obstruction	structure	artifact	whole	object	physical_entity	entity
+180	festoon	a curtain of fabric draped and bound at intervals to form graceful curves	curtain	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+181	figure	a decorative or artistic work	decoration	artifact	whole	object	physical_entity	entity
+182	file cabinet	office furniture consisting of a container for keeping papers in order	office_furniture	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+183	fire extinguisher	a manually operated device for extinguishing small fires	device	instrumentality	artifact	whole	object	physical_entity	entity
+184	fireplace	an open recess in a wall at the base of a chimney where a fire can be built	recess	enclosure	area	structure	artifact	whole	object	physical_entity	entity
+185	firewood box	a (usually rectangular) container; may have a lid	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+186	flag	emblem usually consisting of a rectangular piece of cloth of distinctive design	emblem	design	decoration	artifact	whole	object	physical_entity	entity
+187	flipchart	a vertical surface on which information can be displayed to public view	board	display	electronic_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+188	floor	the inside lower horizontal surface (as of a room, hallway, tent, or other structure)	horizontal_surface	surface	artifact	whole	object	physical_entity	entity
+189	floor /other room	the inside lower horizontal surface (as of a room, hallway, tent, or other structure)	floor	horizontal_surface	surface	artifact	whole	object	physical_entity	entity
+190	floor lamp	a lamp that stands on the floor	lamp	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+191	floor mat	a thick flat pad used as a floor covering	mat	floor_cover	covering	artifact	whole	object	physical_entity	entity
+192	flower	a plant cultivated for its blooms or blossoms	angiosperm	spermatophyte	vascular_plant	plant	organism	living_thing	whole	object	physical_entity	entity
+193	flowers	a plant cultivated for its blooms or blossoms	angiosperm	spermatophyte	vascular_plant	plant	organism	living_thing	whole	object	physical_entity	entity
+194	flush	control consisting of a mechanical or electrical or electronic device for making or breaking or changing the connections in a circuit	switch	control	mechanism	device	instrumentality	artifact	whole	object	physical_entity	entity
+195	folded beach chairs	a seat for one person, with a support for the back	chairs	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+196	folder	covering that is folded over to protect the contents	covering	artifact	whole	object	physical_entity	entity
+197	folding chair	a chair that can be folded flat for storage	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+198	food	any solid substance (as opposed to liquid) that is used as a source of nourishment	solid	matter	physical_entity	entity
+199	foosball table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+200	footstool	a low seat or a stool to rest the feet of a seated person	stool	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+201	frame	a framework that supports and protects a picture or a mirror	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+202	fridge	a refrigerator in which the coolant is pumped around by an electric motor	refrigerator	white_goods	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+203	fruit	the ripened reproductive body of a seed plant	reproductive_structure	plant_organ	plant_part	natural_object	whole	object	physical_entity	entity
+204	fruit plate	an amount of a product	fruits	product	creation	artifact	whole	object	physical_entity	entity
+205	fruits	the ripened reproductive body of a seed plant	reproductive_structure	plant_organ	plant_part	natural_object	whole	object	physical_entity	entity
+206	furniture	furnishings that make a room or other area ready for occupancy	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+207	garbage	food that is discarded (as from a kitchen)	waste	material	substance	part	relation	abstraction	entity
+208	garbage bin	a bin that holds rubbish until it is collected	trash_bin	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+209	garden umbrella	a lightweight handheld collapsible canopy	umbrella	canopy	shelter	protective_covering	covering	artifact	whole	object	physical_entity	entity
+210	generator	an electronic device for producing a signal voltage	electronic_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+211	glass	a container for holding liquids while drinking	container	instrumentality	artifact	whole	object	physical_entity	entity
+212	glass wall	anything that suggests a wall in structure or function or effect	wall	object	physical_entity	entity
+213	grass	narrow-leaved green herbage: grown as lawns; used as pasture for grazing animals; cut and dried as hay	gramineous_plant	herb	vascular_plant	plant	organism	living_thing	whole	object	physical_entity	entity
+214	guitar	a stringed instrument usually having six strings; played by strumming or plucking	stringed_instrument	musical_instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+215	gymnastic ball	round object that is hit or thrown or kicked in games	ball	game_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+216	hair dryer	a hand-held electric blower that can blow warm air onto the hair; used for styling hair	dryer	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+217	hand brush	an implement that has hairs or bristles firmly set into a handle	brush	implement	instrumentality	artifact	whole	object	physical_entity	entity
+218	hand dryer	a hand-held electric blower that can blow warm air onto the hair; used for styling hair	dryer	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+219	hand washer	a cleansing agent made from the salts of vegetable or animal fats	soap	cleansing_agent	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+220	handbag	a container used for carrying money and small personal items or accessories (especially by women)	container	instrumentality	artifact	whole	object	physical_entity	entity
+221	handhold	an appendage to hold onto	appendage	part	object	physical_entity	entity
+222	handle	the appendage to an object that is designed to be held in order to use or move it	appendage	part	object	physical_entity	entity
+223	handrail	a railing at the side of a staircase or balcony to prevent people from falling	barrier	obstruction	structure	artifact	whole	object	physical_entity	entity
+224	hanger	anything from which something can be hung	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+225	hangers	anything from which something can be hung	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+226	hanging cabinet	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	cabinet	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+227	headboard	a vertical board or panel forming the head of a bedstead	panel	sheet	artifact	whole	object	physical_entity	entity
+228	heater	device that heats water or supplies warmth to a room	device	instrumentality	artifact	whole	object	physical_entity	entity
+229	helmet	a protective headgear made of hard material to resist blows	headdress	clothing	covering	artifact	whole	object	physical_entity	entity
+230	hood	metal covering leading to a vent that exhausts smoke or fumes	covering	artifact	whole	object	physical_entity	entity
+231	humidifier	an instrumentality invented for a particular purpose	device	instrumentality	artifact	whole	object	physical_entity	entity
+232	hygiene products	a whole individual unit; especially when included in a list or collection	items	whole	object	physical_entity	entity
+233	instrument	a device that requires skill for proper use	device	instrumentality	artifact	whole	object	physical_entity	entity
+234	iron	home appliance consisting of a flat metal base that is heated and used to smooth cloth	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+235	ironing board	narrow padded board on collapsible supports; used for ironing clothes	board	sheet	artifact	whole	object	physical_entity	entity
+236	item	a whole individual unit; especially when included in a list or collection	whole	object	physical_entity	entity
+237	items	a whole individual unit; especially when included in a list or collection	whole	object	physical_entity	entity
+238	jacket	a short coat	coat	overgarment	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+239	jalousie	a shutter made of angled slats	shutter	blind	protective_covering	covering	artifact	whole	object	physical_entity	entity
+240	jar	a vessel (usually cylindrical) with a wide mouth and without handles	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+241	jug	a large bottle with a narrow mouth	bottle	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+242	juicer	a squeezer with a conical ridged center that is used for squeezing juice from citrus fruit	squeezer	kitchen_utensil	utensil	implement	instrumentality	artifact	whole	object	physical_entity	entity
+243	kettle	a metal pot for stewing or boiling; usually has a lid	pot	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+244	keyboard	device consisting of a set of keys on a piano or organ or typewriter or typesetting machine or computer or the like	device	instrumentality	artifact	whole	object	physical_entity	entity
+245	kids bicycle	a wheeled vehicle that has two wheels and is moved by foot pedals	bicycle	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+246	kids chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+247	kids rocking chair	a chair mounted on rockers	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+248	kids stool	a simple seat without a back or arms	stool	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+249	kids table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+250	kitchen appliance	a home appliance used in preparing food	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+251	kitchen cabinet	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	cabinet	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+252	kitchen counter	a piece of furniture that stands at the side of a dining room; has shelves and drawers	counter	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+253	kitchen hood	metal covering leading to a vent that exhausts smoke or fumes	covering	artifact	whole	object	physical_entity	entity
+254	kitchen item	a whole individual unit; especially when included in a list or collection	item	whole	object	physical_entity	entity
+255	kitchen object	a tangible and visible entity; an entity that can cast a shadow	object	physical_entity	entity
+256	kitchen playset	an artifact designed to be played with	toys	artifact	whole	object	physical_entity	entity
+257	kitchen rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+258	kitchen sink	a sink in a kitchen	sink	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+259	kitchen sofa	an upholstered seat for more than one person	sofa	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+260	kitchen towel	a rectangular piece of absorbent cloth (or paper) for drying or wiping	towel	piece_of_cloth	piece	part	object	physical_entity	entity
+261	knife box	edge tool used as a cutting instrument; has a pointed blade with a sharp edge and a handle	knives	edge_tool	cutter	cutting_implement	tool	implement	instrumentality	artifact	whole	object	entity
+262	ladder	steps consisting of two parallel members connected by rungs; for climbing up or down	stairs	stairway	way	artifact	whole	object	physical_entity	entity
+263	lamp	an artificial source of visible illumination	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+264	laptop	a portable computer small enough to use in your lap	portable_computer	personal_computer	digital_computer	computer	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+265	laundry basket	a hamper that holds dirty clothes to be washed or wet clothes to be dried	hamper	basket	container	instrumentality	artifact	whole	object	physical_entity	entity
+266	letter	a written message addressed to a person or organization	letter	text	matter	writing	written_communication	communication	abstraction	entity
+267	light	any device serving as a source of illumination	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+268	linen	a fabric woven with fibers from the flax plant	fabric	artifact	whole	object	physical_entity	entity
+269	locker	a storage compartment for clothes and valuables; usually it has a lock	compartment	room	area	structure	artifact	whole	object	physical_entity	entity
+270	lockers	a storage compartment for clothes and valuables; usually it has a lock	compartment	room	area	structure	artifact	whole	object	physical_entity	entity
+271	loft bed	a piece of furniture that provides a place to sleep	bed	bedroom_furniture	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+272	lounger	an armchair whose back can be lowered and foot can be raised to allow the sitter to recline in it	armchair	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity
+273	luggage	cases used to carry belongings when traveling	case	container	instrumentality	artifact	whole	object	physical_entity	entity
+274	machine	any mechanical or electrical device that transmits or modifies energy to perform or assist in the performance of human tasks	device	instrumentality	artifact	whole	object	physical_entity	entity
+275	magazine	a periodic publication containing pictures and stories and articles of interest to those who purchase it or subscribe to it	publication	work	product	creation	artifact	whole	object	physical_entity	entity
+276	magazine files	a periodic publication containing pictures and stories and articles of interest to those who purchase it or subscribe to it	magazines	publication	work	product	creation	artifact	whole	object	physical_entity	entity
+277	magazine rack	a rack for displaying magazines	rack	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+278	magazine stand	a support for displaying various articles	stand	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+279	mandarins	a somewhat flat reddish-orange loose skinned citrus of China	citrus	edible_fruit	produce	food	solid	matter	physical_entity	entity
+280	mannequin	a life-size dummy used to display clothes	dummy	figure	model	representation	creation	artifact	whole	object	physical_entity	entity
+281	mask	a protective covering worn over the face	protective_covering	covering	artifact	whole	object	physical_entity	entity
+282	mattress	a large thick pad filled with resilient material and often incorporating coiled springs, used as a bed or part of a bed	pad	padding	artifact	whole	object	physical_entity	entity
+283	medical device	an instrumentality invented for a particular purpose	device	instrumentality	artifact	whole	object	physical_entity	entity
+284	menu	a list of dishes available at a restaurant	bill	list	database	information	message	communication	abstraction	entity
+285	meter	any of various measuring instruments for measuring a quantity	measuring_instrument	instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+286	microwave	kitchen appliance that cooks food by passing an electromagnetic wave through it; heat results from the absorption of energy by the water molecules in the food	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity
+287	milk	a white nutritious liquid secreted by mammals and used as food by human beings	dairy_product	foodstuff	food	substance	matter	physical_entity	entity
+288	mirror	polished surface that forms images by reflecting light	reflector	device	instrumentality	artifact	whole	object	physical_entity	entity
+289	monitor	display produced by a device that takes signals and displays them on a television screen or a computer monitor	display	electronic_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+290	mop	cleaning implement consisting of absorbent material fastened to a handle; for cleaning floors	cleaning_implement	implement	instrumentality	artifact	whole	object	physical_entity	entity
+291	multicooker	a utensil for cooking	cooker	cooking_utensil	kitchen_utensil	utensil	implement	instrumentality	artifact	whole	object	physical_entity
+292	napkins	a small piece of table linen that is used to wipe the mouth and to cover the lap in order to protect clothing	table_linen	linen	white_goods	drygoods	commodity	artifact	whole	object	physical_entity	entity
+293	newspaper	a daily or weekly publication on folded sheets; contains news and articles and advertisements	press	print_media	medium	instrumentality	artifact	whole	object	physical_entity	entity
+294	newspaper rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+295	nightstand	a piece of furniture resembling a cupboard with doors and shelves and drawers; for storage or display	cabinet	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+296	notebook	a book with blank pages for recording notes or memoranda	book	product	creation	artifact	whole	object	physical_entity	entity
+297	notebooks	a small compact portable computer	portable_computer	personal_computer	digital_computer	computer	machine	device	instrumentality	artifact	whole	object
+298	object	a tangible and visible entity; an entity that can cast a shadow	physical_entity	entity
+299	objects	a tangible and visible entity; an entity that can cast a shadow	physical_entity	entity
+300	office chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+301	office table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+302	organizer	a lightweight consumer electronic device that looks like a hand-held computer but instead performs specific tasks; can serve as a diary or a personal database or a telephone or an alarm clock etc.	electronic_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+303	ottoman	a low seat or a stool to rest the feet of a seated person	stool	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+304	oven	kitchen appliance used for baking or roasting	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity
+305	oven glove	handwear: covers the hand and wrist	glove	handwear	clothing	covering	artifact	whole	object	physical_entity	entity
+306	pack	a convenient package or parcel (as of cigarettes or film)	package	container	instrumentality	artifact	whole	object	physical_entity	entity
+307	package	a wrapped container	container	instrumentality	artifact	whole	object	physical_entity	entity
+308	packs	a convenient package or parcel (as of cigarettes or film)	package	container	instrumentality	artifact	whole	object	physical_entity	entity
+309	painting	graphic art consisting of an artistic composition made by applying paints to a surface	graphic_art	art	creation	artifact	whole	object	physical_entity	entity
+310	pan	cooking utensil consisting of a wide metal vessel	cooking_utensil	kitchen_utensil	utensil	implement	instrumentality	artifact	whole	object	physical_entity	entity
+311	paper	a daily or weekly publication on folded sheets; contains news and articles and advertisements	press	print_media	medium	instrumentality	artifact	whole	object	physical_entity	entity
+312	paper cutter	a cutting implement for cutting sheets of paper to the desired size	cutting_implement	tool	implement	instrumentality	artifact	whole	object	physical_entity	entity
+313	paper holder	a holding device	holder	holding_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+314	paper sign	any nonverbal action or gesture that encodes a message	sign	communication	abstraction	entity
+315	paper stack	a daily or weekly publication on folded sheets; contains news and articles and advertisements	papers	press	print_media	medium	instrumentality	artifact	whole	object	physical_entity	entity
+316	paper towel	a disposable towel made of absorbent paper	towel	piece_of_cloth	piece	part	object	physical_entity	entity
+317	paper towel dispenser	a container so designed that the contents can be used in prescribed amounts	dispenser	container	instrumentality	artifact	whole	object	physical_entity	entity
+318	papers	a daily or weekly publication on folded sheets; contains news and articles and advertisements	press	print_media	medium	instrumentality	artifact	whole	object	physical_entity	entity
+319	partition	a vertical structure that divides or separates (as a wall divides one room from another)	structure	artifact	whole	object	physical_entity	entity
+320	pavement	walk consisting of a paved area for pedestrians; usually beside a street or roadway	walk	path	way	artifact	whole	object	physical_entity	entity
+321	pc	a small digital computer based on a microprocessor and designed to be used by one person at a time	digital_computer	computer	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+322	pepper	pungent seasoning from the berry of the common pepper plant of East India; use whole or ground	flavorer	ingredient	foodstuff	food	substance	matter	physical_entity	entity
+323	pet bed	a soft bag filled with air or a mass of padding such as feathers or foam rubber etc.	cushion	padding	artifact	whole	object	physical_entity	entity
+324	photo frame	a framework that supports and protects a picture or a mirror	frame	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+325	photos	a representation of a person or scene in the form of a print or transparent slide; recorded by a camera on light-sensitive material	representation	creation	artifact	whole	object	physical_entity	entity
+326	piano	a keyboard instrument that is played by depressing keys that cause hammers to strike tuned strings and produce sounds	stringed_instrument	musical_instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+327	picture	graphic art consisting of an artistic composition made by applying paints to a surface	graphic_art	art	creation	artifact	whole	object	physical_entity	entity
+328	pictures	graphic art consisting of an artistic composition made by applying paints to a surface	graphic_art	art	creation	artifact	whole	object	physical_entity	entity
+329	pile	a collection of objects laid on top of each other	collection	group	abstraction	entity
+330	pile of books	physical objects consisting of a number of pages bound together	books	product	creation	artifact	whole	object	physical_entity	entity
+331	pile of bottles	a glass or plastic vessel used for storing drinks or other liquids; typically cylindrical without handles and with a narrow neck that can be plugged or capped	bottles	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+332	pile of candles	stick of wax with a wick in the middle	candles	lamp	source_of_illumination	device	instrumentality	artifact	whole	object	physical_entity	entity
+333	pile of folders	covering that is folded over to protect the contents	folders	covering	artifact	whole	object	physical_entity	entity
+334	pile of papers	a daily or weekly publication on folded sheets; contains news and articles and advertisements	papers	press	print_media	medium	instrumentality	artifact	whole	object	physical_entity	entity
+335	pile of pillows	a cushion to support the head of a sleeping person	pillows	cushion	padding	artifact	whole	object	physical_entity	entity
+336	pile of wires	a metal conductor that carries electricity over a distance	wires	conductor	device	instrumentality	artifact	whole	object	physical_entity	entity
+337	pillar	(architecture) a tall vertical cylindrical structure standing upright and used to support a structure	upright	structural_member	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+338	pillow	a cushion to support the head of a sleeping person	cushion	padding	artifact	whole	object	physical_entity	entity
+339	pin board wall	a flat piece of material designed for a special purpose	board	sheet	artifact	whole	object	physical_entity	entity
+340	pipe	a tubular wind instrument	wind_instrument	musical_instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+341	plank	a stout length of sawn timber; made in a wide variety of sizes and used for many purposes	lumber	building_material	artifact	whole	object	physical_entity	entity
+342	plant	(botany) a living organism lacking the power of locomotion	organism	living_thing	whole	object	physical_entity	entity
+343	planter	a decorative pot for house plants	pot	container	instrumentality	artifact	whole	object	physical_entity	entity
+344	plants	(botany) a living organism lacking the power of locomotion	organism	living_thing	whole	object	physical_entity	entity
+345	plate	dish on which food is served or from which food is eaten	flatware	tableware	ware	article	artifact	whole	object	physical_entity	entity
+346	plates	dish on which food is served or from which food is eaten	flatware	tableware	ware	article	artifact	whole	object	physical_entity	entity
+347	platform	a raised horizontal surface	horizontal_surface	surface	artifact	whole	object	physical_entity	entity
+348	player	(trademark) a pocket-sized stereo system with light weight earphones	walkman	stereo	reproducer	audio_system	system	instrumentality	artifact	whole	object	physical_entity	entity
+349	pocket	a small pouch inside a garment for carrying small articles	pouch	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+350	podest	a raised horizontal surface	platform	horizontal_surface	surface	artifact	whole	object	physical_entity	entity
+351	pooh	plaything consisting of a child's toy bear (usually plush and stuffed with soft materials)	teddy_bear	plaything	artifact	whole	object	physical_entity	entity
+352	poster	a sign posted in a public place as an advertisement	sign	communication	abstraction	entity
+353	pot	metal or earthenware cooking vessel that is usually round and deep; often has a handle and lid	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+354	price tag	a tag showing the price of the article it is attached to	price_tag	tag	label	marker	symbol	signal	communication	abstraction	entity
+355	printer	a machine that prints	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+356	projector	an optical device for projecting a beam of light	optical_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+357	puf	a cushion to support the head of a sleeping person	pillow	cushion	padding	artifact	whole	object	physical_entity	entity
+358	puppet	a doll with a hollow head of a person or animal and a cloth body; intended to fit over the hand and be manipulated with the fingers	doll	plaything	artifact	whole	object	physical_entity	entity
+359	rack	framework for holding objects	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+360	radiator	heater consisting of a series of pipes for circulating steam or hot water to heat rooms or buildings	heater	device	instrumentality	artifact	whole	object	physical_entity	entity
+361	radio	an electronic receiver that detects and demodulates and amplifies transmitted signals	receiver	set	electronic_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+362	rag	a small piece of cloth or paper	piece_of_cloth	piece	part	object	physical_entity	entity
+363	rail	a horizontal bar (usually of wood or metal)	bar	implement	instrumentality	artifact	whole	object	physical_entity	entity
+364	railing	a barrier consisting of a horizontal bar and supports	barrier	obstruction	structure	artifact	whole	object	physical_entity	entity
+365	ramp	an inclined surface connecting two levels	inclined_plane	machine	mechanical_device	mechanism	device	instrumentality	artifact	whole	object	physical_entity	entity
+366	recycle bin	a bin that holds rubbish until it is collected	trash_bin	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+367	refrigerator	white goods in which food can be stored at low temperatures	white_goods	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+368	rocking chair	a chair mounted on rockers	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+369	roll	a document that can be rolled up (as for storage)	manuscript	autograph	writing	written_communication	communication	abstraction	entity
+370	rolled carpet	floor covering consisting of a piece of thick heavy fabric (usually with nap or pile)	carpet	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+371	rolling cart	wheeled vehicle that can be pushed by a person; may have one or two or four wheels	cart	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+372	rolling pin	utensil consisting of a cylinder (usually of wood) with a handle at each end; used to roll out dough	kitchen_utensil	utensil	implement	instrumentality	artifact	whole	object	physical_entity	entity
+373	roof	a protective covering that covers or forms the top of a building	protective_covering	covering	artifact	whole	object	physical_entity	entity
+374	round table	a meeting of peers for discussion and exchange of views	table	conference	discussion	speech	auditory_communication	communication	abstraction	entity
+375	rowing machine	simulator consisting of a machine on the ground that simulates the conditions of flying a plane	trainer	simulator	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+376	rubbish bin	a bin that holds rubbish until it is collected	trash_bin	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+377	rug	floor covering consisting of a piece of thick heavy fabric (usually with nap or pile)	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+378	sack	a bag made of paper or plastic for holding customer's purchases	bag	container	instrumentality	artifact	whole	object	physical_entity	entity
+379	salad	food mixtures either arranged on a plate or tossed and served with a moist dressing; usually consisting of or including greens	dish	nutriment	food	substance	matter	physical_entity	entity
+380	salt	white crystalline form of especially sodium chloride used to season and preserve food	flavorer	ingredient	foodstuff	food	substance	matter	physical_entity	entity
+381	sauce boat	a dish (often boat-shaped) for serving gravy or sauce	sauceboat	dish	crockery	tableware	ware	article	artifact	whole	object	physical_entity	entity
+382	scale	a measuring instrument for weighing; shows amount of mass	measuring_instrument	instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+383	scarf	a garment worn around the head or neck or shoulders for warmth or decoration	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+384	screen	the display that is electronically created on the surface of the large end of a cathode-ray tube	display	electronic_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+385	seat	furniture that is designed for sitting on	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+386	seat pad	artifact consisting of soft or resilient material used to fill or give shape or protect or add comfort	padding	artifact	whole	object	physical_entity	entity
+387	sewing machine	a textile machine used as a home appliance for sewing	textile_machine	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+388	shades	protective covering that protects something from direct sunlight	protective_covering	covering	artifact	whole	object	physical_entity	entity
+389	shampoo	cleansing agent consisting of soaps or detergents used for washing the hair	cleansing_agent	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+390	sheets	bed linen consisting of a large rectangular piece of cotton or linen cloth; used in pairs	bed_linen	linen	white_goods	drygoods	commodity	artifact	whole	object	physical_entity	entity
+391	shelf	a support that consists of a horizontal surface for holding objects	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+392	shelf clutter	a confused multitude of things	jumble	disorderliness	condition	state	attribute	abstraction	entity
+393	shelf of caps	a tight-fitting headdress	caps	headdress	clothing	covering	artifact	whole	object	physical_entity	entity
+394	shelf unit	a support that consists of a horizontal surface for holding objects	shelf	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+395	shelves	a support that consists of a horizontal surface for holding objects	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+396	shirt	a garment worn on the upper half of the body	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+397	shoe	footwear shaped to fit the foot (below the ankle) with a flexible upper of leather or plastic and a sole and heel of heavier material	footwear	covering	artifact	whole	object	physical_entity	entity
+398	shoe box	a (usually rectangular) container; may have a lid	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+399	shoe commode	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+400	shoe rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+401	shoe shelf	a support that consists of a horizontal surface for holding objects	shelf	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+402	shoes	footwear shaped to fit the foot (below the ankle) with a flexible upper of leather or plastic and a sole and heel of heavier material	footwear	covering	artifact	whole	object	physical_entity	entity
+403	showcase	a glass container used to store and display items in a shop or museum or home	container	instrumentality	artifact	whole	object	physical_entity	entity
+404	shower	a plumbing fixture that sprays water over you	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+405	shower curtain	a curtain that keeps water from splashing out of the shower area	curtain	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+406	shower door	a plumbing fixture that sprays water over you	shower	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+407	shower floor	a plumbing fixture that sprays water over you	shower	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+408	shower gel	a thin translucent membrane used over stage lights for color effects	gel	membrane	sheet	artifact	whole	object	physical_entity	entity
+409	shower wall	a plumbing fixture that sprays water over you	shower	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+410	side table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+411	sideboard	a piece of furniture that stands at the side of a dining room; has shelves and drawers	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+412	sidecouch	an upholstered seat for more than one person	couch	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+413	sidetable	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+414	sign	structure displaying a board on which advertisements can be posted	structure	artifact	whole	object	physical_entity	entity
+415	sink	plumbing fixture consisting of a water basin fixed to a wall or floor and having a drainpipe	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+416	sink counter	a bathroom sink that is permanently installed and connected to a water supply and drainpipe; where you can wash your hands and face	basin	sink	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+417	slanted wall	anything that suggests a wall in structure or function or effect	wall	object	physical_entity	entity
+418	snowboard	a board that resembles a broad ski or a small surfboard; used in a standing position to slide down snow-covered slopes	board	sheet	artifact	whole	object	physical_entity	entity
+419	soap	a cleansing agent made from the salts of vegetable or animal fats	cleansing_agent	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+420	soap dish	a bathroom or kitchen fixture for holding a bar of soap	fixture	artifact	whole	object	physical_entity	entity
+421	soap dispenser	dispenser of liquid soap	dispenser	container	instrumentality	artifact	whole	object	physical_entity	entity
+422	socket	a receptacle into which an electric device can be inserted	receptacle	fitting	accessory	component	part	object	physical_entity	entity
+423	sofa	an upholstered seat for more than one person	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+424	sofa chair	a seat for one person, with a support for the back	chair	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+425	sofa couch	an upholstered seat for more than one person	couch	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+426	speaker	electro-acoustic transducer that converts electrical signals into sounds loud enough to be heard at a distance	electro-acoustic_transducer	transducer	electrical_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+427	spice	any of a variety of pungent aromatic vegetable substances used for flavoring food	flavorer	ingredient	foodstuff	food	substance	matter	physical_entity	entity
+428	spices	any of a variety of pungent aromatic vegetable substances used for flavoring food	flavorer	ingredient	foodstuff	food	substance	matter	physical_entity	entity
+429	sponge	a porous mass of interlacing fibers that forms the internal skeleton of various marine animals and usable to absorb water or any porous rubber or cellulose product similarly used	absorbent_material	sorbent	material	substance	part	relation	abstraction	entity
+430	spots	a small contrasting part of something	marking	design	decoration	artifact	whole	object	physical_entity	entity
+431	squeezer	a kitchen utensil for squeezing juice from fruit	kitchen_utensil	utensil	implement	instrumentality	artifact	whole	object	physical_entity	entity
+432	stair	support consisting of a place to rest the foot while ascending or descending a stairway	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+433	stairs	a flight of stairs or a flight of steps	stairway	way	artifact	whole	object	physical_entity	entity
+434	stand	a small table for holding articles of various kinds	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+435	star	a star-shaped character * used in printing	decoration	character	written_symbol	symbol	signal	communication	abstraction	entity
+436	statue	a sculpture representing a human or animal	statue	sculpture	solid_figure	figure	shape	attribute	abstraction	entity
+437	statuette	a small carved or molded figure	figure	model	representation	creation	artifact	whole	object	physical_entity	entity
+438	stepladder	a folding portable ladder hinged at the top	ladder	stairs	stairway	way	artifact	whole	object	physical_entity	entity
+439	stereo	reproducer in which two microphones feed two or more loudspeakers to give a three-dimensional effect to the sound	reproducer	audio_system	system	instrumentality	artifact	whole	object	physical_entity	entity
+440	stereo equipment	electro-acoustic transducer that converts electrical signals into sounds loud enough to be heard at a distance	speakers	electro-acoustic_transducer	transducer	electrical_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+441	stick	a long thin implement resembling a length of wood	implement	instrumentality	artifact	whole	object	physical_entity	entity
+442	stool	a simple seat without a back or arms	seat	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+443	storage	a depository for goods	depository	facility	artifact	whole	object	physical_entity	entity
+444	storage bin	a container; usually has a lid	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+445	storage box	a (usually rectangular) container; may have a lid	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+446	storage container	any object that can be used to hold things (especially a large metal boxlike object of standardized dimensions that can be loaded from one form of transport to another)	container	instrumentality	artifact	whole	object	physical_entity	entity
+447	storage unit	any object that can be used to hold things (especially a large metal boxlike object of standardized dimensions that can be loaded from one form of transport to another)	container	instrumentality	artifact	whole	object	physical_entity	entity
+448	stove	a kitchen appliance used for cooking food	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity
+449	stroller	a small vehicle with four wheels in which a baby or child is pushed around	wheeled_vehicle	vehicle	conveyance	instrumentality	artifact	whole	object	physical_entity	entity
+450	stuffed animal	an artifact designed to be played with	toy	artifact	whole	object	physical_entity	entity
+451	sugar packs	a white crystalline carbohydrate used as a sweetener and preservative	sugar	sweetening	flavorer	ingredient	foodstuff	food	substance	matter	physical_entity	entity
+452	suitcase	a portable rectangular container for carrying clothes	baggage	case	container	instrumentality	artifact	whole	object	physical_entity	entity
+453	switch	control consisting of a mechanical or electrical or electronic device for making or breaking or changing the connections in a circuit	control	mechanism	device	instrumentality	artifact	whole	object	physical_entity	entity
+454	t-shirt	a close-fitting pullover shirt	shirt	garment	clothing	covering	artifact	whole	object	physical_entity	entity
+455	table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+456	table lamp	a lamp that sits on a table	lamp	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+457	table soccer	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+458	tablet	a device or control that is very useful for a particular job	device	instrumentality	artifact	whole	object	physical_entity	entity
+459	teapot	pot for brewing tea; usually has a spout and handle	pot	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+460	teddy bear	plaything consisting of a child's toy bear (usually plush and stuffed with soft materials)	plaything	artifact	whole	object	physical_entity	entity
+461	telephone	transmitting speech at a distance	telecommunication	medium	instrumentality	artifact	whole	object	physical_entity	entity
+462	tennis raquet	a racket used to play tennis	tennis_racket	racket	sports_implement	implement	instrumentality	artifact	whole	object	physical_entity	entity
+463	tent	a portable shelter (usually of canvas stretched over supporting poles and fastened to the ground with ropes and pegs)	shelter	structure	artifact	whole	object	physical_entity	entity
+464	things	an artifact	artifact	whole	object	physical_entity	entity
+465	tile	a flat thin rectangular slab (as of fired clay or rubber or linoleum) used to cover surfaces	slab	block	artifact	whole	object	physical_entity	entity
+466	tire	hoop that covers a wheel	hoop	band	strip	artifact	whole	object	physical_entity	entity
+467	tissue pack	a soft thin (usually translucent) paper	tissues	paper	material	substance	part	relation	abstraction	entity
+468	toaster	a kitchen appliance (usually electric) for toasting bread	kitchen_appliance	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+469	toilet	a plumbing fixture for defecation and urination	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+470	toilet brush	a whole individual unit; especially when included in a list or collection	item	whole	object	physical_entity	entity
+471	toilet paper	a soft thin absorbent paper for use in toilets	tissue	paper	material	substance	part	relation	abstraction	entity
+472	toilet paper dispenser	a container so designed that the contents can be used in prescribed amounts	dispenser	container	instrumentality	artifact	whole	object	physical_entity	entity
+473	toilet paper holder	a holding device	holder	holding_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+474	toiletry	artifacts used in making your toilet (washing and taking care of your body)	instrumentality	artifact	whole	object	physical_entity	entity
+475	tool wall	an implement used in the practice of a vocation	tools	implement	instrumentality	artifact	whole	object	physical_entity	entity
+476	towel	a rectangular piece of absorbent cloth (or paper) for drying or wiping	piece_of_cloth	piece	part	object	physical_entity	entity
+477	towel basket	a container that is usually woven and has handles	basket	container	instrumentality	artifact	whole	object	physical_entity	entity
+478	towels	a rectangular piece of absorbent cloth (or paper) for drying or wiping	piece_of_cloth	piece	part	object	physical_entity	entity
+479	toy	an artifact designed to be played with	artifact	whole	object	physical_entity	entity
+480	toy house	an artifact designed to be played with	toys	artifact	whole	object	physical_entity	entity
+481	trash bin	a bin that holds rubbish until it is collected	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+482	trash can	a bin that holds rubbish until it is collected	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+483	trashcan	a bin that holds rubbish until it is collected	trash_can	bin	container	instrumentality	artifact	whole	object	physical_entity	entity
+484	tray	an open receptacle for holding or displaying or serving articles or food	receptacle	container	instrumentality	artifact	whole	object	physical_entity	entity
+485	treadmill	an exercise device consisting of an endless belt on which a person can walk or jog without changing place	exercise_device	device	instrumentality	artifact	whole	object	physical_entity	entity
+486	tree	a tall perennial woody plant having a main trunk and branches forming a distinct elevated crown; includes both gymnosperms and angiosperms	woody_plant	vascular_plant	plant	organism	living_thing	whole	object	physical_entity	entity
+487	tree decoration	something used to beautify	decoration	artifact	whole	object	physical_entity	entity
+488	tube	conduit consisting of a long hollow object (usually cylindrical) used to hold and conduct objects or liquids or gases	conduit	passage	way	artifact	whole	object	physical_entity	entity
+489	tv	an electronic device that receives television signals and displays them on a screen	receiver	set	electronic_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+490	tv stand	a small table for holding articles of various kinds	stand	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+491	tv table	a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs	table	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+492	typewriter	hand-operated character printer for printing written messages one character at a time	character_printer	printer	machine	device	instrumentality	artifact	whole	object	physical_entity	entity
+493	ukulele	a small guitar having four strings	guitar	stringed_instrument	musical_instrument	device	instrumentality	artifact	whole	object	physical_entity	entity
+494	umbrella	a lightweight handheld collapsible canopy	canopy	shelter	protective_covering	covering	artifact	whole	object	physical_entity	entity
+495	upholstered wall	anything that suggests a wall in structure or function or effect	wall	object	physical_entity	entity
+496	urinal	a plumbing fixture (usually attached to the wall) used by men to urinate	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+497	utensils	an implement for practical use (especially in a household)	implement	instrumentality	artifact	whole	object	physical_entity	entity
+498	vacuum	an electrical home appliance that cleans by suction	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+499	vacuum cleaner	an electrical home appliance that cleans by suction	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+500	vase	an open jar of glass or porcelain used as an ornament or to hold flowers	jar	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+501	ventilation	a mechanical system in a building that provides fresh air	mechanical_system	system	instrumentality	artifact	whole	object	physical_entity	entity
+502	ventilator	a device (such as a fan) that introduces fresh air or expels foul air	device	instrumentality	artifact	whole	object	physical_entity	entity
+503	wall	an architectural partition with a height and length greater than its thickness; used to divide or enclose an area or to support another structure	partition	structure	artifact	whole	object	physical_entity	entity
+504	wall /other room	anything that suggests a wall in structure or function or effect	wall	object	physical_entity	entity
+505	wall frame	anything that suggests a wall in structure or function or effect	wall	object	physical_entity	entity
+506	wall plants	(botany) a living organism lacking the power of locomotion	plants	organism	living_thing	whole	object	physical_entity	entity
+507	wall rack	framework for holding objects	rack	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+508	wardrobe	a tall piece of furniture that provides storage space for clothes; has a door and rails or hooks for hanging clothes	furniture	furnishing	instrumentality	artifact	whole	object	physical_entity	entity
+509	wardrobe door	a swinging or sliding barrier that will close the entrance to a room or building or vehicle	door	movable_barrier	barrier	obstruction	structure	artifact	whole	object	physical_entity	entity
+510	washbasin	a bathroom sink that is permanently installed and connected to a water supply and drainpipe; where you can wash your hands and face	sink	plumbing_fixture	fixture	artifact	whole	object	physical_entity	entity
+511	washing basket	a container that is usually woven and has handles	basket	container	instrumentality	artifact	whole	object	physical_entity	entity
+512	washing machine	a home appliance for washing clothes and linens automatically	white_goods	home_appliance	appliance	durables	consumer_goods	commodity	artifact	whole	object	physical_entity	entity
+513	washing powder	soap in powdered form mixed with alkaline builders	soap	cleansing_agent	formulation	compound	chemical	material	substance	part	relation	abstraction	entity
+514	water	liquid excretory product	body_waste	waste	material	substance	part	relation	abstraction	entity
+515	water heater	a heater and storage tank to supply heated water	tank	vessel	container	instrumentality	artifact	whole	object	physical_entity	entity
+516	watering can	a container with a handle and a spout with a perforated nozzle; used to sprinkle water over plants	container	instrumentality	artifact	whole	object	physical_entity	entity
+517	weights	sports equipment used in calisthenic exercises and weightlifting; it is not attached to anything and is raised and lowered by use of the hands and arms	sports_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+518	weigths	sports equipment used in calisthenic exercises and weightlifting; it is not attached to anything and is raised and lowered by use of the hands and arms	weights	sports_equipment	equipment	instrumentality	artifact	whole	object	physical_entity	entity
+519	whiteboard	sheet of slate; for writing with chalk	blackboard	sheet	artifact	whole	object	physical_entity	entity
+520	window	a framework of wood or metal that contains a glass windowpane and is built into a wall or roof to admit light or air	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+521	window board	the sill of a window; the horizontal member at the bottom of the window frame	windowsill	sill	structural_member	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+522	window clutter	a confused multitude of things	jumble	disorderliness	condition	state	attribute	abstraction	entity
+523	window frame	the framework that supports a window	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+524	windows	a framework of wood or metal that contains a glass windowpane and is built into a wall or roof to admit light or air	framework	supporting_structure	structure	artifact	whole	object	physical_entity	entity
+525	windowsill	the sill of a window; the horizontal member at the bottom of the window frame	sill	structural_member	support	device	instrumentality	artifact	whole	object	physical_entity	entity
+526	wood	the hard fibrous lignified substance under the bark of trees	plant_material	material	substance	part	relation	abstraction	entity
+527	wood box	a (usually rectangular) container; may have a lid	box	container	instrumentality	artifact	whole	object	physical_entity	entity
+528	xbox	a machine for performing calculations automatically	computer	machine	device	instrumentality	artifact	whole	object	physical_entity	entity

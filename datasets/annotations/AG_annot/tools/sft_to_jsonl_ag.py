@@ -284,7 +284,22 @@ def group_and_sort_samples(
     return out
 
 
-def make_jsonl(in_path: str, out_path: str, repo_root: str) -> int:
+TEMPORAL_MODE_WITH_PREV_GT = "with_prev_gt"
+TEMPORAL_MODE_NO_PREV_GT = "no_prev_gt"
+TEMPORAL_MODES = (TEMPORAL_MODE_WITH_PREV_GT, TEMPORAL_MODE_NO_PREV_GT)
+
+
+def make_jsonl(
+    in_path: str,
+    out_path: str,
+    repo_root: str,
+    temporal_mode: str = TEMPORAL_MODE_WITH_PREV_GT,
+) -> int:
+    if temporal_mode not in TEMPORAL_MODES:
+        raise ValueError(
+            f"Unknown temporal_mode={temporal_mode!r}; expected one of {TEMPORAL_MODES}"
+        )
+
     repo_root = os.path.abspath(repo_root)
     with open(in_path, "r", encoding="utf-8") as f:
         data: List[Dict[str, Any]] = json.load(f)
@@ -311,7 +326,9 @@ def make_jsonl(in_path: str, out_path: str, repo_root: str) -> int:
 
             assistant_wrapped = wrap_assistant(sample["answer_toon"])
 
-            if prev_formatted is None:
+            if temporal_mode == TEMPORAL_MODE_NO_PREV_GT:
+                user_body = USER_PROMPT_FIRST
+            elif prev_formatted is None:
                 user_body = USER_PROMPT_FIRST
             else:
                 user_body = build_user_prompt_follow(prev_formatted)
@@ -328,11 +345,12 @@ def make_jsonl(in_path: str, out_path: str, repo_root: str) -> int:
             }
             fout.write(json.dumps(item, ensure_ascii=False) + "\n")
 
-            inner = assistant_wrapped
-            if inner.startswith("<answer>\n") and inner.endswith("</answer>\n"):
-                prev_formatted = inner[len("<answer>\n") : -len("</answer>\n")].rstrip("\n")
-            else:
-                prev_formatted = format_assistant_like_psg(sample["answer_toon"])
+            if temporal_mode == TEMPORAL_MODE_WITH_PREV_GT:
+                inner = assistant_wrapped
+                if inner.startswith("<answer>\n") and inner.endswith("</answer>\n"):
+                    prev_formatted = inner[len("<answer>\n") : -len("</answer>\n")].rstrip("\n")
+                else:
+                    prev_formatted = format_assistant_like_psg(sample["answer_toon"])
 
     return len(data)
 
@@ -356,6 +374,16 @@ def main() -> None:
         default=OUT_DIR_REL,
         help="Output directory for train.jsonl / test.jsonl, relative to repo unless absolute.",
     )
+    ap.add_argument(
+        "--temporal_mode",
+        choices=list(TEMPORAL_MODES),
+        default=TEMPORAL_MODE_WITH_PREV_GT,
+        help=(
+            "How to build the user prompt for frames after the first frame of a clip:\n"
+            f"  - {TEMPORAL_MODE_WITH_PREV_GT}: include previous frame's GT scene graph as temporal context (default).\n"
+            f"  - {TEMPORAL_MODE_NO_PREV_GT}: no temporal hint; every frame gets the same first-frame prompt."
+        ),
+    )
     args = ap.parse_args()
 
     repo_root = Path(args.repo_root).resolve() if args.repo_root else _REPO_ROOT_DEFAULT
@@ -368,8 +396,9 @@ def main() -> None:
     train_out = str(out_dir / "train.jsonl")
     test_out = str(out_dir / "test.jsonl")
 
-    n_train = make_jsonl(train_in, train_out, str(repo_root))
-    n_test = make_jsonl(test_in, test_out, str(repo_root))
+    print(f"[info] temporal_mode={args.temporal_mode}")
+    n_train = make_jsonl(train_in, train_out, str(repo_root), args.temporal_mode)
+    n_test = make_jsonl(test_in, test_out, str(repo_root), args.temporal_mode)
     print("Wrote:", train_out, f"({n_train} lines)")
     print("Wrote:", test_out, f"({n_test} lines)")
     if n_train < 10_000:

@@ -215,7 +215,9 @@ def _parse_toon(text: str) -> Tuple[List[Dict], List[Dict]]:
         try:
             toon_id = int(row[0].strip())
             name = _refine_node_edge(row[1])
-            coords = [float(row[2]), float(row[3]), float(row[4]), float(row[5])]
+            # Support both legacy TOON (id,name,x1,y1,x2,y2) and extended schemas
+            # like 3RScan (id,name,color,material,x1,y1,x2,y2): bbox is always last 4 columns.
+            coords = [float(v) for v in row[-4:]]
         except (ValueError, TypeError):
             continue
         objects.append({"toon_id": toon_id, "name": name, "bbox": coords})
@@ -372,7 +374,7 @@ def _parse_synonym_answer(text: str) -> int:
 class QwenSynonymJudge:
     """Вызов Qwen только для решения: два термина синонимы (1) или нет (0)."""
 
-    def __init__(self, model_name: str = QWEN_MODEL_NAME, max_model_len: int = 4096):
+    def __init__(self, model_name: str = QWEN_MODEL_NAME, max_model_len: int = 8192):
         # Локальный каталог (с config.json) — без запросов к HF API; hub id всегда может дернуть api.huggingface.co.
         _local = bool(model_name) and os.path.isdir(os.path.expanduser(model_name))
         _offline = os.environ.get("HF_HUB_OFFLINE", "").lower() in ("1", "true", "yes")
@@ -391,7 +393,25 @@ class QwenSynonymJudge:
             max_model_len=max_model_len,
             gpu_memory_utilization=gpu_mem_util,
         )
+        self.max_model_len = int(max_model_len)
         print("[judge] Qwen synonym judge ready.")
+
+    def _render_prompt(self, system_text: str, user_text: str) -> str:
+        messages = [
+            {"role": "system", "content": system_text},
+            {"role": "user", "content": user_text},
+        ]
+        return self.tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=True,
+        )
+
+    def _prompt_too_long(self, prompt: str, max_new_tokens: int) -> bool:
+        # vLLM validates input_tokens + max_new_tokens <= model max context length.
+        tok = self.tokenizer(prompt, add_special_tokens=False)
+        prompt_len = len(tok.get("input_ids", []))
+        return (prompt_len + int(max_new_tokens)) > self.max_model_len
 
     def batch_synonym_check(
         self,
@@ -417,15 +437,11 @@ class QwenSynonymJudge:
                 user = _build_synonym_prompt_with_full_scene(term_gt, term_pred, gt_sum, pred_sum)
             else:
                 user = _build_synonym_prompt(term_gt, term_pred, context)
-            messages = [
-                {"role": "system", "content": SYSTEM_SYNONYM},
-                {"role": "user", "content": user},
-            ]
-            prompt = self.tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=True,
-            )
+            prompt = self._render_prompt(SYSTEM_SYNONYM, user)
+            if self._prompt_too_long(prompt, max_new_tokens):
+                # Fallback to compact prompt without full scene context.
+                user = _build_synonym_prompt(term_gt, term_pred, context)
+                prompt = self._render_prompt(SYSTEM_SYNONYM, user)
             prompts.append(prompt)
         sampling_params = SamplingParams(max_tokens=max_new_tokens, temperature=0.0)
         outputs = self.llm.generate(prompts, sampling_params=sampling_params, use_tqdm=False)
@@ -468,15 +484,17 @@ class QwenSynonymJudge:
                     f"Triplet 2: subject={s2!r}, predicate={p2!r}, object={o2!r}.\n"
                     "Answer only 1 or 0."
                 )
-            messages = [
-                {"role": "system", "content": SYSTEM_TRIPLET},
-                {"role": "user", "content": user},
-            ]
-            prompt = self.tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=True,
-            )
+            prompt = self._render_prompt(SYSTEM_TRIPLET, user)
+            if self._prompt_too_long(prompt, max_new_tokens):
+                # Fallback to compact prompt without full scene context to avoid vLLM length crash.
+                user = (
+                    "Subject and object in both triplets refer to the same entities (already matched). "
+                    "Judge only whether the predicates are semantically equivalent in the scene graph context.\n"
+                    f"Triplet 1: subject={s1!r}, predicate={p1!r}, object={o1!r}.\n"
+                    f"Triplet 2: subject={s2!r}, predicate={p2!r}, object={o2!r}.\n"
+                    "Answer only 1 or 0."
+                )
+                prompt = self._render_prompt(SYSTEM_TRIPLET, user)
             prompts.append(prompt)
         sampling_params = SamplingParams(max_tokens=max_new_tokens, temperature=0.0)
         outputs = self.llm.generate(prompts, sampling_params=sampling_params, use_tqdm=False)
@@ -995,6 +1013,7 @@ def main():
     parser.add_argument("--iou-thr", type=float, default=0.5)
     parser.add_argument("--batch-size-qwen", type=int, default=32)
     parser.add_argument("--max-new-tokens-qwen", type=int, default=16)
+    parser.add_argument("--qwen-max-model-len", type=int, default=8192, help="Max context length for Qwen synonym judge (vLLM).")
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.40, help="vLLM GPU memory utilization for Qwen judge")
     parser.add_argument("--cuda-visible-devices", type=str, default="", help="Optional CUDA_VISIBLE_DEVICES override for Qwen judge")
     parser.add_argument(
@@ -1091,7 +1110,7 @@ def main():
     if all_obj_disputes or all_rel_dispute_triplets:
         qwen_model_path = args.qwen_model_path or os.getenv("QWEN_MODEL_PATH", QWEN_MODEL_NAME)
         print(f"[init] Loading Qwen synonym judge: {qwen_model_path}")
-        judge = QwenSynonymJudge(model_name=qwen_model_path)
+        judge = QwenSynonymJudge(model_name=qwen_model_path, max_model_len=int(args.qwen_max_model_len))
         batch_q = args.batch_size_qwen
         for start in tqdm(range(0, len(all_obj_disputes), batch_q), desc="qwen object disputes"):
             chunk = all_obj_disputes[start : start + batch_q]

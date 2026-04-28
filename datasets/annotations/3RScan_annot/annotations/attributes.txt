@@ -1,0 +1,93 @@
+color:white
+color:black
+color:green
+color:blue
+color:red
+color:brown
+color:yellow
+color:gray
+color:orange
+color:purple
+color:pink
+color:beige
+color:bright
+color:dark
+color:light
+color:silver
+color:gold
+shape:round
+shape:flat
+shape:L-shaped
+shape:semicircular
+shape:circular
+shape:square
+shape:rectangular
+shape:sloping
+shape:cylindrical
+shape:oval
+shape:bunk
+shape:heart-shaped
+shape:u-shaped
+shape:octagon
+style:classy
+style:classical
+style:minimalistic
+state:new
+state:old
+state:dirty
+state:clean
+state:open
+state:empty
+state:full
+state:hanging
+state:half full/empty
+state:closed
+state:half open/closed
+state:messy
+state:tidy
+state:on
+state:off
+state:folded together
+state:seat up
+state:seat down
+state:up
+state:down
+state:half up/down
+state:bare
+state:written on
+size:small
+size:big
+size:tall
+size:low
+size:narrow
+size:wide
+material:wooden
+material:plastic
+material:metal
+material:glass
+material:stone
+material:leather
+material:concrete
+material:ceramic
+material:brick
+material:padded
+material:cardboard
+material:marbled
+material:carpet
+material:cork
+material:velvet
+texture:striped
+texture:patterned
+texture:dotted
+texture:colorful
+texture:checker
+texture:painted
+texture:shiny
+texture:tiled
+other:mobile
+other:rigid
+other:nonrigid
+symmetry:no symmetry
+symmetry:1 plane
+symmetry:2 planes
+symmetry:infinite planes

@@ -68,8 +68,8 @@ DEFAULT_OUTPUT_DIR = "datasets/annotations/PVSG_annot/data_sft_maxinfo"
 DEFAULT_TRAIN_JSON = "train_annotations_toon_sft.json"
 DEFAULT_TEST_JSON = "test_annotations_toon_sft.json"
 
-# video id from path: .../frames/<video_id>/<frame>.png
-VIDEO_ID_PATTERN = re.compile(r"frames/([^/]+)/\d+\.(?:png|jpg|jpeg)", re.IGNORECASE)
+# Legacy fallback for paths like .../frames/<video_id>/<frame>.png
+VIDEO_ID_PATTERN = re.compile(r"frames/([^/]+)/[^/]+\.(?:png|jpg|jpeg)$", re.IGNORECASE)
 
 
 def resolve_under_repo(repo_root: Path, path_arg: str) -> Path:
@@ -87,7 +87,30 @@ def path_for_json(repo_root: Path, file_path: Path) -> str:
 
 
 def get_video_id(image_path: str) -> str | None:
-    m = VIDEO_ID_PATTERN.search(image_path.replace("\\", "/"))
+    norm = image_path.replace("\\", "/")
+    parts = [p for p in Path(norm).parts if p not in ("", "/")]
+
+    # Common datasets:
+    # - .../frames/<video_id>/<frame>.png
+    # - .../frames/<dataset_subdir>/train_images|test_images/<video_id>/<frame>.jpg
+    try:
+        i = parts.index("frames")
+    except ValueError:
+        i = -1
+
+    if i >= 0:
+        tail = parts[i + 1 :]
+        if len(tail) >= 2:
+            # .../frames/train_images/<video_id>/<frame>
+            if tail[0] in {"train_images", "test_images"} and len(tail) >= 3:
+                return tail[1]
+            # .../frames/<dataset>/train_images/<video_id>/<frame>
+            if len(tail) >= 4 and tail[1] in {"train_images", "test_images"}:
+                return tail[2]
+            # Generic fallback within frames subtree.
+            return tail[-2]
+
+    m = VIDEO_ID_PATTERN.search(norm)
     return m.group(1) if m else None
 
 

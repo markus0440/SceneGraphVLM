@@ -48,8 +48,9 @@ DEFAULT_TRAIN_JSON = "train_annotations_toon_sft.json"
 DEFAULT_TEST_JSON = "test_annotations_toon_sft.json"
 DEFAULT_CONFIG = str(_SCRIPT_DIR / "config_pvsg.json")
 
+# Legacy fallback for paths like .../frames/<video_id>/<frame>.png
 VIDEO_ID_PATTERN = re.compile(
-    r"frames/([^/]+)/\d+\.(?:png|jpg|jpeg)", re.IGNORECASE
+    r"frames/([^/]+)/[^/]+\.(?:png|jpg|jpeg)$", re.IGNORECASE
 )
 
 
@@ -78,7 +79,27 @@ def normalize_image_path_repo_relative(image_path: str, repo_root: Path) -> str:
 
 
 def get_video_id(image_path: str) -> str | None:
-    m = VIDEO_ID_PATTERN.search(image_path.replace("\\", "/"))
+    norm = image_path.replace("\\", "/")
+    parts = [p for p in Path(norm).parts if p not in ("", "/")]
+
+    # Common datasets:
+    # - .../frames/<video_id>/<frame>.png
+    # - .../frames/<dataset_subdir>/train_images|test_images/<video_id>/<frame>.jpg
+    try:
+        i = parts.index("frames")
+    except ValueError:
+        i = -1
+
+    if i >= 0:
+        tail = parts[i + 1 :]
+        if len(tail) >= 2:
+            if tail[0] in {"train_images", "test_images"} and len(tail) >= 3:
+                return tail[1]
+            if len(tail) >= 4 and tail[1] in {"train_images", "test_images"}:
+                return tail[2]
+            return tail[-2]
+
+    m = VIDEO_ID_PATTERN.search(norm)
     return m.group(1) if m else None
 
 

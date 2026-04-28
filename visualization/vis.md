@@ -42,8 +42,8 @@ All paths below are relative to the **repository root** unless stated otherwise.
 
 ```bash
 python visualization/video_demo_results/scripts/build_gt_video.py \
-  --annotation-file datasets/data_playground/PVSG_json/pvsg_psfr_gt_prompt/test.jsonl \
-  --video-name 0004_11566980553 \
+  --annotation-file datasets/data_playground/3RScan_json_with_prev_gt/test.jsonl \
+  --video-name 095821f7-e2c2-2de1-9568-b9ce59920e29 \
   --images-root . \
   --output-dir visualization/video_demo_results/videos_output/GT \
   --fps 5
@@ -125,11 +125,11 @@ Expects:
 
 ```bash
 python visualization/video_demo_results/scripts/field_gen_deploy.py \
-  --frames-dir /path/to/ordered_frames \
-  --model /path/to/checkpoint \
+  --frames-dir datasets/frames/3RScan_frames/test_images/0cac7540-8d6f-2d13-8eee-36ba2a428e3f \
+  --model sft/Qwen3.5/work_dirs/3rscan_close_with_prev_gt_Qwen3.5-0.8B/v1-20260425-163253/v0-20260425-175143/checkpoint-11352 \
   --infer-backend vllm \
-  --fps 10 \
-  --cuda-visible-devices 0
+  --fps 5 \
+  --cuda-visible-devices 3
 ```
 
 **Example (video → extract frames, then same pipeline):**

@@ -133,14 +133,13 @@ PyTorch and vision-language model dependencies apply as usual.
 ### GT-prompt: example command (repository root)
 
 ```bash
-export CUDA_VISIBLE_DEVICES=0
-export IMAGE_MAX_TOKEN_NUM=1024
+export CUDA_VISIBLE_DEVICES=3
 
 python metrics/qwen-bench/infer/GT-prompt/infer_swift_gt_prompt.py \
-  --model sft/Qwen3.5/work_dirs/psg_close_Qwen3.5-0.8B/v0-20260413-174919/checkpoint-11424 \
-  --test-jsonl datasets/data_playground/PSG_json/test_clean.jsonl \
-  --output-dir metrics/results/checkpoints-inference/sft/PSG \
-  --run-name Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT \
+  --model sft/Qwen3.5/work_dirs/3rscan_close_with_prev_gt_Qwen3.5-0.8B/v1-20260425-163253/v0-20260425-175143/checkpoint-11352 \
+  --test-jsonl datasets/data_playground/3RScan_json_with_prev_gt/test_clean.jsonl \
+  --output-dir metrics/results/checkpoints-inference/sft/3RScan-GT-prompt \
+  --run-name Qwen3.5-0.8B-SFT-checkpoint-11325-GT \
   --infer-backend vllm \
   --batch-size 64 \
   --max-new-tokens 2048 \
@@ -159,13 +158,12 @@ Output path: **`{output_dir}/{run_name}.jsonl`**. If the file already exists, th
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
-export IMAGE_MAX_TOKEN_NUM=1024
 
 python metrics/qwen-bench/infer/GEN-prompt/infer_swift_gen_prompt.py \
-  --model sft/Qwen3.5/work_dirs/your_exp/checkpoint-8844 \
-  --test-jsonl datasets/data_playground/PVSG_json/pvsg_psfr_gt_prompt/test_clean.jsonl \
-  --output-dir metrics/results/checkpoints-inference/sft/PVSG-GEN-prompt \
-  --run-name Qwen3.5-0.8B-SFT-maxinfo-checkpoint-8844-psfr-GEN \
+  --model sft/Qwen3.5/work_dirs/3rscan_psfr_with_prev_gt_Qwen3.5-0.8B/v0-20260427-160831/checkpoint-12356 \
+  --test-jsonl datasets/data_playground/3RScan_json/3RScan_json_with_prev_gt/test_clean.jsonl \
+  --output-dir metrics/results/checkpoints-inference/sft/3RScan-GEN-prompt \
+  --run-name Qwen3.5-0.8B-SFT-psfr-checkpoint-12356-GEN \
   --infer-backend vllm \
   --batch-size 64 \
   --prev-source model \
@@ -184,9 +182,9 @@ Invoke **after** a JSONL file exists with **`content`** (ground truth) and **`pr
 
 ```bash
 python metrics/qwen-bench/eval/eval_sgg_metrics_with_qwen.py \
-  --pred-jsonl metrics/results/checkpoints-inference/sft/PSG/Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT.jsonl \
-  --output-dir metrics/results/checkpoints-metrics/sft/PSG \
-  --output-name Qwen3.5-0.8B-SFT-checkpoint-11424-psg-GT-metrics.json \
+  --pred-jsonl metrics/results/checkpoints-inference/sft/3RScan-GEN-prompt/Qwen3.5-0.8B-SFT-psfr-checkpoint-12356-GEN.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/sft/3RScan-GEN-prompt \
+  --output-name Qwen3.5-0.8B-SFT-checkpoint-12356-3RScan-psfr-GEN-metrics.json \
   --iou-thr 0.5 \
   --batch-size-qwen 32 \
   --gpu-memory-utilization 0.40 \
@@ -342,9 +340,9 @@ The **`metrics/sgbench/`** directory provides **classical** scene graph generati
 
 ```bash
 python3 metrics/sgbench/eval_classical_metrics.py \
-  --pred-jsonl metrics/results/checkpoints-inference/sft/AG/<file>.jsonl \
+  --pred-jsonl metrics/results/checkpoints-inference/sft/AG/Qwen3.5-0.8B-SFT-checkpoint-8766-ag-no-prev-gt.jsonl \
   --output-dir metrics/results/checkpoints-metrics/sft/AG \
-  --output-name <file>-classical-metrics.json \
+  --output-name Qwen3.5-0.8B-SFT-checkpoint-8766-ag-no-prev-gt-classical-metrics.json \
   --mode sgdet \
   --iou-thr 0.5
 ```

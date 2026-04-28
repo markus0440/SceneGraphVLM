@@ -75,45 +75,25 @@ def extract_video_id_from_image_id(image_id):
     """Извлекает video_id из image_id. Формат: {video_id}_{frame_idx}"""
     if not image_id:
         return None
-    # image_id имеет формат: video_id_frame_idx
-    # Например: "0001_4164158586_123" -> video_id = "0001_4164158586", frame_idx = 123
-    # Или: "P01_123" -> video_id = "P01", frame_idx = 123
-    # Или: "1019_3988584418_0" -> video_id = "1019_3988584418", frame_idx = 0
-    
-    # Ищем последнее подчеркивание и число после него
-    parts = image_id.split("_")
-    if len(parts) < 2:
-        return None
-    
-    # Последняя часть должна быть числом (frame_idx)
-    # Все остальные части - это video_id
-    if parts[-1].isdigit():
-        video_id = "_".join(parts[:-1])
-        return video_id if video_id else None
-    
-    # Если последняя часть не число, возвращаем все кроме последней
-    if len(parts) > 1:
-        video_id = "_".join(parts[:-1])
-        return video_id if video_id else None
-    
+    # Supported tail formats:
+    # - <video_id>_<number>
+    # - <video_id>_frame-<number>  (e.g. 3RScan)
+    m = re.match(r"^(?P<vid>.+)_(?:frame-)?(?P<idx>\d+)$", str(image_id))
+    if m:
+        vid = m.group("vid")
+        return vid if vid else None
     return None
 
 def extract_frame_number_from_image_id(image_id):
     """Извлекает номер кадра из image_id. Формат: {video_id}_{frame_idx}"""
     if not image_id:
         return None
-    # image_id имеет формат: video_id_frame_idx
-    parts = image_id.split("_")
-    if len(parts) < 2:
-        return None
-    
-    # Последняя часть должна быть числом (frame_idx)
-    if parts[-1].isdigit():
+    m = re.match(r"^.+_(?:frame-)?(?P<idx>\d+)$", str(image_id))
+    if m:
         try:
-            return int(parts[-1])
-        except:
+            return int(m.group("idx"))
+        except Exception:
             return None
-    
     return None
 
 def extract_scene_graph_info_from_toon(annotation_lines):
@@ -135,11 +115,11 @@ def extract_scene_graph_info_from_toon(annotation_lines):
         if not stripped:
             continue
         
-        if stripped.startswith("obj[") and "{id,name,x1,y1,x2,y2}" in stripped:
+        if stripped.startswith("obj[") and "{" in stripped:
             in_obj_block = True
             in_rel_block = False
             continue
-        elif stripped.startswith("rel[") and "{subj,pred,obj}" in stripped:
+        elif stripped.startswith("rel[") and "{" in stripped:
             in_obj_block = False
             in_rel_block = True
             found_rel_header = True
@@ -250,11 +230,11 @@ def extract_objects_and_relations_from_toon(annotation_lines):
         if not stripped:
             continue
         
-        if stripped.startswith("obj[") and "{id,name,x1,y1,x2,y2}" in stripped:
+        if stripped.startswith("obj[") and "{" in stripped:
             in_obj_block = True
             in_rel_block = False
             continue
-        elif stripped.startswith("rel[") and "{subj,pred,obj}" in stripped:
+        elif stripped.startswith("rel[") and "{" in stripped:
             in_obj_block = False
             in_rel_block = True
             continue
@@ -330,6 +310,71 @@ def filter_scenes_by_overlap(train_scenes, test_scenes):
         current_test = test_filtered
     
     return current_train, current_test
+
+
+def collect_split_stats(scenes: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Aggregate sample/object/predicate stats for one split."""
+    objects_all = set()
+    relation_types_all = set()
+    for scene in scenes:
+        objects, relation_types = extract_objects_and_relations_from_toon(
+            scene.get("annotation_lines", [])
+        )
+        objects_all.update(objects)
+        relation_types_all.update(relation_types)
+    return {
+        "total": len(scenes),
+        "objects_set": objects_all,
+        "predicates_set": relation_types_all,
+    }
+
+
+def print_maxinfo_like_stats(train_before, test_before, train_after, test_after) -> None:
+    """Print summary in the same shape as MaxInfo output."""
+    tr_b = collect_split_stats(train_before)
+    te_b = collect_split_stats(test_before)
+    tr_a = collect_split_stats(train_after)
+    te_a = collect_split_stats(test_after)
+
+    train_pct = (100.0 * tr_a["total"] / tr_b["total"]) if tr_b["total"] else 0.0
+    test_pct = (100.0 * te_a["total"] / te_b["total"]) if te_b["total"] else 0.0
+
+    print("\n" + "=" * 60)
+    print("BaseAnnot filtering statistics")
+    print("=" * 60)
+
+    print("\n[train]")
+    print(f"  Samples: {tr_b['total']} -> {tr_a['total']}  ({train_pct:.1f}% remaining)")
+    print(
+        f"  Unique object categories:  {len(tr_b['objects_set'])} -> {len(tr_a['objects_set'])}"
+    )
+    print(
+        "  Unique relation types (predicates):  "
+        f"{len(tr_b['predicates_set'])} -> {len(tr_a['predicates_set'])}"
+    )
+
+    print("\n[test]")
+    print(f"  Samples: {te_b['total']} -> {te_a['total']}  ({test_pct:.1f}% remaining)")
+    print(
+        f"  Unique object categories:  {len(te_b['objects_set'])} -> {len(te_a['objects_set'])}"
+    )
+    print(
+        "  Unique relation types (predicates):  "
+        f"{len(te_b['predicates_set'])} -> {len(te_a['predicates_set'])}"
+    )
+
+    print("\n[Train–Test overlap]")
+    print(
+        "  Object categories in both splits:  "
+        f"{len(tr_b['objects_set'] & te_b['objects_set'])} (before) -> "
+        f"{len(tr_a['objects_set'] & te_a['objects_set'])} (after)"
+    )
+    print(
+        "  Relation types in both splits:  "
+        f"{len(tr_b['predicates_set'] & te_b['predicates_set'])} (before) -> "
+        f"{len(tr_a['predicates_set'] & te_a['predicates_set'])} (after)"
+    )
+    print("\n" + "=" * 60)
 
 # ===================== ЗАГРУЗКА И ОБРАБОТКА =====================
 
@@ -542,6 +587,13 @@ def main() -> None:
     print(f"Saved {test_count} test  -> {path_for_json(repo_root, test_out)}")
     print("[SUCCESS] Done.")
     print("=" * 70)
+
+    print_maxinfo_like_stats(
+        train_scenes_original,
+        test_scenes_original,
+        train_scenes_final,
+        test_scenes_final,
+    )
 
 
 if __name__ == "__main__":

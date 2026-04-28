@@ -93,9 +93,9 @@ Override paths:
 
 ```bash
 python utils/BaseAnnot/prepare_filtered_pvsg_sft.py \
-  --repo_root /path/to/SceneGraphVLM \
-  --input_dir datasets/annotations/PVSG_annot/data_sft_original \
-  --output_dir datasets/annotations/PVSG_annot/data_sft_base_annot
+  --repo_root /data/homes/makarov_vd/workspace/SceneGraphVLM \
+  --input_dir datasets/annotations/3RScan_annot/data_sft_original \
+  --output_dir datasets/annotations/3RScan_annot/data_sft_base_annot
 ```
 
 See `datasets/annotations/PVSG_annot/PVSG_README.md` for how this fits the PVSG pipeline.

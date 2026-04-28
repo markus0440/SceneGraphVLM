@@ -152,36 +152,43 @@ def _rel_pair_pred(att_b: str, spat_b: str, cont_b: str) -> str:
     return "|".join(chunks) if chunks else "rel"
 
 
-_OBJ_HEADER_RE = re.compile(
-    r"^(?:obj)?\[(\d+)\]\{id,name,x1,y1,x2,y2\}",
-    re.IGNORECASE,
-)
+_OBJ_HEADER_RE = re.compile(r"^(?:obj)?\[(\d+)\]\{([^}]*)\}", re.IGNORECASE)
 _REL_TRIPLE_HEADER_RE = re.compile(
     r"^(?:rel)?\[(\d+)\]\{subj,pred,obj\}",
     re.IGNORECASE,
 )
 
 
-def _scan_obj_rel_headers(lines: List[str]) -> tuple[Optional[int], Optional[int], Optional[str]]:
+def _extract_obj_schema(line: str) -> Optional[List[str]]:
+    m = _OBJ_HEADER_RE.match(line.strip())
+    if not m:
+        return None
+    return [x.strip().lower() for x in m.group(2).split(",") if x.strip()]
+
+
+def _scan_obj_rel_headers(lines: List[str]) -> tuple[Optional[int], Optional[int], Optional[str], Optional[List[str]]]:
     obj_header_idx = None
     rel_header_idx = None
     rel_mode: Optional[str] = None
+    obj_schema: Optional[List[str]] = None
     for i, line in enumerate(lines):
         stripped = line.strip()
-        if _OBJ_HEADER_RE.match(stripped):
+        schema = _extract_obj_schema(stripped)
+        if schema:
             obj_header_idx = i
+            obj_schema = schema
         if _REL_TRIPLE_HEADER_RE.match(stripped):
             rel_header_idx = i
             rel_mode = "triple"
         if stripped.startswith("rel_pairs[") and "{subj,attention,spatial,contacting,obj}" in stripped:
             rel_header_idx = i
             rel_mode = "pairs"
-    return obj_header_idx, rel_header_idx, rel_mode
+    return obj_header_idx, rel_header_idx, rel_mode, obj_schema
 
 
 def _try_repair_missing_obj_header_block(answer_text: str) -> Optional[str]:
     lines = [line.strip() for line in answer_text.splitlines() if line.strip()]
-    obj_i, rel_i, rel_mode = _scan_obj_rel_headers(lines)
+    obj_i, rel_i, rel_mode, _ = _scan_obj_rel_headers(lines)
     if rel_i is None or rel_mode is None or obj_i is not None:
         return None
     raw_obj_lines = lines[:rel_i]
@@ -190,30 +197,24 @@ def _try_repair_missing_obj_header_block(answer_text: str) -> Optional[str]:
     next_id = 1
     for raw in raw_obj_lines:
         parts = [p.strip() for p in raw.split(",")]
-        if len(parts) == 6:
-            idx_str, name, x1s, y1s, x2s, y2s = parts
+        if len(parts) < 5:
+            continue
+        if parts[0].isdigit() and len(parts) >= 6:
             try:
-                oid = int(idx_str)
-                int(x1s)
-                int(y1s)
-                int(x2s)
-                int(y2s)
+                oid = int(parts[0])
+                x1, y1, x2, y2 = [int(v) for v in parts[-4:]]
             except ValueError:
                 continue
-            fixed_rows.append(raw)
+            head = parts[:-4]
+            fixed_rows.append(",".join([*head, str(x1), str(y1), str(x2), str(y2)]))
             next_id = max(next_id, oid + 1)
-        elif len(parts) == 5:
-            name, x1s, y1s, x2s, y2s = parts
+        elif not parts[0].isdigit():
             try:
-                int(x1s)
-                int(y1s)
-                int(x2s)
-                int(y2s)
+                x1, y1, x2, y2 = [int(v) for v in parts[-4:]]
             except ValueError:
                 continue
-            if name.isdigit():
-                continue
-            fixed_rows.append(f"{next_id},{name},{x1s},{y1s},{x2s},{y2s}")
+            head = [str(next_id), *parts[:-4]]
+            fixed_rows.append(",".join([*head, str(x1), str(y1), str(x2), str(y2)]))
             next_id += 1
     if not fixed_rows:
         return None
@@ -224,7 +225,7 @@ def _try_repair_missing_obj_header_block(answer_text: str) -> Optional[str]:
 
 def scene_graph_output_needs_obj_header_retry(answer_text: str) -> bool:
     lines = [line.strip() for line in answer_text.splitlines() if line.strip()]
-    obj_i, rel_i, rel_mode = _scan_obj_rel_headers(lines)
+    obj_i, rel_i, rel_mode, _ = _scan_obj_rel_headers(lines)
     return rel_i is not None and rel_mode is not None and obj_i is None
 
 
@@ -236,12 +237,12 @@ def repair_scene_graph_text_if_needed(answer_text: str) -> str:
 def parse_scene_graph_output(answer_text: str) -> dict:
     lines = [line.rstrip("\n") for line in answer_text.splitlines()]
     lines = [line for line in lines if line.strip()]
-    obj_header_idx, rel_header_idx, rel_mode = _scan_obj_rel_headers(lines)
+    obj_header_idx, rel_header_idx, rel_mode, obj_schema = _scan_obj_rel_headers(lines)
     if obj_header_idx is None and rel_header_idx is not None and rel_mode is not None:
         repaired = _try_repair_missing_obj_header_block(answer_text)
         if repaired:
             lines = [line.strip() for line in repaired.splitlines() if line.strip()]
-            obj_header_idx, rel_header_idx, rel_mode = _scan_obj_rel_headers(lines)
+            obj_header_idx, rel_header_idx, rel_mode, obj_schema = _scan_obj_rel_headers(lines)
     if obj_header_idx is None or rel_header_idx is None or rel_mode is None:
         raise ValueError("Could not find obj[...] or rel / rel_pairs headers in model response")
     obj_lines = lines[obj_header_idx + 1 : rel_header_idx]
@@ -251,14 +252,19 @@ def parse_scene_graph_output(answer_text: str) -> dict:
         if not stripped:
             continue
         parts = [part.strip() for part in stripped.split(",")]
-        if len(parts) != 6:
+        if len(parts) < 6:
             continue
-        idx_str, name, x1_str, y1_str, x2_str, y2_str = parts
         try:
-            obj_id = int(idx_str)
-            x1, y1, x2, y2 = int(x1_str), int(y1_str), int(x2_str), int(y2_str)
+            obj_id = int(parts[0])
+            x1, y1, x2, y2 = [int(v) for v in parts[-4:]]
         except ValueError:
             continue
+        name_idx = 1
+        if obj_schema and "name" in obj_schema:
+            schema_idx = obj_schema.index("name")
+            if schema_idx < len(parts):
+                name_idx = schema_idx
+        name = parts[name_idx] if name_idx < len(parts) else f"obj_{obj_id}"
         x1, x2 = sorted((x1, x2))
         y1, y2 = sorted((y1, y2))
         objects.append({"id": obj_id, "label": name, "bbox": [x1, y1, x2, y2]})

@@ -88,9 +88,9 @@ Full example:
 
 ```bash
 python utils/MaxInfo/pvsg_maxinfo_filter.py \
-  --input_dir datasets/annotations/PVSG_annot/data_sft_original \
-  --output_dir datasets/annotations/PVSG_annot/data_sft_maxinfo \
-  --repo_root /path/to/SceneGraphVLM \
+  --input_dir datasets/annotations/3RScan_annot/data_sft_original \
+  --output_dir datasets/annotations/3RScan_annot/data_sft_maxinfo \
+  --repo_root /data/homes/makarov_vd/workspace/SceneGraphVLM \
   --r 8 \
   --tol 0.23 \
   --fp16 \

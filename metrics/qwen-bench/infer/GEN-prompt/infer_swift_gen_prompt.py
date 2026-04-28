@@ -44,20 +44,22 @@ PREV_HEADER_LEGACY = "Previous frame scene graph (TOON):\n"
 PREV_HEADER_TAGS = "Previous frame ground-truth scene graph (TOON), for reference:\n"
 PREV_HEADERS = (PREV_HEADER_LEGACY, PREV_HEADER_TAGS)
 
-_NOW_MARKERS = (
-    "\n\n\nNow, generate the complete scene graph for the provided image. Write your response only between <answer> and </answer> tags.",
-    "\n\nNow, generate the complete scene graph for the provided image. Write your response only between <answer> and </answer> tags.",
-    "\n\n\nNow, generate the complete scene graph for the provided image. Write your response only between <answer> and </answer> tags.\n",
-    "\n\nNow, generate the complete scene graph for the provided image. Write your response only between <answer> and </answer> tags.\n",
-    "\n\n\nNow, generate the complete scene graph for the provided image. Wrap your scene graph in <answer>...</answer> tags.",
-    "\n\nNow, generate the complete scene graph for the provided image. Wrap your scene graph in <answer>...</answer> tags.",
-    "\n\n\nNow, generate the complete scene graph for the provided image. Wrap your scene graph in <answer>...</answer> tags.\n",
-    "\n\nNow, generate the complete scene graph for the provided image. Wrap your scene graph in <answer>...</answer> tags.\n",
-    "\n\n\nNow, generate the complete scene graph for the provided image:\n",
-    "\n\n\nNow, generate the complete scene graph for the provided image:",
-    "\n\nNow, generate the complete scene graph for the provided image:\n",
-    "\n\nNow, generate the complete scene graph for the provided image:",
+# User-prompt tails differ by dataset/template (newlines, tag wording, trailing newline).
+# Order matters: _find_now_suffix_start_in_rest returns the first matching marker.
+_NL_PRE = ("\n\n\n", "\n\n")
+# Long tails use "...image."; short colon tails use "...image:" (no period before ':').
+_NOW_STEM = "Now, generate the complete scene graph for the provided image"
+_NOW_TAG_TAILS = (
+    ". Write your response only between <answer> and </answer> tags.",
+    ". Write your response only between <answer> and </answer> tags.\n",
+    ". Wrap your scene graph in <answer>...</answer> tags.",
+    ". Wrap your scene graph in <answer>...</answer> tags.\n",
 )
+_NOW_MARKERS = tuple(
+    nl + _NOW_STEM + tail
+    for tail in _NOW_TAG_TAILS
+    for nl in _NL_PRE
+) + tuple(nl + _NOW_STEM + end for nl in _NL_PRE for end in (":\n", ":"))
 
 _THINK_END = "</think>"
 _SG_OBJ_HDR = re.compile(r"^\s*obj\[\d+\]\{id,name", re.MULTILINE)
