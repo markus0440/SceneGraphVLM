@@ -1,8 +1,8 @@
 # PSFR key-frame filter (`pvsg_psfr_filter.py`)
 
-**PSFR** (*Patch-wise Sparse-Flow Retention*) is the name used in recent long-video work (e.g. **FocusGraph**, [arXiv:2603.04349](https://arxiv.org/abs/2603.04349)) for a **training-free** key-frame criterion based on **sparse optical flow** and **patch-wise** feature survival. In this repository, the **per-frame selection engine** comes from a colleague’s standalone project:
+**PSFR** (*Patch-wise Sparse-Flow Retention*) is the name used in recent long-video work (e.g. **FocusGraph**, [arXiv:2603.04349](https://arxiv.org/abs/2603.04349)) for a **training-free** key-frame criterion based on **sparse optical flow** and **patch-wise** feature survival. In this repository, the **per-frame selection engine** is adapted from an external standalone implementation:
 
-- Implementation / utilities: [strangecreator/key-frame-selection](https://github.com/strangecreator/key-frame-selection.git) (MIT).
+- Implementation / utilities: [anonymous/key-frame-selection](https://github.com/anonymous/key-frame-selection) (MIT).
 
 The PVSG driver **`pvsg_psfr_filter.py`** calls `src/key_frame_selection.py` → **`select_keyframes_from_frames(...)`** with a JSON config (default **`config_pvsg.json`**), feeding an **explicit ordered list of frame paths** per video so no separate `frames_dir` export is required.
 
@@ -98,7 +98,7 @@ python utils/PSFR/pvsg_psfr_filter.py \
 ## Further reading
 
 - **FocusGraph** (PSFR in long-video QA): [arXiv:2603.04349](https://arxiv.org/abs/2603.04349).
-- **Standalone pipeline README** (logo, `config.json` field reference, video↔frames CLI): [key-frame-selection](https://github.com/strangecreator/key-frame-selection.git).
+- **Standalone pipeline README** (logo, `config.json` field reference, video↔frames CLI): [key-frame-selection](https://github.com/anonymous/key-frame-selection).
 
 See `datasets/annotations/PVSG_annot/PVSG_README.md` for where PSFR sits in the PVSG export pipeline.
 
