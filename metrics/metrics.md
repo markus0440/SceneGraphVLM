@@ -119,7 +119,7 @@ The broader **ms-swift** ecosystem may support additional engines (e.g. SGLang, 
 
 ### Model argument
 
-**`--model`** may be a **local path** (checkpoint directory after SFT/GRPO) or a **Hugging Face model id**, e.g. `Qwen/Qwen3.5-VL-7B-Instruct`.
+**`--model`** may be a **local path** (checkpoint directory after SFT/GRPO) or a **Hugging Face model id**, e.g. `Qwen/Qwen3.5-0.8B`, `Qwen/Qwen2.5-VL-7B-Instruct` (see [models_hf.yaml](statistics/speed-test-infer/configs/models_hf.yaml)).
 
 ### Dependencies
 
@@ -150,7 +150,7 @@ python metrics/qwen-bench/infer/GT-prompt/infer_swift_gt_prompt.py \
   --torch-dtype bfloat16
 ```
 
-For zero-shot evaluation, use e.g. `--model Qwen/Qwen3.5-VL-7B-Instruct` with an appropriate `--run-name`.
+For zero-shot evaluation, use e.g. `--model Qwen/Qwen3.5-0.8B` or `Qwen/Qwen2.5-VL-7B-Instruct` with an appropriate `--run-name`.
 
 Output path: **`{output_dir}/{run_name}.jsonl`**. If the file already exists, the run is **skipped** unless **`--force`** is supplied.
 
@@ -332,7 +332,24 @@ Filenames are chosen via **`--run-name`** (Swift) or **`{model_short}-{output_pr
 
 ---
 
-## 4. Classical metrics (`metrics/sgbench`)
+## 4. Speed test (`metrics/statistics/speed-test-infer`)
+
+Portable **scene-graph generation speed** benchmark (PSG GT-prompt, batch size 1, warmup, JSON per GPU × model × backend). See **[README.md](statistics/speed-test-infer/README.md)** and **env install**: [envs/SWIFT_README.md](../envs/SWIFT_README.md).
+
+```bash
+bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
+conda activate swift_qwen_3_5_sft
+export CUDA_VISIBLE_DEVICES=0 IMAGE_MAX_TOKEN_NUM=1024
+python metrics/statistics/speed-test-infer/py_scripts/speed_test_infer.py \
+  --model Qwen/Qwen3.5-0.8B --model-display-name Qwen3.5-0.8B \
+  --infer-backend vllm --force
+```
+
+Results: `metrics/results/speed_test_infer/*.json`; aggregate with `metrics/statistics/speed-test-infer/py_scripts/aggregate_speed_results.py`.
+
+---
+
+## 5. Classical metrics (`metrics/sgbench`)
 
 The **`metrics/sgbench/`** directory provides **classical** scene graph generation metrics (Recall@K, Mean Recall@K) **without** an LLM-based judge. Numbers are directly comparable with OED, STTran, and other Action Genome baselines.
 

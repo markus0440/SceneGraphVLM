@@ -19,7 +19,7 @@ sft/Qwen3.5/
 │   ├── run_pvsg_psfr.sh
 │   └── run_pvsg_all.sh
 ├── work_dirs/               # outputs: checkpoints, Swift run folders, logging.jsonl
-├── logs/                    # ignored by git if present (legacy); primary logs are under work_dirs/.../logs/
+├── logs/                    # ignored by git if present (legacy). Primary logs are under work_dirs/.../logs/
 ├── .hf_cache/               # local HF cache (HF_HOME / HF_DATASETS_CACHE)
 └── .comet_env               # optional: COMET_API_KEY (git-ignored — create locally)
 ```
@@ -65,8 +65,8 @@ Unless overridden by flags or env:
 | Setting | Default |
 |---------|---------|
 | Model | `Qwen/Qwen3.5-0.8B` (`--model` / `MODEL`) |
-| Tuner | **Full** finetune (`--tuner_type full`; LoRA supported via flags) |
-| Epochs | **5** (`--epochs`; wrappers also honor `EPOCHS=`) |
+| Tuner | **Full** finetune (`--tuner_type full`. LoRA supported via flags) |
+| Epochs | **5** (`--epochs`. Wrappers also honor `EPOCHS=`) |
 | Learning rate | **1e-5** |
 | Max length | **8192** |
 | Batch | **`BATCH_SIZE` per device** default **4** (AG: **12** if exactly **1** GPU) |
@@ -76,12 +76,12 @@ Unless overridden by flags or env:
 | Attention | **`flash_attention_2`** (or `flash_attn` when `--packing true`) |
 | Padding-free | **`true`** (`PADDING_FREE`) |
 | Liger | **`--use_liger_kernel true`** |
-| DeepSpeed | **`zero2`** (`--deepspeed` / `DEEPSPEED`; `zero3` optional) |
+| DeepSpeed | **`zero2`** (`--deepspeed` / `DEEPSPEED`. `zero3` optional) |
 | Group by length | **`true`** |
 | Packing | **`false`** |
-| Dataset | **`--split_dataset_ratio 0`**; val set is explicit `--val_dataset` |
+| Dataset | **`--split_dataset_ratio 0`**. Val set is explicit `--val_dataset` |
 | Eval / save | **Every half epoch** in steps (`eval_steps` / `save_steps` derived from JSONL length) |
-| Checkpoints kept | **`save_total_limit` 4**; **`load_best_model_at_end`** on **`eval_loss`** |
+| Checkpoints kept | **`save_total_limit` 4**. **`load_best_model_at_end`** on **`eval_loss`** |
 | Dataloader workers | **16** |
 | Logging interval | **`logging_steps` 10** |
 
@@ -100,11 +100,11 @@ Qwen3.5-specific flags wired in **`run_sft.sh`**: **`--add_non_thinking_prefix t
 
 ### Comet ML (default)
 
-1. Create a file **`sft/Qwen3.5/.comet_env`** (or `train_scripts/.comet_env`; the driver prefers the parent path first) containing:
+1. Create a file **`sft/Qwen3.5/.comet_env`** (or `train_scripts/.comet_env`. The driver prefers the parent path first) containing:
    ```bash
    export COMET_API_KEY="YOUR_COMET_API_KEY"
    ```
-2. Optionally set **`COMET_PROJECT_NAME`** / **`COMET_EXPERIMENT_NAME`** in the shell; dataset wrappers already export sensible **`COMET_PROJECT_NAME`** defaults (see table above) and set an experiment **title** string.
+2. Optionally set **`COMET_PROJECT_NAME`** / **`COMET_EXPERIMENT_NAME`** in the shell. Dataset wrappers already export sensible **`COMET_PROJECT_NAME`** defaults (see table above) and set an experiment **title** string.
 
 **`*.comet_env` is git-ignored** — do not commit API keys.
 
@@ -115,7 +115,7 @@ To **disable** cloud logging:
 
 ## Resume and overrides
 
-- **`--resume /path/to/checkpoint-dir`** → passed as **`--resume_from_checkpoint`**; if **`--extra_epochs`** is omitted, **`--epochs`** is reused as the **total** epoch count for the resumed run (see `run_sft.sh` comments).
+- **`--resume /path/to/checkpoint-dir`** → passed as **`--resume_from_checkpoint`**. If **`--extra_epochs`** is omitted, **`--epochs`** is reused as the **total** epoch count for the resumed run (see `run_sft.sh` comments).
 - **`WORK_DIRS`**, **`HF_CACHE_ROOT`**, **`MASTER_PORT`**, **`COMET_*`**, **`BATCH_SIZE`**, **`GRAD_ACCUM`**, **`DEEPSPEED`**, VL **`MAX_PIXELS`** / **`VIDEO_*`** — see the long header comment in **`run_sft.sh`** for the full list.
 
 ---

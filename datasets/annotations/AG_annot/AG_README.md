@@ -170,7 +170,7 @@ python datasets/annotations/AG_annot/tools/prepare_original_ag_sft.py \
 
 - `--keep_all` — do not restrict to `visible=True` only (default keeps visible-only).
 - `--limit N` — process at most `N` frames (`0` = all).
-- `--num_workers` — `1` = sequential; `>1` = multiprocessing pool.
+- `--num_workers` — `1` = sequential. `>1` = multiprocessing pool.
 
 ### 4.2 `sft_to_jsonl_ag.py`
 

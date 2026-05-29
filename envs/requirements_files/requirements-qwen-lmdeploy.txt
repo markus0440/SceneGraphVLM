@@ -1,0 +1,17 @@
+# LMDeploy native pipeline (Qwen3-VL, Qwen3.5). Separate env from vLLM (version pins conflict).
+# ms-swift is used for token breakdown / chat template only.
+ms-swift>=3.0
+lmdeploy>=0.10.0,<0.14
+transformers>=5.0.0,<5.9.0
+setuptools>=70,<82
+accelerate>=0.34.0
+pyyaml>=6.0
+pillow>=10.0
+tqdm>=4.66.0
+qwen-vl-utils>=0.0.14
+decord
+einops
+sentencepiece
+timm
+packaging
+causal-conv1d>=1.4.0

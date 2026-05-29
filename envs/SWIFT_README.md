@@ -1,6 +1,6 @@
-# MSwift (Swift) environment for SFT
+# MSwift (Swift) conda environments
 
-This folder holds a small **conda + pip** installer used across **SceneGraphVLM** dataset READMEs (PSG, AG, PVSG, …) for **supervised fine-tuning** with **Qwen 3.x** via [MSwift](https://github.com/modelscope/swift).
+Conda and Docker installers for **SFT** and **speed-test** backends in SceneGraphVLM.
 
 | Resource | Link |
 |----------|------|
@@ -18,33 +18,64 @@ Choose **one** of the two install methods below:
 
 ## Option A — Conda install
 
+| Conda env | Backend | Install |
+|-----------|---------|---------|
+| `swift_qwen_3_5_sft` | **vLLM + HF** (Qwen, InternVL, DeepSeek/Ovis, SmolVLM) | `bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh` |
+| `swift_qwen_sglang` | **SGLang** | `bash envs/sh_scripts/install_swift_qwen_sglang.sh` |
+| `swift_qwen_lmdeploy` | **LMDeploy** (Qwen3-VL, Qwen3.5 native pipeline) | `bash envs/sh_scripts/install_swift_qwen_lmdeploy.sh` |
+
+Why separate envs? **vLLM**, **SGLang**, and **LMDeploy** pin incompatible `torch` / `transformers` / backend versions. Do not merge into one env.
+
+### 1. Primary: vLLM + HF (`swift_qwen_3_5_sft`)
+
 From the **SceneGraphVLM repository root**:
 
 ```bash
 bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
-```
-
-What it does:
-
-- Creates a conda env named **`swift_qwen_3_5_sft`** (Python **3.11**) if it does not exist.
-- Activates that env and runs **`pip install -r envs/requirements_files/requirements-swift-qwen-3-5-sft.txt`** (with `--no-build-isolation` as in the script).
-
-Then activate whenever you work on SFT:
-
-```bash
 conda activate swift_qwen_3_5_sft
 ```
 
-### Optional: custom env name
+Creates Python 3.11 env with ms-swift, vLLM, HF. Covers Qwen VL, InternVL, DeepSeek-VL2, Ovis, SmolVLM.
+
+**RTX 5060 Ti / CUDA 12.8+:** if import fails, retry with:
 
 ```bash
-CONDA_ENV=my_swift_sft bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
-conda activate my_swift_sft
+TORCH_INDEX=https://download.pytorch.org/whl/cu128 \
+  bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh
 ```
+
+Custom env name: `CONDA_ENV=my_swift_sft bash envs/sh_scripts/install_swift_qwen_3_5_sft.sh`
+
+### 2. Optional: SGLang (`swift_qwen_sglang`)
+
+```bash
+bash envs/sh_scripts/install_swift_qwen_sglang.sh
+conda activate swift_qwen_sglang
+```
+
+**RTX 50xx (sm_120):** if `sglang-kernel` fails to load, build from source:
+
+```bash
+bash envs/sh_scripts/build_sglang_kernel_sm120.sh
+conda activate swift_qwen_sglang
+```
+
+If smoke fails with **PyTorch/torchvision CUDA mismatch**, realign wheels inside the env (see install script output).
+
+### 3. Optional: LMDeploy (`swift_qwen_lmdeploy`)
+
+Native `lmdeploy.pipeline` for **Qwen3-VL** and **Qwen3.5** only. Qwen2-VL / InternVL on LMDeploy are not supported in this stack. Use **vLLM** from `swift_qwen_3_5_sft` instead.
+
+```bash
+bash envs/sh_scripts/install_swift_qwen_lmdeploy.sh
+conda activate swift_qwen_lmdeploy
+```
+
+On **RTX 5060 Ti (sm_120)** the speed-test code applies SMEM patches automatically.
 
 ## Option B — Docker
 
-Builds an **environment-only** image (CUDA 12.6 devel + Python 3.11 + all pip packages). No project code or data is baked in — the repo is bind-mounted at runtime.
+Builds an **environment-only** image (CUDA 12.6 devel + Python 3.11 + all pip packages). No project code or data is baked in. The repo is bind-mounted at runtime.
 
 ### Build
 
@@ -82,27 +113,55 @@ docker run --gpus all --ipc=host --ulimit memlock=-1 \
 
 ## Other models
 
-The scripts above are tailored for **Qwen 3.x SFT** in this repo. If you want to fine-tune **other model families**, do **not** rely on that requirements pin alone: follow the **[MSwift documentation](https://swift.readthedocs.io/en/latest/)** and install **MSwift the way upstream describes** (from the [Swift repo](https://github.com/modelscope/swift) / full `pip` install, extra deps, and CUDA bits for your stack). Use the official docs and best-practice pages for your target model instead of this minimal env file.
+The scripts above are tailored for **Qwen 3.x SFT** in this repo. For **other model families**, follow the **[MSwift documentation](https://swift.readthedocs.io/en/latest/)** and upstream install instructions instead of copying these pins blindly.
+
+## Verify (speed test)
+
+```bash
+conda activate swift_qwen_3_5_sft
+export CUDA_VISIBLE_DEVICES=0 IMAGE_MAX_TOKEN_NUM=1024
+python metrics/statistics/speed-test-infer/py_scripts/speed_test_infer.py \
+  --model Qwen/Qwen3.5-0.8B \
+  --model-display-name Qwen3.5-0.8B \
+  --infer-backend vllm \
+  --force
+```
+
+Full backend matrices: [metrics/statistics/speed-test-infer/README.md](../metrics/statistics/speed-test-infer/README.md).
 
 ## Layout
 
 ```text
 envs/
-├── SWIFT_README.md                           # this file
+├── SWIFT_README.md
 ├── sh_scripts/
-│   ├── install_swift_qwen_3_5_sft.sh         # conda installer
-│   ├── Dockerfile.swift_qwen_3_5_sft         # Docker image definition
-│   └── build_docker_swift_qwen_3_5_sft.sh    # Docker build helper
+│   ├── _common.sh
+│   ├── install_swift_qwen_3_5_sft.sh
+│   ├── install_swift_qwen_sglang.sh
+│   ├── install_swift_qwen_lmdeploy.sh
+│   ├── build_sglang_kernel_sm120.sh      # optional, sm_120 only
+│   ├── Dockerfile.swift_qwen_3_5_sft
+│   └── build_docker_swift_qwen_3_5_sft.sh
 └── requirements_files/
-    └── requirements-swift-qwen-3-5-sft.txt
+    ├── requirements-qwen-vllm.txt
+    ├── requirements-qwen-sglang.txt
+    └── requirements-qwen-lmdeploy.txt
 ```
 
-For training options, argument patterns, and Qwen3.5-specific tips, follow the **Best Practice** page linked above alongside the main Swift docs.
+## Troubleshooting
 
----
+**InternVL / DeepSeek HF fails** (`configuration_*.py`, `no generate`): stale remote-code cache or transformers 5.x. Reinstall primary env. If needed:
 
-## Related documentation
+```bash
+conda activate swift_qwen_3_5_sft
+pip install 'transformers>=4.56.2,<5.0' timm
+rm -rf ~/.cache/huggingface/modules/transformers_modules
+```
 
-- [SceneGraphVLM project README](../README.md)  
-- [SFT training](../sft/SFT_README.md)  
+**HF-only N/A after fix:** `InternVL2.5-2B`, `Ovis2.5-2B` — use vLLM for those models.
+
+## Related
+
+- [SceneGraphVLM project README](../README.md)
+- [SFT training](../sft/SFT_README.md)
 - [Metrics & evaluation](../metrics/metrics.md)

@@ -63,7 +63,7 @@ datasets/annotations/PVSG_annot/OpenPVSG/
     videos/
 ```
 
-> Large binaries and `pvsg.json` are usually **git-ignored**; keep them on disk locally.
+> Large binaries and `pvsg.json` are usually **git-ignored**. Keep them on disk locally.
 
 ## 2. Build dense TOON
 
@@ -93,7 +93,7 @@ python datasets/annotations/PVSG_annot/tools/prepare_original_pvsg_sft.py
 | `--export_root` | Output dir for `*_annotations_toon_sft.json`. |
 | `--images_out` | Root for PNGs (default `datasets/frames/PVSG_frames`). |
 | `--sources` | Comma-separated sources (default `vidor,epic_kitchen,ego4d`). |
-| `--splits` | Comma-separated splits (default `train,val`; `val` ==> `test_*.json`). |
+| `--splits` | Comma-separated splits (default `train,val`. `val` ==> `test_*.json`). |
 | `--limit_videos` | Cap number of videos (`0` = all). |
 | `--limit_frames` | Cap frames per video (`0` = all). |
 | `--only_video` | Process a single video id. |
@@ -283,7 +283,7 @@ Now, generate the complete scene graph for the provided image. Write your respon
 
 ## 5. Drop samples with zero relations (`clean_zero_rel_frames.py`) — **after Section 4 only**
 
-Same utility as for other datasets: `utils/annotations_clean/clean_zero_rel_frames.py`. It **only** reads **`*.jsonl`** trees; run it **after** `sft_to_jsonl_pvsg.py` has written `train.jsonl` / `test.jsonl`, and **after** you have finished the **Section 3** thinning that feeds your chosen `--input_dir` for that export.
+Same utility as for other datasets: `utils/annotations_clean/clean_zero_rel_frames.py`. It **only** reads **`*.jsonl`** trees. Run it **after** `sft_to_jsonl_pvsg.py` has written `train.jsonl` / `test.jsonl`, and **after** you have finished the **Section 3** thinning that feeds your chosen `--input_dir` for that export.
 
 **PVSG JSONL uses `rel[N]{subj,pred,obj}`**, so the detector in the script **matches** this format and can remove rows with zero declared / zero actual relation lines.
 
@@ -329,7 +329,7 @@ cd /path/to/SceneGraphVLM
 # 1) Full TOON + 640x480 frames
 python datasets/annotations/PVSG_annot/tools/prepare_original_pvsg_sft.py
 
-# 2) Thin TOON (optional — pick what you need; see Section 3)
+# 2) Thin TOON (optional — pick what you need. See Section 3)
 #    BaseAnnot: original → base_annot
 python utils/BaseAnnot/prepare_filtered_pvsg_sft.py
 #    MaxInfo on FULL dense TOON (script defaults: input = data_sft_original)

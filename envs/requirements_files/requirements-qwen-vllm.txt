@@ -1,0 +1,17 @@
+# Qwen + InternVL + DeepSeek/Ovis: ms-swift + vLLM + HF (speed-test + SFT).
+# transformers<5: InternVL/DeepSeek remote-code HF; vLLM 0.21 needs >=4.56.
+# Install PyTorch for your CUDA via install_swift_qwen_3_5_sft.sh (TORCH_INDEX).
+ms-swift>=3.0
+vllm>=0.8.0
+transformers>=4.56.2,<5.0
+accelerate>=0.34.0
+pyyaml>=6.0
+pillow>=10.0
+tqdm>=4.66.0
+einops
+sentencepiece
+protobuf
+qwen-vl-utils>=0.0.14
+decord
+num2words
+timm

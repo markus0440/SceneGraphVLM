@@ -47,7 +47,7 @@ datasets/annotations/PSG_annot/annotations/
 
 Each row follows the OpenPSG-style structure (`image_id`, `objects`, `relationships`, ...). If files are missing, the preparation script can fetch them from Hugging Face (`--from-hf`).
 
-> Large JSON exports are usually **git-ignored**; keep them on disk or regenerate with `--from-hf`.
+> Large JSON exports are usually **git-ignored**. Keep them on disk or regenerate with `--from-hf`.
 
 ## 2. SceneGraphVLM tools (TOON + frames + JSONL)
 

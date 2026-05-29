@@ -1,0 +1,10 @@
+# Separate env: SGLang often conflicts with vLLM pins. Install torch for your CUDA first.
+ms-swift>=3.0
+sglang>=0.4.0
+transformers>=4.51.0
+pyyaml>=6.0
+pillow>=10.0
+tqdm>=4.66.0
+qwen-vl-utils>=0.0.14
+num2words>=0.5.13
+decord
