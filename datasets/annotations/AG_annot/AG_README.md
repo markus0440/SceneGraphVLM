@@ -180,7 +180,7 @@ Reads the intermediate JSON from 4.1 and writes **Swift-style chat JSONL** (PVSG
 - `datasets/data_playground/AG_json/test.jsonl`
 
 Example absolute path:  
-`/data/homes/makarov_vd/workspace/SceneGraphVLM/datasets/data_playground/AG_json/`
+`/path/to/SceneGraphVLM/datasets/data_playground/AG_json/`
 
 ```bash
 cd /path/to/SceneGraphVLM
