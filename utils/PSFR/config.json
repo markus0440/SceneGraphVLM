@@ -1,0 +1,51 @@
+{
+  "paths": {
+    "frames_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/data/indoor",
+    "output_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/indoor",
+    "key_frames_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/indoor-key-frames"
+  },
+
+  "preprocess": {
+    "resize": { "width": 640, "height": 360 },
+    "keep_aspect": false,
+    "interpolation": "linear"
+  },
+
+  "patching": { "nw": 3, "nh": 3, "centroidal": true },
+
+  "shi_tomasi": {
+    "CORNERS_LIMIT_PER_IMAGE": 60,
+    "dedup_radius": 10.0,
+    "qualityLevel": 0.3,
+    "minDistance": 15.0,
+    "max_corners_patch": 10,
+    "useHarrisDetector": false,
+    "blockSize": 3,
+    "gradientSize": 3,
+    "k": 0.04
+  },
+
+  "lucas_kanade": {
+    "winSize": [21, 21],
+    "maxLevel": 3,
+    "criteria": [3, 30, 0.01],
+    "max_error": 15.0
+  },
+
+  "selection": {
+    "retention_tau": 0.5,
+    "min_patches_k": 3,
+    "copy_keyframes": true
+  },
+
+  "visualization": {
+    "enabled": true,
+    "dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/visualization",
+    "tracked_color": "#00FF00",
+    "new_color": "#0066FF",
+    "patch_drop_color": "#FF0000",
+    "patch_drop_alpha": 0.3,
+    "point_radius": 4,
+    "point_thickness": -1
+  }
+}

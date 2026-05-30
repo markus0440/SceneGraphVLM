@@ -1,0 +1,16 @@
+# Core dataset annotation tools.
+tqdm>=4.66
+Pillow>=10.0
+numpy==1.26.4
+
+# PSG Hugging Face import path.
+datasets>=2.18
+
+# PVSG PSFR key-frame selection.
+opencv-python>=4.9
+matplotlib>=3.8
+
+# PVSG MaxInfo key-frame selection.
+torch>=2.2
+transformers>=4.41
+
