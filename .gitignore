@@ -78,7 +78,7 @@ datasets/images/**
 !datasets/images/**/*.ipynb
 
 # --- Annotation bundles (AG / PSG / PVSG) ---
-# Ignore each dataset root except: README.md, tools/**, and small *.txt lists under annotations/.
+# Ignore each dataset root except: README.md, tools/**.
 # Pickles, videos, dumped frames, and SFT intermediates stay untracked.
 
 datasets/annotations/AG_annot/*
@@ -87,7 +87,6 @@ datasets/annotations/AG_annot/*
 !datasets/annotations/AG_annot/tools/
 !datasets/annotations/AG_annot/tools/**
 !datasets/annotations/AG_annot/annotations/
-!datasets/annotations/AG_annot/annotations/*.txt
 !datasets/annotations/AG_annot/figures/
 !datasets/annotations/AG_annot/figures/*.png
 !datasets/annotations/AG_annot/figures/*.jpg
@@ -103,8 +102,6 @@ datasets/annotations/PSG_annot/*
 !datasets/annotations/PSG_annot/figure/*.gif
 !datasets/annotations/PSG_annot/figure/*.png
 !datasets/annotations/PSG_annot/annotations/
-!datasets/annotations/PSG_annot/annotations/*.txt
-!datasets/annotations/PSG_annot/annotations/*.json
 
 datasets/annotations/PVSG_annot/*
 !datasets/annotations/PVSG_annot/README.md
@@ -120,7 +117,11 @@ datasets/annotations/PVSG_annot/*
 !datasets/annotations/PVSG_annot/tools/
 !datasets/annotations/PVSG_annot/tools/**
 !datasets/annotations/PVSG_annot/annotations/
-!datasets/annotations/PVSG_annot/annotations/*.txt
+
+# Keep annotation directories, but do not track raw dataset annotations
+datasets/annotations/*/annotations/**
+!datasets/annotations/*/annotations/
+!datasets/annotations/*/annotations/.gitkeep
 
 # Heavy / generated under annotations/ (even if annotations/ dir is partly tracked)
 datasets/annotations/*/annotations/*.pkl
@@ -153,7 +154,7 @@ metrics/qwen-bench/results/**
 # --- Local conda/env trees (keep shell installers) ---
 envs/*
 !envs/.gitkeep
-!envs/SWIFT_README.md
+!envs/DATA_PREP_README.md
 !envs/sh_scripts/
 !envs/sh_scripts/**
 !envs/requirements_files/

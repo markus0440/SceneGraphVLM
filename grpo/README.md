@@ -21,11 +21,8 @@ grpo/
 Run these commands from anywhere inside the container:
 
 ```bash
-# PVSG, hallucination-aware reward profile
+# PVSG
 COMET_API_KEY=... bash /workspace/grpo/swift/scripts/run_pvsg_grpo_qwen3_5.sh
-
-# PVSG, R1-SGG-style reward profile
-COMET_API_KEY=... bash /workspace/grpo/swift/scripts/run_pvsg_grpo_qwen3_5_r1sgg.sh
 
 # PSG
 COMET_API_KEY=... bash /workspace/grpo/swift/scripts/run_psg_grpo_qwen3_5.sh

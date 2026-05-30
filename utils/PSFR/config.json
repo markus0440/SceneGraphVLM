@@ -1,8 +1,8 @@
 {
   "paths": {
-    "frames_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/data/indoor",
-    "output_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/indoor",
-    "key_frames_dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/indoor-key-frames"
+    "frames_dir": "data/example_frames",
+    "output_dir": "outputs/psfr",
+    "key_frames_dir": "outputs/psfr/key_frames"
   },
 
   "preprocess": {
@@ -40,7 +40,7 @@
 
   "visualization": {
     "enabled": true,
-    "dir": "/Users/dark-creator/solomon/self/key-frame-selection/tmp/output/visualization",
+    "dir": "outputs/psfr/visualization",
     "tracked_color": "#00FF00",
     "new_color": "#0066FF",
     "patch_drop_color": "#FF0000",
