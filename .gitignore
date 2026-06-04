@@ -38,6 +38,8 @@ venv/
 **/.ipynb_checkpoints/
 
 # --- Training / checkpoints / GRPO outputs ---
+checkpoints/**
+!checkpoints/.gitkeep
 
 # --- GRPO local artifacts ---
 grpo/models/**

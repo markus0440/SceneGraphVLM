@@ -559,11 +559,11 @@ def create_metrics_table(metrics: Dict, width: int, gen_time: Optional[float] = 
 
 def create_qwen_eval_metrics_table(metrics: Dict, width: int) -> Image.Image:
     """
-    Per-frame strip: seven metrics from eval per-sample jsonl (object AP@50, R, F1; rel P, R, F1; SGG).
+    Per-frame strip: seven metrics from eval per-sample jsonl (object P@50, R, F1; rel P, R, F1; SGG).
     Values use qwen_* keys from eval; headers are neutral (no judge name).
     """
     headers = [
-        ("AP@50", (1.0, 0.9, 0.8)),
+        ("Obj P", (1.0, 0.9, 0.8)),
         ("Obj R", (1.0, 0.9, 0.8)),
         ("Obj F1", (1.0, 0.9, 0.8)),
         ("Rel P", (0.9, 0.85, 0.95)),

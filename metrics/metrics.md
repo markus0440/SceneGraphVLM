@@ -4,6 +4,100 @@ This document specifies **how evaluation metrics are computed**, where **inferen
 
 ---
 
+## Quick Start: Checkpoints in GEN Mode
+
+Run these commands inside the training/inference container with the repository
+mounted at `/workspace`. They assume that:
+
+- released checkpoints were extracted under `checkpoints/`;
+- dataset preparation has already produced regular test files under
+  `datasets/data_playground/.../test.jsonl`;
+- image paths in the JSONL files point to frames available inside the container.
+
+GEN-prompt mode is the deployment-style video setting. For frame `t`, the prompt
+uses the model prediction from frame `t-1` as the previous-frame scene graph
+(`--prev-source model`).
+
+### PVSG: GEN inference
+
+```bash
+cd /workspace
+
+CUDA_VISIBLE_DEVICES=0 python metrics/qwen-bench/infer/GEN-prompt/infer_swift_gen_prompt.py \
+  --model checkpoints/PVSG \
+  --test-jsonl datasets/data_playground/PVSG_json/pvsg_psfr_gt_prompt/test.jsonl \
+  --output-dir metrics/results/checkpoints-inference/released/PVSG-GEN-prompt \
+  --run-name SceneGraphVLM-PVSG-GEN \
+  --infer-backend vllm \
+  --batch-size 64 \
+  --max-new-tokens 2048 \
+  --temperature 0.0 \
+  --max-model-len 8192 \
+  --gpu-memory-utilization 0.9 \
+  --dataset-tag pvsg_psfr_gt_prompt_test \
+  --checkpoint-step released \
+  --response-prefix $'<answer>\n' \
+  --prev-source model \
+  --force
+```
+
+### PVSG: strict scene-graph metrics
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python metrics/qwen-bench/eval/eval_sgg_metrics_with_qwen.py \
+  --pred-jsonl metrics/results/checkpoints-inference/released/PVSG-GEN-prompt/SceneGraphVLM-PVSG-GEN.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/released/PVSG-GEN-prompt \
+  --output-name SceneGraphVLM-PVSG-GEN-metrics.json \
+  --iou-thr 0.5 \
+  --strict-only
+```
+
+Strict mode is the recommended default. It computes lexical PSG/PVSG metrics
+without loading the Qwen synonym judge. To also compute Qwen-assisted soft
+matching, omit `--strict-only` and optionally set `--batch-size-qwen`,
+`--gpu-memory-utilization`, and `--qwen-model-path`.
+
+### AG: GEN inference
+
+```bash
+cd /workspace
+
+CUDA_VISIBLE_DEVICES=0 python metrics/qwen-bench/infer/GEN-prompt/infer_swift_gen_prompt.py \
+  --model checkpoints/AG \
+  --test-jsonl datasets/data_playground/AG_json/test.jsonl \
+  --output-dir metrics/results/checkpoints-inference/released/AG-GEN-prompt \
+  --run-name SceneGraphVLM-AG-GEN \
+  --infer-backend vllm \
+  --batch-size 64 \
+  --max-new-tokens 2048 \
+  --temperature 0.0 \
+  --max-model-len 8192 \
+  --gpu-memory-utilization 0.9 \
+  --dataset-tag ag_test_gen_prompt \
+  --checkpoint-step released \
+  --response-prefix $'<answer>\n' \
+  --prev-source model \
+  --force
+```
+
+### AG: extended classical metrics
+
+Action Genome uses `rel_pairs[...]` rows with attention / spatial / contacting
+relation fields. Use the SG benchmark adapter for AG predictions:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python metrics/sgbench/eval_classical_metrics_extended.py \
+  --pred-jsonl metrics/results/checkpoints-inference/released/AG-GEN-prompt/SceneGraphVLM-AG-GEN.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/released/AG-GEN-prompt \
+  --output-name SceneGraphVLM-AG-GEN-classical-extended.json \
+  --mode sgdet \
+  --iou-thr 0.5
+```
+
+For PSG use the GT-prompt / single-frame inference path described below.
+
+---
+
 ## 1. OpenRouter (`metrics/open-router`)
 
 ### Purpose
@@ -230,7 +324,8 @@ The mean IoU over accepted pairs is stored per sample as **`bbox_mean_iou_matche
 After pairs are fixed by IoU, **category names** are compared:
 
 - exact string match after normalization counts as agreement;
-- otherwise the pair is submitted to the **Qwen judge** (below): output **1** denotes synonymy / equivalent labeling; **0** denotes disagreement.
+- in strict mode (`--strict-only`), every non-identical label is counted as a mismatch;
+- when the optional Qwen judge is enabled, non-identical labels are submitted to the judge: output **1** denotes synonymy / equivalent labeling; **0** denotes disagreement.
 
 Let $N_{\text{gt}}$ and $N_{\text{pred}}$ denote object counts, and let $T$ denote the number of matched pairs (IoU $\ge \theta$) whose labels are deemed correct (exact match or judge output 1). The implementation uses:
 
@@ -244,7 +339,7 @@ $$
 
 (with $F1_{\text{obj}} = 0$ if $P_{\text{obj}} + R_{\text{obj}} = 0$.)
 
-In the aggregated JSON, **`Obj_AP@50_*`**, **`Obj_Recall_*`**, and **`Obj_F1_*`** denote the **arithmetic mean** of the corresponding per-sample quantities (macro-averaging over frames). Suffixes **`strict`** (all disputed pairs treated as mismatch; judge treated as 0) and **`Qwen`** (judge responses applied) distinguish the two regimes.
+In the aggregated JSON, **`Obj_P@50_*`**, **`Obj_Recall_*`**, and **`Obj_F1_*`** denote the **arithmetic mean** of the corresponding per-sample quantities (macro-averaging over frames). Suffixes **`strict`** (all disputed pairs treated as mismatch; judge treated as 0) and **`Qwen`** (judge responses applied) distinguish the two regimes.
 
 #### Relations: candidates and a second Hungarian step
 
@@ -262,7 +357,11 @@ $$
 
 In the summary JSON, **`SGG_Score_strict`** and **`SGG_Score_qwen`** report the dataset-level mean of $s$.
 
-### Qwen judge: invocation and outputs
+### Optional Qwen judge: invocation and outputs
+
+The recommended default is to run the evaluator with **`--strict-only`**, which
+skips the Qwen judge and reports strict lexical metrics only. Omit
+`--strict-only` to enable Qwen-assisted soft matching.
 
 - **Default model:** `Qwen/Qwen3-4B-Instruct-2507`, or a local directory via **`--qwen-model-path`** / **`QWEN_MODEL_PATH`**.
 - **Objects:** batched prompts include textual summaries of the full ground-truth and predicted scenes; the system message requires a **single digit** `1` or `0`. Responses are parsed with simple token rules (`_parse_synonym_answer`).
@@ -283,14 +382,14 @@ Typical path: `metrics/results/checkpoints-metrics/sft/PVSG-GT-prompt/...-metric
   "invalid_rate_pct": 0.0329,
   "iou_thr": 0.5,
   "time_sec": { "N": 3039, "mean": 0.037, "sigma": 0.015, "median": 0.034, "phys": "(0.037 ± 0.015) s" },
-  "Obj_AP@50_strict": 0.7386,
-  "Obj_AP@50_Qwen": 0.7412,
+  "Obj_P@50_strict": 0.7386,
+  "Obj_P@50_Qwen": 0.7412,
   "Obj_Recall_strict": 0.7328,
   "Obj_Recall_Qwen": 0.7357,
   "Obj_F1_strict": 0.7294,
   "Obj_F1_qwen": 0.7321,
-  "Rel_AP@50_strict": 0.6312,
-  "Rel_AP@50_Qwen": 0.6331,
+  "Rel_P@50_strict": 0.6312,
+  "Rel_P@50_Qwen": 0.6331,
   "Rel_Recall_strict": 0.6234,
   "Rel_Recall_Qwen": 0.6248,
   "Rel_F1_strict": 0.6139,
@@ -336,17 +435,33 @@ Filenames are chosen via **`--run-name`** (Swift) or **`{model_short}-{output_pr
 
 ## 4. Classical metrics (`metrics/sgbench`)
 
-The **`metrics/sgbench/`** directory is reserved for **classical** scene graph generation metrics (e.g. mean recall at K, recall at K, predicate-set conventions from the literature) **without** an LLM-based judge.
+The **`metrics/sgbench/`** directory contains the extended classical scene graph
+metrics without an LLM-based judge. This path is especially useful for Action
+Genome outputs because AG uses `rel_pairs[...]` rows with attention / spatial /
+contacting relation groups.
 
-**Status:** not yet implemented. Once code is added, input formats (JSON/JSONL) and TOON alignment should be documented in this file.
+Typical invocation after GEN inference:
+
+```bash
+python metrics/sgbench/eval_classical_metrics_extended.py \
+  --pred-jsonl metrics/results/checkpoints-inference/released/AG-GEN-prompt/SceneGraphVLM-AG-GEN.jsonl \
+  --output-dir metrics/results/checkpoints-metrics/released/AG-GEN-prompt \
+  --output-name SceneGraphVLM-AG-GEN-classical-extended.json \
+  --mode sgdet \
+  --iou-thr 0.5
+```
+
+`eval_classical_metrics_extended.py` reports R@K, P@K, F1@K, micro P/R/F1@K,
+and mR@K for `K = 10, 20, 50, 100`.
 
 ---
 
 ## End-to-end pipeline
 
 1. Obtain Swift-format test JSONL under `datasets/data_playground/...`.
-2. Run inference with either an OpenRouter script or `infer_swift_*.py` → `metrics/results/checkpoints-inference/.../*.jsonl`.
-3. Run **`eval_sgg_metrics_with_qwen.py`** with **`--pred-jsonl`** pointing to that file → `metrics/results/checkpoints-metrics/.../*-metrics.json`.
+2. Run GEN inference with `infer_swift_gen_prompt.py`, or run an OpenRouter script for third-party models.
+3. For PSG/PVSG, run **`eval_sgg_metrics_with_qwen.py`** with **`--pred-jsonl`** pointing to the prediction file.
+4. For AG, run the classical evaluator under **`metrics/sgbench/`**.
 
 ---
 
