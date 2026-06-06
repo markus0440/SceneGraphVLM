@@ -1,6 +1,7 @@
 # SceneGraphVLM: Dynamic Scene Graph Generation from Video with Vision-Language Models
 
 [![arXiv](https://img.shields.io/badge/arXiv-2605.13667-b31b1b.svg)](https://arxiv.org/abs/2605.13667)
+[![Weights](https://img.shields.io/badge/Weights-Zenodo-blue.svg)](https://zenodo.org/records/20511274?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6Ijc4ODcwYzg5LWRjM2UtNGVlMi1iMGNmLWY4NjcwMzJhNWE0NCIsImRhdGEiOnt9LCJyYW5kb20iOiI3OWFhY2ZhZDMwZWUwNTY1MGIyMzUyNGNkZTk1NTA4ZCJ9.CkJPxC6vjkmERWox2qEi8x9JtwDXs9McVy6G6m13wmwyUFe8orHPGP0KJvCAJWFA2FAZIkOZ-orIxf-X7eYhjw)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 SceneGraphVLM is a compact end-to-end framework for generating scene graphs from images and videos with small vision-language models. Instead of using a multi-stage detector-relation pipeline, the model directly emits a structured graph in a token-efficient **TOON** text format.
